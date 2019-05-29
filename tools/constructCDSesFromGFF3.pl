@@ -11,6 +11,7 @@ Getopt::Long::Configure qw(gnu_getopt);
 # Version 1.1 (2018/11/15) Revcomp now works on IUPAC bases    #
 # Version 1.2 (2019/04/11) Non-greedy Parent regex and prefix  #
 # Version 1.3 (2019/04/27) Option for longest isoform only     #
+# Version 1.4 (2019/05/16) Stable choice of longest isoform    #
 ################################################################
 
 #First pass script to construct a FASTA of CDSes from a GFF3 and
@@ -22,8 +23,12 @@ Getopt::Long::Configure qw(gnu_getopt);
 # CDS records, although still assuming local sortedness
 # (i.e. sorted order within a gene)
 
+#2019/05/16 revision just forces a sort order for the longest
+# isoform choice so that the same transcript is chosen if there
+# is a tie for longest.
+
 my $SCRIPTNAME = "constructCDSesFromGFF3.pl";
-my $VERSION = "1.3";
+my $VERSION = "1.4";
 
 =pod
 
@@ -174,10 +179,10 @@ close($gff_fh);
 
 #Determine the longest isoform for each gene:
 my %longest_isoform = (); #Keys are transcript IDs, basically a set
-for my $gene (keys %gene_tx_map) {
+for my $gene (sort keys %gene_tx_map) {
    my $max_len = 0;
    my $max_len_id = "";
-   for my $tx (keys %{$gene_tx_map{$gene}}) {
+   for my $tx (sort keys %{$gene_tx_map{$gene}}) {
       if ($isoform_length{$tx} > $max_len) {
          $max_len = $isoform_length{$tx};
          $max_len_id = $tx;

@@ -14,6 +14,8 @@ Getopt::Long::Configure qw(gnu_getopt);
 # Version 1.2 (2019/04/22) Split arbitrary FASTAs, not just      #
 #                          introns, still using SCO map          #
 #                          Homology determined with other script #
+# Version 1.3 (2019/05/17) Drop duplicated records, don't parse  #
+#                          it based on the last record it's in.  #
 ##################################################################
 
 #First pass script to split FASTAs of introns based on single copy
@@ -26,7 +28,7 @@ Getopt::Long::Configure qw(gnu_getopt);
 # script (in the case of introns, findSingleCopyOrthologIntrons.pl).
 
 my $SCRIPTNAME = "parseFASTARecords.pl";
-my $VERSION = "1.2";
+my $VERSION = "1.3";
 
 =pod
 
@@ -132,6 +134,7 @@ unless(open($map_fh, "<", $map_path)) {
 
 #Read in the group map:
 my %group_map = (); #Hash of hashes ({spp}{record id})
+my %skip_IDs = (); #Hash of record IDs to omit from parsing -- meant for duplicates
 my $header_line = <$map_fh>;
 chomp $header_line;
 my @strains = split /\t/, $header_line; #1-based indexing, as index 0 is OG
@@ -150,13 +153,24 @@ while (my $line = <$map_fh>) {
       my $record = $records[$i];
       my $group = $records[0];
       $group_map{$spp} = {} unless exists($group_map{$spp});
-      print STDERR "Record ${record} found multiple times for species ${spp} in group map ${map_path}.\n" if exists($group_map{$spp}{$record});
+      if (exists($group_map{$spp}{$record})) {
+         print STDERR "Record ${record} found multiple times for species ${spp} in group map ${map_path}.\n";
+         $skip_IDs{$spp} = {} unless exists($skip_IDs{$spp});
+         $skip_IDs{$spp}{$record} = undef;
+         $group_map{$spp}{$record} = undef;
+      }
       print STDERR "Record ${record} for species ${spp} => was ", exists($group_map{$spp}{$record}) && defined($group_map{$spp}{$record}) ? $group_map{$spp}{$record} : "", " is now ", $records[0], "\n" if $debug > 2;
-      $group_map{$spp}{$record} = undef if exists($group_map{$spp}{$record});
       $group_map{$spp}{$record} = $group unless exists($group_map{$spp}{$record}) and defined($group_map{$spp}{$record}); #Map the record to the group
    }
 }
 close($map_fh);
+
+#Drop the records that are duplicated:
+for my $spp (keys %skip_IDs) {
+   for my $record (keys %{$skip_IDs{$spp}}) {
+      delete $group_map{$spp}{$record};
+   }
+}
 
 #Now iterate through the FASTA files and sort each record into
 # its appropriate file based on the map file:
