@@ -1,0 +1,15 @@
+# BUSCO version is: 3.0.2 
+# The lineage dataset is: diptera_odb9 (Creation date: 2016-02-13, number of species: 25, number of BUSCOs: 2799)
+# To reproduce this run: python /home/pfreilly/Downloads/Bioinformatics/Assembly/busco/scripts/run_BUSCO.py -i Dsan_STOCAGO1482_CDSes.fasta -o Dsan_STOCAGO1482_BUSCOv3_txome_diptera -l /home/pfreilly/Downloads/Bioinformatics/Assembly/busco/diptera_odb9/ -m transcriptome -c 8 -z
+#
+# Summarized benchmarking in BUSCO notation for file Dsan_STOCAGO1482_CDSes.fasta
+# BUSCO was run in mode: transcriptome
+
+	C:93.9%[S:93.1%,D:0.8%],F:3.4%,M:2.7%,n:2799
+
+	2630	Complete BUSCOs (C)
+	2607	Complete and single-copy BUSCOs (S)
+	23	Complete and duplicated BUSCOs (D)
+	95	Fragmented BUSCOs (F)
+	74	Missing BUSCOs (M)
+	2799	Total BUSCO groups searched

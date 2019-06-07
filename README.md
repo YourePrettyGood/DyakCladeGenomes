@@ -19,9 +19,24 @@ Polished contig assemblies were aligned to the *D. melanogaster* ISO1 reference 
 
 ## Annotations:
 
-We generated CDS annotations for the final chromosome-arm-scale genomes using [BRAKER2](https://github.com/Gaius-Augustus/BRAKER/) (version 2.1.0, with slight modifications), using species-specific RNAseq data mapped using STAR 2.5.2a in two-pass mode, as well as the full proteome of *D. melanogaster* (FlyBase release 6.26).
+We generated CDS annotations for the final chromosome-arm-scale genomes using [BRAKER2](https://github.com/Gaius-Augustus/BRAKER/) (version 2.1.0, with slight modifications), using species-specific RNAseq data mapped using STAR 2.5.4b in two-pass mode, as well as the full proteome of *D. melanogaster* (FlyBase release 6.26).
 
 Work is ongoing to refine transcript models using [StringTie](https://github.com/gpertea/stringtie/), and potentially more models and UTRs based on transcripts assembled using [Trinity](https://github.com/trinityrnaseq/trinityrnaseq/).
+
+### BUSCO completeness assessments:
+
+The assemblies and annotations (coding transcriptome and proteome) are assessed for completeness using `assembly_BUSCO.mk` in the BUSCO subdirectory. This Makefile depends on BUSCO v3.0.2 being installed and the `run_BUSCO.py` and `generate_plot.py` scripts being accessible via your PATH. This is most easily arranged using a module. Generating the proteomes for BUSCO assessment also requires EMBOSS transeq.
+
+All assemblies are assessed against the narrowest BUSCO lineage containing Drosophila: Diptera. For the manuscript, we used NCBI-BLAST 2.2.31+, HMMER 3.1b2, and Augustus 3.3.2 (commit 8b1b14a7489e4545e89c8725dc33268f6c2a9117), with R 3.5.1 and EMBOSS transeq 6.6.0.0.
+
+Command used:
+
+```
+module load BUSCO/3.0.2
+make -j3 -f assembly_BUSCO.mk transcriptome_plot
+make -j3 -f assembly_BUSCO.mk proteome_plot
+make -j3 -f assembly_BUSCO.mk genome_plot
+```
 
 ## Population Genetic Data:
 
