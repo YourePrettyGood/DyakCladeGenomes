@@ -42,6 +42,8 @@ REFS := $(filter-out $(EXCLUDEDREFS),$(basename $(notdir $(wildcard ../refs/*.fa
 REFBEDS := $(addprefix BEDs/,$(addsuffix _line_4fold_genomic.bed,$(REFS)))
 #Species that the references represent:
 SPECIES := $(foreach ref,$(REFS),$(word 1,$(subst _, ,$(ref))))
+#Species-specific FAIs:
+REFFAIS := $(addprefix FAIs/,$(addsuffix .fasta.fai,$(SPECIES)))
 #Genome-wide per-site pi estimate files:
 GWPI := $(addsuffix _genomewide_pi.tsv.gz,$(SPECIES))
 #Windowed genome-wide pi estimate files:
@@ -72,14 +74,27 @@ all : $(GWPI) $(WINDOWEDGWPI) $(FFPI) $(WINDOWEDFFPI)
 	nonOverlappingWindows -w $(WINDOW) -a -u -i <(zcat $<) 2> logs/nOW_$*_w$(WINDOW).stderr | gzip -9 > $@
 
 #4-fold genome-wide pi subsetting:
-%_4fold_pi.tsv.gz : %_genomewide_pi.tsv.gz BEDs/%_spp_4fold_genomic.bed
+%_4fold_pi.tsv.gz : %_genomewide_pi.tsv.gz BEDs/%_spp_4fold_genomic.bed FAIs/%.fasta.fai
 	@echo "Subsetting 4-fold sites from genome-wide pi for $*"
 	mkdir -p logs; \
-	subsetVCFstats.pl -i <(gzip -dc $(word 1,$^)) -b $(word 2,$^) 2> logs/sVs_$*_4fold.stderr | gzip -9 > $@
+	subsetVCFstats.pl -i <(gzip -dc $(word 1,$^)) -b $(word 2,$^) 2> logs/sVs_$*_4fold.stderr | decompressStats.pl -f $(word 3,$^) -u 2> logs/dS_$*_4fold.stderr | gzip -9 > $@
+
+$(REFFAIS) : FAIs/%.fasta.fai : FAIs/%.fasta
+	@echo "Indexing reference $* with samtools"
+	samtools faidx $<
+
+FAIs/%.fasta : FAIs
+	cd FAIs/; \
+	ln -s $*_*.fasta $*.fasta; \
+	cd ..
+
+FAIs : 
+	mkdir -p $@; \
+	ln -s $(addprefix ../../refs/,$(addsuffix .fasta,$(REFS))) FAIs/
 
 #Genome-wide pi calculations:
 %_genomewide_pi.tsv.gz : %_pseudorefs.fofn
-	@echo "Calculating genome-wide pi for $*"
+	@echo "Calculating per-base pi genomewide for $*"
 	mkdir -p logs; \
 	calculatePolymorphism $(INBRED) -u -p $(SEED) -f $< 2> logs/cP_$*_genomewide.stderr | gzip -9 > $@
 
@@ -115,6 +130,7 @@ $(SUBDIRS) :
 	mkdir -p $@
 
 clean :
-	for i in $(SUBDIRS); do rm -f $${i}/*.fasta $${i}/*.bed $${i}/*.stderr; [[ ! -d $${i} ]] || rmdir $${i}; done
+	for i in $(SUBDIRS); do rm -f $${i}/*.fasta $${i}/*.fai $${i}/*.bed $${i}/*.stderr; [[ ! -d $${i} ]] || rmdir $${i}; done
 	rm -f $(GWPI) $(WINDOWEDGWPI) $(FFPI) $(WINDOWEDFFPI)
+	rm -rf FAIs/
 	rm -f *.fofn
