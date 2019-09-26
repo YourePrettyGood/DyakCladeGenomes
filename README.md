@@ -15,7 +15,7 @@ Each line had over 70x of subreads, mostly generated from P6-C4 chemistry on a P
 
 Draft assemblies were generated using FALCON v0.7.0 and Canu 1.3, then these assemblies were merged with [quickmerge](https://github.com/mahulchak/quickmerge/) using the FALCON assembly as reference, and further scaffolding, gap-filling, and repeat resolution was performed using [FinisherSC](https://github.com/kakitone/finishingTool/) (Using the Imoteph fork). Assemblies were polished with Quiver, and then with Pilon. As the *D. teissieri* assembly was the most fragmented, in collaboration with Russ Corbett-Detig's group, we generated Hi-C data for *D. teissieri* GT53w (~100x) and *D. yakuba* NY73PB (~10x). We mapped these Hi-C reads using the [Arima Genomics Hi-C mapping pipeline](https://github.com/ArimaGenomics/mapping_pipeline/), and scaffolded the genome using [SALSA2](https://github.com/machinegun/SALSA/).
 
-Polished contig assemblies were aligned to the *D. melanogaster* ISO1 reference (FlyBase release 6.26), as well as the *D. yakuba* Tai18E2 reference (FlyBase release 1.06) to further determine joins necessary for chromosome-arm-length scaffolds by synteny, taking into account known inversions between species. Contigs were joined using `manualScaffold.pl`.
+Polished contig assemblies were aligned to the *D. melanogaster* ISO1 reference (FlyBase release 6.26), as well as the *D. yakuba* Tai18E2 reference (FlyBase release 1.05) to further determine joins necessary for chromosome-arm-length scaffolds by synteny, taking into account known inversions between species. Contigs were joined using `manualScaffold.pl`.
 
 ## Annotations:
 
