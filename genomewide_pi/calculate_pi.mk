@@ -15,7 +15,8 @@ SHELL=/bin/bash
 #decompressStats.pl
 #nonOverlappingWindows
 #subsetVCFstats.pl
-#These Perl and C++ scripts are available in the tools subdirectory
+#extractOGlocation.awk
+#These Awk, Perl, and C++ scripts are available in the tools subdirectory
 # of the Github repository.
 
 #Options to adjust:
@@ -38,6 +39,8 @@ PSEUDOREFS := $(wildcard ../pseudorefs/*.fasta)
 
 #References inferred from directory above the current:
 REFS := $(filter-out $(EXCLUDEDREFS),$(basename $(notdir $(wildcard ../refs/*.fasta))))
+#Per-reference orthogroup location files:
+OGSPPLOCS := $(addsuffix _OG_locs.tsv,$(REFS))
 #Line-specific BEDs of 4-fold sites:
 REFBEDS := $(addprefix BEDs/,$(addsuffix _line_4fold_genomic.bed,$(REFS)))
 #Species that the references represent:
@@ -54,7 +57,7 @@ FFPI := $(addsuffix _4fold_pi.tsv.gz,$(SPECIES))
 WINDOWEDFFPI := $(addsuffix _4fold_pi_w$(WINDOW).tsv.gz,$(SPECIES))
 
 
-.PHONY : all clean usage
+.PHONY : all orthogroup_locations clean usage
 
 .SECONDARY : $(GWPI) $(WINDOWEDGWPI) $(FFPI) $(WINDOWEDFFPI)
 
@@ -63,6 +66,7 @@ usage :
 	@echo "make -f calculate_pi.mk [task]"
 	@echo "Tasks:"
 	@echo "all -> Calculate per-site and windowed genome-wide and 4-fold-only pi for each species"
+	@echo "orthogroup_locations -> Find SCO locations"
 	@echo "clean -> Clean up all output files and directories"
 
 all : $(GWPI) $(WINDOWEDGWPI) $(FFPI) $(WINDOWEDFFPI)
@@ -125,6 +129,12 @@ CDSes/%_CDSes.fasta : ../refs/%.fasta ../annotations/%.gff3 CDSes
 	@echo "Extracting CDSes for $*"
 	mkdir -p logs; \
 	constructCDSesFromGFF3.pl -i $(word 1,$^) -g $(word 2,$^) -l 2> logs/cCFG_$*.stderr > $@
+
+orthogroup_locations : $(OGSPPLOCS)
+	cat $^ | sort -k5,5V > $@
+
+$(OGSPPLOCS) : %_OG_locs.tsv : ../OrthoFinder_clustalo/Orthogroups_SingleCopy_renamed.tsv ../annotations/%.gff3
+	extractOGlocation.awk -v "refid=$*_proteome" $(word 1,$^) $(word 2,$^) > $@
 
 $(SUBDIRS) :
 	mkdir -p $@

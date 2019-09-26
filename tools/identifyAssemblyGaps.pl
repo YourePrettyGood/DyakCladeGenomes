@@ -6,17 +6,18 @@ use Pod::Usage;
 use Getopt::Long qw(GetOptions);
 Getopt::Long::Configure qw(gnu_getopt);
 
-################################################################
-#                                                              #
-# Version 1.0 (2019/05/24) Initial version                     #
-################################################################
+####################################################################
+#                                                                  #
+# Version 1.0 (2019/05/24) Initial version                         #
+# Version 1.1 (2019/07/17) Misinterpreted @+ array, no need for +1 #
+####################################################################
 
 #Quick script to identify intervals consisting of gaps in an assembly
 # and output these intervals as a BED.
 #Order of the BED is the same as the input assembly FASTA
 
 my $SCRIPTNAME = "identifyAssemblyGaps.pl";
-my $VERSION = "1.0";
+my $VERSION = "1.1";
 
 =pod
 
@@ -77,7 +78,10 @@ while (my $line = <$genome_fh>) {
    if ($line =~ /^>/) {
       if ($scaffold_name ne "") {
          #Search the scaffold for gaps and output them progressively:
-         print join("\t", $scaffold_name, $-[0], $+[0]+1), "\n" while $scaffold_sequence =~ /[^ACGTacgt]+/g;
+         #Note: @- array is 0-based index of start of match
+         # @+ array is 0-based index of one past end of match
+         #So this naturally produces a BED interval
+         print join("\t", $scaffold_name, $-[0], $+[0]), "\n" while $scaffold_sequence =~ /[^ACGTacgt]+/g;
       }
       $scaffold_name = substr $line, 1; #Get rid of the prefixed ">"
       $scaffold_sequence = ""; #Clear out the old sequence
@@ -89,7 +93,10 @@ close($genome_fh);
 #Now make sure we account for the last scaffold:
 if ($scaffold_name ne "") {
    #Search the scaffold for gaps and output them progressively:
-   print join("\t", $scaffold_name, $-[0], $+[0]+1), "\n" while $scaffold_sequence =~ /[^ACGTacgt]+/g;
+   #Note: @- array is 0-based index of start of match
+   # @+ array is 0-based index of one past end of match
+   #So this naturally produces a BED interval
+   print join("\t", $scaffold_name, $-[0], $+[0]), "\n" while $scaffold_sequence =~ /[^ACGTacgt]+/g;
 }
 
 exit 0;
