@@ -37,6 +37,12 @@ We generated CDS annotations for the final chromosome-arm-scale genomes using [B
 
 Work is ongoing to refine transcript models using [StringTie](https://github.com/gpertea/stringtie/), and potentially more models and UTRs based on transcripts assembled using [Trinity](https://github.com/trinityrnaseq/trinityrnaseq/). We may also be testing out the [Comparative Annotation Toolkit](https://github.com/ComparativeGenomicsToolkit/Comparative-Annotation-Toolkit) in Augustus-TM(R) and Augustus-CGP modes.
 
+## Current data freeze availability:
+
+The current assembly and annotation freeze (2019/12/11) is available (please be courteous about our publication intent) on [Google Drive](https://drive.google.com/drive/folders/1-EhPAg9QVTdqoBaq68xifMmhJ4ntLPJc?usp=sharing).
+
+Pseudoreferences of the population samples may be linked from here in the future (please e-mail for more details).
+
 ## Assembly contiguity assessments:
 
 Dependencies:
@@ -96,7 +102,7 @@ Population samples used here include:
 1. 21 females from isofemale lines (treated as haploid -- one allele is chosen at random for any heterozygous sites) (Illumina PE50, PE75, PE100, from Rogers et al. (2014) MBE)
 1. 12 further "Synthetic Diploid" females from lines collected in mainland Africa (Illumina PE150) (some overlapping with the 21 isofemale lines)
 
-In the end, we ended up with haploid sample sizes of 82 for *D. melanogaster*, 20 for *D. simulans*, 100 for *D. santomea*, 16 for *D. teissieri*, and 67 for *D. yakuba*, totalling 285 (excluding the 6 references).
+After filtering for inversion state in Dmel and line overlap in Dyak, we ended up with haploid sample sizes of 82 for *D. melanogaster*, 20 for *D. simulans*, 100 for *D. santomea*, 26 for *D. teissieri*, and 66 for *D. yakuba*, totalling 295 (excluding the 6 references).
 
 Variant calls were generated and filtered using the [Pseudoreference Pipeline](https://github.com/YourePrettyGood/PseudoreferencePipeline/), in particular mapping with [BWA-MEM](https://github.com/lh3/bwa/) 0.7.17-r1188, marking duplicates with Picard MarkDuplicates commit 1ccb775, realigning around indels with GATK IndelRealigner 3.4-46-gbc02625, calling variants with [BCFtools](https://github.com/samtools/bcftools/) 1.7-1-ge07034a (htslib 1.7-23-g9f9631d), and masking sites for which the following compound criterion held true:
 
