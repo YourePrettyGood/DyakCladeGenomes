@@ -8,6 +8,8 @@ SHELL=/bin/bash
 
 #Expects the following in your PATH:
 #fasta_formatter
+#The rest of these should be accessible via relative paths in the tools
+# subdirectory:
 #AssemblyContiguityPlot.R
 #This R script is available in the tools subdirectory
 # of the Github repository.
@@ -17,10 +19,12 @@ SHELL=/bin/bash
 IDEALREF := Dmel_ISO1
 #Final plot filename:
 PLOTNAME := MSTYY_ctg_len_dist.pdf
+#Exclude a ref:
+EXCLUDEREF := Dsim_w501
 
 #DO NOT CHANGE THE BELOW:
 #References inferred from directory above the current:
-REFS := $(basename $(notdir $(wildcard ../refs/*.fasta)))
+REFS := $(filter-out $(EXCLUDEREF),$(basename $(notdir $(wildcard ../refs/*.fasta))))
 #Old reference(s) (not PacBio one(s)), inferred from "old" subdirectory of
 # "refs" directory above current:
 OLDREFS := $(basename $(notdir $(wildcard ../refs/old/*.fasta)))
@@ -46,7 +50,7 @@ all : $(PLOTNAME)
 
 #Generate the cumulative contig length plot:
 $(PLOTNAME) : combined_lens.tsv
-	AssemblyContiguityPlot.R $@ $< Ideal_$(IDEALREF) $(REFS) $(OLDREFS)
+	../tools/AssemblyContiguityPlot.R $@ $< Ideal_$(IDEALREF) $(REFS) $(OLDREFS)
 
 #Combine the contig and scaffold length files:
 combined_lens.tsv : $(CTGLENS) $(SCAFLEN) $(EXTRACTGLENS)

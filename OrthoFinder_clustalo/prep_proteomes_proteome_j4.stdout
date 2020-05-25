@@ -1,0 +1,21 @@
+mkdir -p logs
+mkdir -p OrthoFinder_proteomes
+../tools/constructCDSesFromGFF3.pl -l -i ../refs/Dyak_NY73PB.fasta -g ../annotations/Dyak_NY73PB.gff3 -p Dyak_NY73PB > Dyak_NY73PB_txome.fna 2> logs/txome_Dyak_NY73PB.stderr
+../tools/constructCDSesFromGFF3.pl -l -i ../refs/Dsim_w501.fasta -g ../annotations/Dsim_w501.gff3 -p Dsim_w501 > Dsim_w501_txome.fna 2> logs/txome_Dsim_w501.stderr
+../tools/constructCDSesFromGFF3.pl -l -i ../refs/Dtei_GT53w.fasta -g ../annotations/Dtei_GT53w.gff3 -p Dtei_GT53w > Dtei_GT53w_txome.fna 2> logs/txome_Dtei_GT53w.stderr
+../tools/constructCDSesFromGFF3.pl -l -i ../refs/Dmel_ISO1.fasta -g ../annotations/Dmel_ISO1.gff3 -p Dmel_ISO1 > Dmel_ISO1_txome.fna 2> logs/txome_Dmel_ISO1.stderr
+../tools/constructCDSesFromGFF3.pl -l -i ../refs/Dyak_Tai18E2.fasta -g ../annotations/Dyak_Tai18E2.gff3 -p Dyak_Tai18E2 > Dyak_Tai18E2_txome.fna 2> logs/txome_Dyak_Tai18E2.stderr
+../tools/constructCDSesFromGFF3.pl -l -i ../refs/Dsan_STOCAGO1482.fasta -g ../annotations/Dsan_STOCAGO1482.gff3 -p Dsan_STOCAGO1482 > Dsan_STOCAGO1482_txome.fna 2> logs/txome_Dsan_STOCAGO1482.stderr
+transeq -trim -sequence Dyak_NY73PB_txome.fna -outseq Dyak_NY73PB_proteome.faa 2> logs/transeq_Dyak_NY73PB.stderr
+transeq -trim -sequence Dtei_GT53w_txome.fna -outseq Dtei_GT53w_proteome.faa 2> logs/transeq_Dtei_GT53w.stderr
+transeq -trim -sequence Dyak_Tai18E2_txome.fna -outseq Dyak_Tai18E2_proteome.faa 2> logs/transeq_Dyak_Tai18E2.stderr
+../tools/prepForOrthoFinder.awk -v "species=Dyak_NY73PB" Dyak_NY73PB_proteome.faa > OrthoFinder_proteomes/Dyak_NY73PB_proteome.faa
+transeq -trim -sequence Dsim_w501_txome.fna -outseq Dsim_w501_proteome.faa 2> logs/transeq_Dsim_w501.stderr
+../tools/prepForOrthoFinder.awk -v "species=Dtei_GT53w" Dtei_GT53w_proteome.faa > OrthoFinder_proteomes/Dtei_GT53w_proteome.faa
+../tools/prepForOrthoFinder.awk -v "species=Dyak_Tai18E2" Dyak_Tai18E2_proteome.faa > OrthoFinder_proteomes/Dyak_Tai18E2_proteome.faa
+transeq -trim -sequence Dsan_STOCAGO1482_txome.fna -outseq Dsan_STOCAGO1482_proteome.faa 2> logs/transeq_Dsan_STOCAGO1482.stderr
+../tools/prepForOrthoFinder.awk -v "species=Dsim_w501" Dsim_w501_proteome.faa > OrthoFinder_proteomes/Dsim_w501_proteome.faa
+../tools/prepForOrthoFinder.awk -v "species=Dsan_STOCAGO1482" Dsan_STOCAGO1482_proteome.faa > OrthoFinder_proteomes/Dsan_STOCAGO1482_proteome.faa
+transeq -trim -sequence Dmel_ISO1_txome.fna -outseq Dmel_ISO1_proteome.faa 2> logs/transeq_Dmel_ISO1.stderr
+../tools/prepForOrthoFinder.awk -v "species=Dmel_ISO1" Dmel_ISO1_proteome.faa > OrthoFinder_proteomes/Dmel_ISO1_proteome.faa
+rm Dyak_NY73PB_txome.fna Dtei_GT53w_txome.fna Dmel_ISO1_txome.fna Dsim_w501_txome.fna Dsan_STOCAGO1482_txome.fna Dyak_Tai18E2_txome.fna

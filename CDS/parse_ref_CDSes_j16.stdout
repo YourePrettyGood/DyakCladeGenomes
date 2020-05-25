@@ -1,0 +1,21 @@
+mkdir -p unparsed_CDSes_refs
+mkdir -p raw_CDSes_refs
+mkdir -p logs; \
+/usr/bin/time -v ../tools/constructCDSesFromGFF3.pl -l -i ../refs/Dyak_NY73PB.fasta -g ../annotations/Dyak_NY73PB.gff3 -p Dyak_NY73PB > unparsed_CDSes_refs/Dyak_NY73PB.fasta 2> logs/txome_Dyak_NY73PB.stderr
+mkdir -p logs; \
+/usr/bin/time -v ../tools/constructCDSesFromGFF3.pl -l -i ../refs/Dsim_w501.fasta -g ../annotations/Dsim_w501.gff3 -p Dsim_w501 > unparsed_CDSes_refs/Dsim_w501.fasta 2> logs/txome_Dsim_w501.stderr
+mkdir -p logs; \
+/usr/bin/time -v ../tools/constructCDSesFromGFF3.pl -l -i ../refs/Dmel_ISO1.fasta -g ../annotations/Dmel_ISO1.gff3 -p Dmel_ISO1 > unparsed_CDSes_refs/Dmel_ISO1.fasta 2> logs/txome_Dmel_ISO1.stderr
+mkdir -p logs; \
+/usr/bin/time -v ../tools/constructCDSesFromGFF3.pl -l -i ../refs/Dtei_GT53w.fasta -g ../annotations/Dtei_GT53w.gff3 -p Dtei_GT53w > unparsed_CDSes_refs/Dtei_GT53w.fasta 2> logs/txome_Dtei_GT53w.stderr
+mkdir -p logs; \
+/usr/bin/time -v ../tools/constructCDSesFromGFF3.pl -l -i ../refs/Dsan_STOCAGO1482.fasta -g ../annotations/Dsan_STOCAGO1482.gff3 -p Dsan_STOCAGO1482 > unparsed_CDSes_refs/Dsan_STOCAGO1482.fasta 2> logs/txome_Dsan_STOCAGO1482.stderr
+Trimming single copy orthogroup map headers for use with pseudorefs
+../tools/trimSCOmapHeaders.awk -v "excludedcols=Dyak_Tai18E2" ../OrthoFinder_clustalo/Orthogroups_SingleCopy_renamed.tsv > Orthogroups_SingleCopy_renamed_forPseudorefs.tsv
+Parsing ref CDSes by orthogroup
+cd raw_CDSes_refs; \
+mkdir -p logs; \
+ls ../unparsed_CDSes_refs/Dyak_NY73PB.fasta ../unparsed_CDSes_refs/Dsim_w501.fasta ../unparsed_CDSes_refs/Dmel_ISO1.fasta ../unparsed_CDSes_refs/Dtei_GT53w.fasta ../unparsed_CDSes_refs/Dsan_STOCAGO1482.fasta > unparsed_CDSes_refs.fofn; \
+/usr/bin/time -v ../../tools/parseFASTARecords.pl -f unparsed_CDSes_refs.fofn -m ../Orthogroups_SingleCopy_renamed_forPseudorefs.tsv -dddd 2> logs/parseFASTA.stderr > logs/parseFASTA.stdout; \
+cd ..; \
+fgrep -c ">" raw_CDSes_refs/OG* | cut -d":" -f2 | sort | uniq -c > parse_ref_CDSes

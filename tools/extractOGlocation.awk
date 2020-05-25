@@ -2,12 +2,16 @@
 BEGIN{
    FS="\t";
    OFS=FS;
+   if (length(refid) == 0) {
+      print "Missing required refid argument" > "/dev/stderr";
+      exit 1;
+   }
 }
 #First file is the SCO map
 FNR==NR&&NR==1{
 #Determine which column corresponds to the reference ID passed in:
    for (i=1;i<=NF;i++) {
-      if ($i == refid) {
+      if ($i == refid || $i == refid"_proteome") {
          refcol=i;
       }
    }

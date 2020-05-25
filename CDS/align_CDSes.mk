@@ -7,11 +7,13 @@ SHELL=/bin/bash
 #Expects the following in your PATH:
 #prank
 #fasta_formatter
+#The rest of these should be accessible via relative paths in the tools
+# subdirectory:
 #addAlignedGaps.pl
 #constructCDSesFromGFF3.pl
 #fakeHaplotype.pl
 #parseFASTARecords.pl
-#skipRogers.awk
+#omitInbredHaplotype.awk
 #trimAlignment.awk
 #trimCDSes.awk
 #trimSCOmapHeaders.awk
@@ -67,7 +69,7 @@ usage :
 check : samples_per_OG_unaligned.tsv trimmed_aligned_all_number_of_seqs.tsv
 
 #Check number of pseudorefs per OG:
-samples_per_OG_unaligned.tsv : parsed_CDSes_samples
+samples_per_OG_unaligned.tsv : parse_sample_CDSes
 	for i in $(OGs); do printf "$${i}\t"; fgrep -c ">" raw_CDSes_samples/$${i}.fasta; done > $@
 
 #Output number of rows in final alignments:
@@ -83,11 +85,11 @@ align_all : $(ALIGNEDALL)
 
 #Add to ref aligned CDSes, and trim alignments:
 trimmed_aligned_all/%_trimmed.fasta : trimmed_aligned_refs/%_prank.best.fas trimmed_unaligned_samples/%_trimmed.fasta trimmed_aligned_all
-	addAlignedGaps.pl -a <(fasta_formatter -i $(word 1,$^)) -i $(word 2,$^) | trimAlignment.awk > $@
+	../tools/addAlignedGaps.pl -a <(fasta_formatter -i $(word 1,$^)) -i $(word 2,$^) | ../tools/trimAlignment.awk > $@
 
 #Split CDSes into fake haplotypes and trim:
 trimmed_unaligned_samples/OG%_trimmed.fasta : raw_CDSes_samples/OG%_unwrapped.fasta trimmed_unaligned_samples
-	cat <(fasta_formatter -i $(word 1,$^) | fakeHaplotype.pl -b) <(fasta_formatter -i $(word 1,$^) | fakeHaplotype.pl -b -a | skipRogers.awk) | trimCDSes.awk > $@
+	cat <(fasta_formatter -i $(word 1,$^) | ../tools/fakeHaplotype.pl -b) <(fasta_formatter -i $(word 1,$^) | ../tools/fakeHaplotype.pl -b -a | ../tools/omitInbredHaplotype.awk) | ../tools/trimCDSes.awk > $@
 
 #Parse CDSes by OG:
 parse_sample_CDSes : $(SAMPLESCOMAP) $(CDSSAMPLES) raw_CDSes_samples
@@ -95,7 +97,7 @@ parse_sample_CDSes : $(SAMPLESCOMAP) $(CDSSAMPLES) raw_CDSes_samples
 	cd raw_CDSes_samples; \
 	mkdir -p logs; \
 	ls $(addprefix ../,$(CDSSAMPLES)) > unparsed_CDSes_samples.fofn; \
-	parseFASTARecords.pl -f unparsed_CDSes_samples.fofn -m $(addprefix ../,$(word 1,$^)) -dddd 2> logs/parseFASTA.stderr > logs/parseFASTA.stdout; \
+	/usr/bin/time -v ../../tools/parseFASTARecords.pl -f unparsed_CDSes_samples.fofn -m $(addprefix ../,$(word 1,$^)) -dddd 2> logs/parseFASTA.stderr > logs/parseFASTA.stdout; \
 	cd ..; \
 	fgrep -c ">" raw_CDSes_samples/OG* | cut -d":" -f2 | sort | uniq -c > $@
 
@@ -103,7 +105,7 @@ parse_sample_CDSes : $(SAMPLESCOMAP) $(CDSSAMPLES) raw_CDSes_samples
 unparsed_CDSes_samples/%.fasta : ../pseudorefs/%.fasta unparsed_CDSes_samples
 	mkdir -p logs; \
 	species=$$(echo "$*" | cut -d"_" -f1); \
-	constructCDSesFromGFF3.pl -l -i $(word 1,$^) -g ../annotations/$${species}.gff3 -p $* > $@ 2> logs/txome_$*.stderr
+	../tools/constructCDSesFromGFF3.pl -l -i $(word 1,$^) -g ../annotations/$${species}.gff3 -p $* > $@ 2> logs/txome_$*.stderr
 
 #Node in DAG parent to all aligned reference CDSes:
 #Note: We don't use make auto variable here as it would give a
@@ -119,7 +121,7 @@ trimmed_aligned_refs/%_prank.best.fas : trimmed_unaligned_refs/%_trimmed.fasta t
 
 #Trim ref CDSes:
 trimmed_unaligned_refs/OG%_trimmed.fasta : raw_CDSes_refs/OG%_unwrapped.fasta trimmed_unaligned_refs
-	trimCDSes.awk $(word 1,$^) > $@
+	../tools/trimCDSes.awk $(word 1,$^) > $@
 
 #Parse CDSes by OG:
 parse_ref_CDSes : $(SAMPLESCOMAP) $(CDSREFS) raw_CDSes_refs
@@ -127,19 +129,19 @@ parse_ref_CDSes : $(SAMPLESCOMAP) $(CDSREFS) raw_CDSes_refs
 	cd raw_CDSes_refs; \
 	mkdir -p logs; \
 	ls $(addprefix ../,$(CDSREFS)) > unparsed_CDSes_refs.fofn; \
-	/usr/bin/time -v parseFASTARecords.pl -f unparsed_CDSes_refs.fofn -m $(addprefix ../,$(word 1,$^)) -dddd 2> logs/parseFASTA.stderr > logs/parseFASTA.stdout; \
+	/usr/bin/time -v ../../tools/parseFASTARecords.pl -f unparsed_CDSes_refs.fofn -m $(addprefix ../,$(word 1,$^)) -dddd 2> logs/parseFASTA.stderr > logs/parseFASTA.stdout; \
 	cd ..; \
 	fgrep -c ">" raw_CDSes_refs/OG* | cut -d":" -f2 | sort | uniq -c > $@
 
 #Trim SCO map headers and excluded requested refs:
 $(SAMPLESCOMAP) : $(SCOMAP)
 	@echo "Trimming single copy orthogroup map headers for use with pseudorefs"
-	trimSCOmapHeaders.awk -v "excludedcols=$(EXCLUDEDREFS)" $< > $@
+	../tools/trimSCOmapHeaders.awk -v "excludedcols=$(EXCLUDEDREFS)" $< > $@
 
 #Extract CDSes from refs:
 unparsed_CDSes_refs/%.fasta : ../refs/%.fasta ../annotations/%.gff3 unparsed_CDSes_refs
 	mkdir -p logs; \
-	/usr/bin/time -v constructCDSesFromGFF3.pl -l -i $(word 1,$^) -g $(word 2,$^) -p $* > $@ 2> logs/txome_$*.stderr
+	/usr/bin/time -v ../tools/constructCDSesFromGFF3.pl -l -i $(word 1,$^) -g $(word 2,$^) -p $* > $@ 2> logs/txome_$*.stderr
 
 $(SUBDIRS) :
 	mkdir -p $@

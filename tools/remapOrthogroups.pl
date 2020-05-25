@@ -8,7 +8,10 @@ Getopt::Long::Configure qw(gnu_getopt);
 use IO::Uncompress::Gunzip qw(gunzip $GunzipError);
 
 my $SCRIPTNAME = "remapOrthogroups.pl";
-my $VERSION = "1.0";
+my $VERSION = "1.2";
+#Version 1.1 fixes a bug in removing carriage returns from header line
+#Version 1.2 adds some debugging output, and fixes a trailing
+#            whitespace/delimiter issue
 
 =pod
 
@@ -64,6 +67,7 @@ while (my $line = <$mapfh>) {
    my @mapelems = split /\t/, $line;
    #Map is from OrthoFinder input ID (key) to original annotation/transcriptome ID (value):
    $prot_map{${mapelems[1]}} = ${mapelems[0]};
+   print STDERR "Added ", join(" => ", ${mapelems[1]}, ${mapelems[0]}), " to OrthoFinderID=>protID map\n" if $debug > 1;
 }
 close($mapfh);
 $/ = "\r\n";
@@ -75,11 +79,17 @@ if (! -e ${orthogroups}) {
 }
 open($orthogroupsfh, "<", $orthogroups) or die "Unable to open OrthoFinder Orthogroups.csv file ${orthogroups}";
 my $headerline = <$orthogroupsfh>;
-print $headerline;
+chomp $headerline;
+print $headerline, "\n";
+#Keep track of the number of proteomes involved:
+my @header_parts = split /\t/, $headerline;
+my $num_parts = scalar(@header_parts);
+print STDERR "Header indicates ${num_parts} columns\n" if $debug;
 while (my $line = <$orthogroupsfh>) {
    chomp $line;
-   my @speciesarr = split /\t/, $line;
+   my @speciesarr = split /\t/, $line, $num_parts; #Force $num_parts to avoid truncation of trailing null elements
    my $num_spp = scalar(@speciesarr);
+   print STDERR "Record indicates ${num_spp} columns whereas header says ${num_parts} for line:\n${line}\n" if $num_spp != $num_parts and $debug;
    for (my $i = 0; $i < $num_spp; $i++) {
       next if $i==0;
       my @protarr = split /, /, $speciesarr[$i];
@@ -87,6 +97,7 @@ while (my $line = <$orthogroupsfh>) {
       for (my $j = 0; $j < $num_prots; $j++) {
          if (exists($prot_map{$protarr[$j]})) {
             #Replace the ID if it's found in the map (it should always be):
+            print STDERR "Replaced ", $protarr[$j], " with ", $prot_map{$protarr[$j]}, "\n" if $debug > 1;
             $protarr[$j] = $prot_map{$protarr[$j]};
          } else {
             print STDERR "Unable to find element in map for ${protarr[$j]}\n";

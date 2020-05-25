@@ -1,0 +1,23 @@
+	Command being timed: "make -f align_CDSes.mk -j36 align_all"
+	User time (seconds): 657715.22
+	System time (seconds): 1837.06
+	Percent of CPU this job got: 3092%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 5:55:28
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 522596
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 13
+	Minor (reclaiming a frame) page faults: 569613152
+	Voluntary context switches: 3978313
+	Involuntary context switches: 3953496
+	Swaps: 0
+	File system inputs: 4120
+	File system outputs: 23345192
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

@@ -1,0 +1,25 @@
+fasta_formatter -i ../refs/Dyak_NY73PB.fasta | ../tools/FASTAtoContigs.awk | ../tools/NX.pl -t - 50,90 | cut -f1,2,3,4,5,8 | tail -n1 > Dyak_NY73PB_ctg_stats.tsv
+fasta_formatter -i ../refs/Dyak_NY73PB.fasta | ../tools/NX.pl -t - 50,90 | cut -f2,3,4,5,8 | tail -n1 > Dyak_NY73PB_scaf_stats.tsv
+paste <(printf "Dyak_NY73PB\n") Dyak_NY73PB_ctg_stats.tsv Dyak_NY73PB_scaf_stats.tsv > Dyak_NY73PB_asm_stats.tsv
+fasta_formatter -i ../refs/Dsim_w501.fasta | ../tools/FASTAtoContigs.awk | ../tools/NX.pl -t - 50,90 | cut -f1,2,3,4,5,8 | tail -n1 > Dsim_w501_ctg_stats.tsv
+fasta_formatter -i ../refs/Dsim_w501.fasta | ../tools/NX.pl -t - 50,90 | cut -f2,3,4,5,8 | tail -n1 > Dsim_w501_scaf_stats.tsv
+paste <(printf "Dsim_w501\n") Dsim_w501_ctg_stats.tsv Dsim_w501_scaf_stats.tsv > Dsim_w501_asm_stats.tsv
+fasta_formatter -i ../refs/Dmel_ISO1.fasta | ../tools/FASTAtoContigs.awk | ../tools/NX.pl -t - 50,90 | cut -f1,2,3,4,5,8 | tail -n1 > Dmel_ISO1_ctg_stats.tsv
+fasta_formatter -i ../refs/Dmel_ISO1.fasta | ../tools/NX.pl -t - 50,90 | cut -f2,3,4,5,8 | tail -n1 > Dmel_ISO1_scaf_stats.tsv
+paste <(printf "Dmel_ISO1\n") Dmel_ISO1_ctg_stats.tsv Dmel_ISO1_scaf_stats.tsv > Dmel_ISO1_asm_stats.tsv
+fasta_formatter -i ../refs/Dyak_Tai18E2.fasta | ../tools/FASTAtoContigs.awk | ../tools/NX.pl -t - 50,90 | cut -f1,2,3,4,5,8 | tail -n1 > Dyak_Tai18E2_ctg_stats.tsv
+fasta_formatter -i ../refs/Dyak_Tai18E2.fasta | ../tools/NX.pl -t - 50,90 | cut -f2,3,4,5,8 | tail -n1 > Dyak_Tai18E2_scaf_stats.tsv
+paste <(printf "Dyak_Tai18E2\n") Dyak_Tai18E2_ctg_stats.tsv Dyak_Tai18E2_scaf_stats.tsv > Dyak_Tai18E2_asm_stats.tsv
+fasta_formatter -i ../refs/Dtei_GT53w.fasta | ../tools/FASTAtoContigs.awk | ../tools/NX.pl -t - 50,90 | cut -f1,2,3,4,5,8 | tail -n1 > Dtei_GT53w_ctg_stats.tsv
+fasta_formatter -i ../refs/Dtei_GT53w.fasta | ../tools/NX.pl -t - 50,90 | cut -f2,3,4,5,8 | tail -n1 > Dtei_GT53w_scaf_stats.tsv
+paste <(printf "Dtei_GT53w\n") Dtei_GT53w_ctg_stats.tsv Dtei_GT53w_scaf_stats.tsv > Dtei_GT53w_asm_stats.tsv
+fasta_formatter -i ../refs/Dsan_STOCAGO1482.fasta | ../tools/FASTAtoContigs.awk | ../tools/NX.pl -t - 50,90 | cut -f1,2,3,4,5,8 | tail -n1 > Dsan_STOCAGO1482_ctg_stats.tsv
+fasta_formatter -i ../refs/Dsan_STOCAGO1482.fasta | ../tools/NX.pl -t - 50,90 | cut -f2,3,4,5,8 | tail -n1 > Dsan_STOCAGO1482_scaf_stats.tsv
+paste <(printf "Dsan_STOCAGO1482\n") Dsan_STOCAGO1482_ctg_stats.tsv Dsan_STOCAGO1482_scaf_stats.tsv > Dsan_STOCAGO1482_asm_stats.tsv
+fasta_formatter -i ../refs/old/Dyak_Miller.fasta | ../tools/FASTAtoContigs.awk | ../tools/NX.pl -t - 50,90 | cut -f1,2,3,4,5,8 | tail -n1 > Dyak_Miller_ctg_stats.tsv
+fasta_formatter -i ../refs/old/Dyak_Miller.fasta | ../tools/NX.pl -t - 50,90 | cut -f2,3,4,5,8 | tail -n1 > Dyak_Miller_scaf_stats.tsv
+paste <(printf "Dyak_Miller\n") Dyak_Miller_ctg_stats.tsv Dyak_Miller_scaf_stats.tsv > Dyak_Miller_asm_stats.tsv
+fasta_formatter -i ../refs/old/Dyak_caf1.fasta | ../tools/FASTAtoContigs.awk | ../tools/NX.pl -t - 50,90 | cut -f1,2,3,4,5,8 | tail -n1 > Dyak_caf1_ctg_stats.tsv
+fasta_formatter -i ../refs/old/Dyak_caf1.fasta | ../tools/NX.pl -t - 50,90 | cut -f2,3,4,5,8 | tail -n1 > Dyak_caf1_scaf_stats.tsv
+paste <(printf "Dyak_caf1\n") Dyak_caf1_ctg_stats.tsv Dyak_caf1_scaf_stats.tsv > Dyak_caf1_asm_stats.tsv
+cat <(printf "Asm\tAsmSize\tCtgN50\tCtgN90\tCtgL50\tCtgL90\tNumCtgs\tScafN50\tScafN90\tScafL50\tScafL90\tNumScafs\n") Dyak_NY73PB_asm_stats.tsv Dsim_w501_asm_stats.tsv Dmel_ISO1_asm_stats.tsv Dyak_Tai18E2_asm_stats.tsv Dtei_GT53w_asm_stats.tsv Dsan_STOCAGO1482_asm_stats.tsv Dyak_Miller_asm_stats.tsv Dyak_caf1_asm_stats.tsv > DyakClade_asm_summary_stats.tsv

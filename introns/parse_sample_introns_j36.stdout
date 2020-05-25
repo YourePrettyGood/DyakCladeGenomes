@@ -1,0 +1,617 @@
+mkdir -p unparsed_introns_samples
+mkdir -p raw_introns_samples
+mkdir -p logs; \
+species=$(echo "Dmel_ZI211" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI211.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI211 2> logs/intronome_Dmel_ZI211.stderr > unparsed_introns_samples/Dmel_ZI211.fasta
+mkdir -p logs; \
+species=$(echo "Dtei_sd2" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dtei_sd2.fasta -g ../annotations/${species}.gff3 -p Dtei_sd2 2> logs/intronome_Dtei_sd2.stderr > unparsed_introns_samples/Dtei_sd2.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_sd22" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_sd22.fasta -g ../annotations/${species}.gff3 -p Dsan_sd22 2> logs/intronome_Dsan_sd22.stderr > unparsed_introns_samples/Dsan_sd22.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_sd23" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_sd23.fasta -g ../annotations/${species}.gff3 -p Dsan_sd23 2> logs/intronome_Dsan_sd23.stderr > unparsed_introns_samples/Dsan_sd23.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI181" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI181.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI181 2> logs/intronome_Dmel_ZI181.stderr > unparsed_introns_samples/Dmel_ZI181.fasta
+Trimming orthologous intron map headers for use with pseudorefs
+mkdir -p logs; \
+species=$(echo "Dmel_ZI362" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI362.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI362 2> logs/intronome_Dmel_ZI362.stderr > unparsed_introns_samples/Dmel_ZI362.fasta
+../tools/trimSCOmapHeaders.awk -v "excludedcols=Dyak_Tai18E2" Orthologous_introns.tsv > Orthologous_introns_forPseudorefs.tsv
+mkdir -p logs; \
+species=$(echo "Dsan_sd13" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_sd13.fasta -g ../annotations/${species}.gff3 -p Dsan_sd13 2> logs/intronome_Dsan_sd13.stderr > unparsed_introns_samples/Dsan_sd13.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI344" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI344.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI344 2> logs/intronome_Dmel_ZI344.stderr > unparsed_introns_samples/Dmel_ZI344.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-39" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-39.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-39 2> logs/intronome_Dsan_G1-39.stderr > unparsed_introns_samples/Dsan_G1-39.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI50N" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI50N.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI50N 2> logs/intronome_Dmel_ZI50N.stderr > unparsed_introns_samples/Dmel_ZI50N.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI373" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI373.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI373 2> logs/intronome_Dmel_ZI373.stderr > unparsed_introns_samples/Dmel_ZI373.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI207" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI207.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI207 2> logs/intronome_Dmel_ZI207.stderr > unparsed_introns_samples/Dmel_ZI207.fasta
+mkdir -p logs; \
+species=$(echo "Dsim_MD199" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsim_MD199.fasta -g ../annotations/${species}.gff3 -p Dsim_MD199 2> logs/intronome_Dsim_MD199.stderr > unparsed_introns_samples/Dsim_MD199.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_sd17" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_sd17.fasta -g ../annotations/${species}.gff3 -p Dsan_sd17 2> logs/intronome_Dsan_sd17.stderr > unparsed_introns_samples/Dsan_sd17.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-44" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-44.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-44 2> logs/intronome_Dsan_G1-44.stderr > unparsed_introns_samples/Dsan_G1-44.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI167" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI167.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI167 2> logs/intronome_Dmel_ZI167.stderr > unparsed_introns_samples/Dmel_ZI167.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI164" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI164.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI164 2> logs/intronome_Dmel_ZI164.stderr > unparsed_introns_samples/Dmel_ZI164.fasta
+mkdir -p logs; \
+species=$(echo "Dtei_SDA" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dtei_SDA.fasta -g ../annotations/${species}.gff3 -p Dtei_SDA 2> logs/intronome_Dtei_SDA.stderr > unparsed_introns_samples/Dtei_SDA.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-18" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-18.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-18 2> logs/intronome_Dsan_G1-18.stderr > unparsed_introns_samples/Dsan_G1-18.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_sd30" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_sd30.fasta -g ../annotations/${species}.gff3 -p Dyak_sd30 2> logs/intronome_Dyak_sd30.stderr > unparsed_introns_samples/Dyak_sd30.fasta
+mkdir -p logs; \
+species=$(echo "Dsim_NS78" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsim_NS78.fasta -g ../annotations/${species}.gff3 -p Dsim_NS78 2> logs/intronome_Dsim_NS78.stderr > unparsed_introns_samples/Dsim_NS78.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI490" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI490.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI490 2> logs/intronome_Dmel_ZI490.stderr > unparsed_introns_samples/Dmel_ZI490.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI433" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI433.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI433 2> logs/intronome_Dmel_ZI433.stderr > unparsed_introns_samples/Dmel_ZI433.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI477" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI477.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI477 2> logs/intronome_Dmel_ZI477.stderr > unparsed_introns_samples/Dmel_ZI477.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_SD12" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_SD12.fasta -g ../annotations/${species}.gff3 -p Dyak_SD12 2> logs/intronome_Dyak_SD12.stderr > unparsed_introns_samples/Dyak_SD12.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI233" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI233.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI233 2> logs/intronome_Dmel_ZI233.stderr > unparsed_introns_samples/Dmel_ZI233.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI421" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI421.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI421 2> logs/intronome_Dmel_ZI421.stderr > unparsed_introns_samples/Dmel_ZI421.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI104" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI104.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI104 2> logs/intronome_Dmel_ZI104.stderr > unparsed_introns_samples/Dmel_ZI104.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_SD1" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_SD1.fasta -g ../annotations/${species}.gff3 -p Dyak_SD1 2> logs/intronome_Dyak_SD1.stderr > unparsed_introns_samples/Dyak_SD1.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_CY22B" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_CY22B.fasta -g ../annotations/${species}.gff3 -p Dyak_CY22B 2> logs/intronome_Dyak_CY22B.stderr > unparsed_introns_samples/Dyak_CY22B.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_SD17" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_SD17.fasta -g ../annotations/${species}.gff3 -p Dyak_SD17 2> logs/intronome_Dyak_SD17.stderr > unparsed_introns_samples/Dyak_SD17.fasta
+mkdir -p logs; \
+species=$(echo "Dsim_MD233" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsim_MD233.fasta -g ../annotations/${species}.gff3 -p Dsim_MD233 2> logs/intronome_Dsim_MD233.stderr > unparsed_introns_samples/Dsim_MD233.fasta
+mkdir -p logs; \
+species=$(echo "Dtei_sd6" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dtei_sd6.fasta -g ../annotations/${species}.gff3 -p Dtei_sd6 2> logs/intronome_Dtei_sd6.stderr > unparsed_introns_samples/Dtei_sd6.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_SD20" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_SD20.fasta -g ../annotations/${species}.gff3 -p Dyak_SD20 2> logs/intronome_Dyak_SD20.stderr > unparsed_introns_samples/Dyak_SD20.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-9" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-9.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-9 2> logs/intronome_Dsan_G1-9.stderr > unparsed_introns_samples/Dsan_G1-9.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_SD4" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_SD4.fasta -g ../annotations/${species}.gff3 -p Dyak_SD4 2> logs/intronome_Dyak_SD4.stderr > unparsed_introns_samples/Dyak_SD4.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI265" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI265.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI265 2> logs/intronome_Dmel_ZI265.stderr > unparsed_introns_samples/Dmel_ZI265.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI453" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI453.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI453 2> logs/intronome_Dmel_ZI453.stderr > unparsed_introns_samples/Dmel_ZI453.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI225" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI225.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI225 2> logs/intronome_Dmel_ZI225.stderr > unparsed_introns_samples/Dmel_ZI225.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-6" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-6.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-6 2> logs/intronome_Dsan_G1-6.stderr > unparsed_introns_samples/Dsan_G1-6.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-76" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-76.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-76 2> logs/intronome_Dsan_G1-76.stderr > unparsed_introns_samples/Dsan_G1-76.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI254N" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI254N.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI254N 2> logs/intronome_Dmel_ZI254N.stderr > unparsed_introns_samples/Dmel_ZI254N.fasta
+mkdir -p logs; \
+species=$(echo "Dsim_NS33" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsim_NS33.fasta -g ../annotations/${species}.gff3 -p Dsim_NS33 2> logs/intronome_Dsim_NS33.stderr > unparsed_introns_samples/Dsim_NS33.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI386" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI386.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI386 2> logs/intronome_Dmel_ZI386.stderr > unparsed_introns_samples/Dmel_ZI386.fasta
+mkdir -p logs; \
+species=$(echo "Dsim_NS67" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsim_NS67.fasta -g ../annotations/${species}.gff3 -p Dsim_NS67 2> logs/intronome_Dsim_NS67.stderr > unparsed_introns_samples/Dsim_NS67.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI319" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI319.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI319 2> logs/intronome_Dmel_ZI319.stderr > unparsed_introns_samples/Dmel_ZI319.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI332" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI332.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI332 2> logs/intronome_Dmel_ZI332.stderr > unparsed_introns_samples/Dmel_ZI332.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI251N" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI251N.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI251N 2> logs/intronome_Dmel_ZI251N.stderr > unparsed_introns_samples/Dmel_ZI251N.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-46" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-46.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-46 2> logs/intronome_Dsan_G1-46.stderr > unparsed_introns_samples/Dsan_G1-46.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI200" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI200.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI200 2> logs/intronome_Dmel_ZI200.stderr > unparsed_introns_samples/Dmel_ZI200.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-26" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-26.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-26 2> logs/intronome_Dsan_G1-26.stderr > unparsed_introns_samples/Dsan_G1-26.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI377" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI377.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI377 2> logs/intronome_Dmel_ZI377.stderr > unparsed_introns_samples/Dmel_ZI377.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_SD11" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_SD11.fasta -g ../annotations/${species}.gff3 -p Dyak_SD11 2> logs/intronome_Dyak_SD11.stderr > unparsed_introns_samples/Dyak_SD11.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI268" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI268.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI268 2> logs/intronome_Dmel_ZI268.stderr > unparsed_introns_samples/Dmel_ZI268.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI378" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI378.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI378 2> logs/intronome_Dmel_ZI378.stderr > unparsed_introns_samples/Dmel_ZI378.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_SD8" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_SD8.fasta -g ../annotations/${species}.gff3 -p Dyak_SD8 2> logs/intronome_Dyak_SD8.stderr > unparsed_introns_samples/Dyak_SD8.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI336" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI336.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI336 2> logs/intronome_Dmel_ZI336.stderr > unparsed_introns_samples/Dmel_ZI336.fasta
+mkdir -p logs; \
+species=$(echo "Dsim_NS137" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsim_NS137.fasta -g ../annotations/${species}.gff3 -p Dsim_NS137 2> logs/intronome_Dsim_NS137.stderr > unparsed_introns_samples/Dsim_NS137.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI398" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI398.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI398 2> logs/intronome_Dmel_ZI398.stderr > unparsed_introns_samples/Dmel_ZI398.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI514N" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI514N.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI514N 2> logs/intronome_Dmel_ZI514N.stderr > unparsed_introns_samples/Dmel_ZI514N.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI250" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI250.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI250 2> logs/intronome_Dmel_ZI250.stderr > unparsed_introns_samples/Dmel_ZI250.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_sd27" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_sd27.fasta -g ../annotations/${species}.gff3 -p Dyak_sd27 2> logs/intronome_Dyak_sd27.stderr > unparsed_introns_samples/Dyak_sd27.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_sd16" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_sd16.fasta -g ../annotations/${species}.gff3 -p Dsan_sd16 2> logs/intronome_Dsan_sd16.stderr > unparsed_introns_samples/Dsan_sd16.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-57" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-57.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-57 2> logs/intronome_Dsan_G1-57.stderr > unparsed_introns_samples/Dsan_G1-57.fasta
+mkdir -p logs; \
+species=$(echo "Dtei_SDD" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dtei_SDD.fasta -g ../annotations/${species}.gff3 -p Dtei_SDD 2> logs/intronome_Dtei_SDD.stderr > unparsed_introns_samples/Dtei_SDD.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_sd10" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_sd10.fasta -g ../annotations/${species}.gff3 -p Dsan_sd10 2> logs/intronome_Dsan_sd10.stderr > unparsed_introns_samples/Dsan_sd10.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI152" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI152.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI152 2> logs/intronome_Dmel_ZI152.stderr > unparsed_introns_samples/Dmel_ZI152.fasta
+mkdir -p logs; \
+species=$(echo "Dsim_NS79" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsim_NS79.fasta -g ../annotations/${species}.gff3 -p Dsim_NS79 2> logs/intronome_Dsim_NS79.stderr > unparsed_introns_samples/Dsim_NS79.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI402" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI402.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI402 2> logs/intronome_Dmel_ZI402.stderr > unparsed_introns_samples/Dmel_ZI402.fasta
+mkdir -p logs; \
+species=$(echo "Dtei_SDE" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dtei_SDE.fasta -g ../annotations/${species}.gff3 -p Dtei_SDE 2> logs/intronome_Dtei_SDE.stderr > unparsed_introns_samples/Dtei_SDE.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_sd21" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_sd21.fasta -g ../annotations/${species}.gff3 -p Dsan_sd21 2> logs/intronome_Dsan_sd21.stderr > unparsed_introns_samples/Dsan_sd21.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-20" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-20.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-20 2> logs/intronome_Dsan_G1-20.stderr > unparsed_introns_samples/Dsan_G1-20.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI413" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI413.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI413 2> logs/intronome_Dmel_ZI413.stderr > unparsed_introns_samples/Dmel_ZI413.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI420" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI420.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI420 2> logs/intronome_Dmel_ZI420.stderr > unparsed_introns_samples/Dmel_ZI420.fasta
+mkdir -p logs; \
+species=$(echo "Dsim_MD105" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsim_MD105.fasta -g ../annotations/${species}.gff3 -p Dsim_MD105 2> logs/intronome_Dsim_MD105.stderr > unparsed_introns_samples/Dsim_MD105.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_sd28" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_sd28.fasta -g ../annotations/${species}.gff3 -p Dyak_sd28 2> logs/intronome_Dyak_sd28.stderr > unparsed_introns_samples/Dyak_sd28.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_SD22" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_SD22.fasta -g ../annotations/${species}.gff3 -p Dyak_SD22 2> logs/intronome_Dyak_SD22.stderr > unparsed_introns_samples/Dyak_SD22.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_SD9" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_SD9.fasta -g ../annotations/${species}.gff3 -p Dyak_SD9 2> logs/intronome_Dyak_SD9.stderr > unparsed_introns_samples/Dyak_SD9.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_sd14" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_sd14.fasta -g ../annotations/${species}.gff3 -p Dsan_sd14 2> logs/intronome_Dsan_sd14.stderr > unparsed_introns_samples/Dsan_sd14.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI348" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI348.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI348 2> logs/intronome_Dmel_ZI348.stderr > unparsed_introns_samples/Dmel_ZI348.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_sd15" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_sd15.fasta -g ../annotations/${species}.gff3 -p Dsan_sd15 2> logs/intronome_Dsan_sd15.stderr > unparsed_introns_samples/Dsan_sd15.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-33" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-33.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-33 2> logs/intronome_Dsan_G1-33.stderr > unparsed_introns_samples/Dsan_G1-33.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-8" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-8.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-8 2> logs/intronome_Dsan_G1-8.stderr > unparsed_introns_samples/Dsan_G1-8.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_CY04B" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_CY04B.fasta -g ../annotations/${species}.gff3 -p Dyak_CY04B 2> logs/intronome_Dyak_CY04B.stderr > unparsed_introns_samples/Dyak_CY04B.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI91" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI91.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI91 2> logs/intronome_Dmel_ZI91.stderr > unparsed_introns_samples/Dmel_ZI91.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-32" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-32.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-32 2> logs/intronome_Dsan_G1-32.stderr > unparsed_introns_samples/Dsan_G1-32.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI86" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI86.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI86 2> logs/intronome_Dmel_ZI86.stderr > unparsed_introns_samples/Dmel_ZI86.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI472" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI472.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI472 2> logs/intronome_Dmel_ZI472.stderr > unparsed_introns_samples/Dmel_ZI472.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-68" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-68.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-68 2> logs/intronome_Dsan_G1-68.stderr > unparsed_introns_samples/Dsan_G1-68.fasta
+mkdir -p logs; \
+species=$(echo "Dsim_NS50" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsim_NS50.fasta -g ../annotations/${species}.gff3 -p Dsim_NS50 2> logs/intronome_Dsim_NS50.stderr > unparsed_introns_samples/Dsim_NS50.fasta
+mkdir -p logs; \
+species=$(echo "Dsim_NS39" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsim_NS39.fasta -g ../annotations/${species}.gff3 -p Dsim_NS39 2> logs/intronome_Dsim_NS39.stderr > unparsed_introns_samples/Dsim_NS39.fasta
+mkdir -p logs; \
+species=$(echo "Dtei_SDC" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dtei_SDC.fasta -g ../annotations/${species}.gff3 -p Dtei_SDC 2> logs/intronome_Dtei_SDC.stderr > unparsed_introns_samples/Dtei_SDC.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI359" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI359.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI359 2> logs/intronome_Dmel_ZI359.stderr > unparsed_introns_samples/Dmel_ZI359.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-4" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-4.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-4 2> logs/intronome_Dsan_G1-4.stderr > unparsed_introns_samples/Dsan_G1-4.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_CY01A" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_CY01A.fasta -g ../annotations/${species}.gff3 -p Dyak_CY01A 2> logs/intronome_Dyak_CY01A.stderr > unparsed_introns_samples/Dyak_CY01A.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_SD18" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_SD18.fasta -g ../annotations/${species}.gff3 -p Dyak_SD18 2> logs/intronome_Dyak_SD18.stderr > unparsed_introns_samples/Dyak_SD18.fasta
+mkdir -p logs; \
+species=$(echo "Dsim_MD06" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsim_MD06.fasta -g ../annotations/${species}.gff3 -p Dsim_MD06 2> logs/intronome_Dsim_MD06.stderr > unparsed_introns_samples/Dsim_MD06.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_sd12" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_sd12.fasta -g ../annotations/${species}.gff3 -p Dsan_sd12 2> logs/intronome_Dsan_sd12.stderr > unparsed_introns_samples/Dsan_sd12.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-50" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-50.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-50 2> logs/intronome_Dsan_G1-50.stderr > unparsed_introns_samples/Dsan_G1-50.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_sd25" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_sd25.fasta -g ../annotations/${species}.gff3 -p Dyak_sd25 2> logs/intronome_Dyak_sd25.stderr > unparsed_introns_samples/Dyak_sd25.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_sd11" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_sd11.fasta -g ../annotations/${species}.gff3 -p Dsan_sd11 2> logs/intronome_Dsan_sd11.stderr > unparsed_introns_samples/Dsan_sd11.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI126" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI126.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI126 2> logs/intronome_Dmel_ZI126.stderr > unparsed_introns_samples/Dmel_ZI126.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI193" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI193.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI193 2> logs/intronome_Dmel_ZI193.stderr > unparsed_introns_samples/Dmel_ZI193.fasta
+mkdir -p logs; \
+species=$(echo "Dsim_NS113" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsim_NS113.fasta -g ../annotations/${species}.gff3 -p Dsim_NS113 2> logs/intronome_Dsim_NS113.stderr > unparsed_introns_samples/Dsim_NS113.fasta
+mkdir -p logs; \
+species=$(echo "Dtei_SDB" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dtei_SDB.fasta -g ../annotations/${species}.gff3 -p Dtei_SDB 2> logs/intronome_Dtei_SDB.stderr > unparsed_introns_samples/Dtei_SDB.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-13" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-13.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-13 2> logs/intronome_Dsan_G1-13.stderr > unparsed_introns_samples/Dsan_G1-13.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI508" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI508.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI508 2> logs/intronome_Dmel_ZI508.stderr > unparsed_introns_samples/Dmel_ZI508.fasta
+mkdir -p logs; \
+species=$(echo "Dsim_NS40" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsim_NS40.fasta -g ../annotations/${species}.gff3 -p Dsim_NS40 2> logs/intronome_Dsim_NS40.stderr > unparsed_introns_samples/Dsim_NS40.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_Jess" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_Jess.fasta -g ../annotations/${species}.gff3 -p Dyak_Jess 2> logs/intronome_Dyak_Jess.stderr > unparsed_introns_samples/Dyak_Jess.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_SD13" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_SD13.fasta -g ../annotations/${species}.gff3 -p Dyak_SD13 2> logs/intronome_Dyak_SD13.stderr > unparsed_introns_samples/Dyak_SD13.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI221" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI221.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI221 2> logs/intronome_Dmel_ZI221.stderr > unparsed_introns_samples/Dmel_ZI221.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI271" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI271.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI271 2> logs/intronome_Dmel_ZI271.stderr > unparsed_introns_samples/Dmel_ZI271.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-17" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-17.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-17 2> logs/intronome_Dsan_G1-17.stderr > unparsed_introns_samples/Dsan_G1-17.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_sd20" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_sd20.fasta -g ../annotations/${species}.gff3 -p Dsan_sd20 2> logs/intronome_Dsan_sd20.stderr > unparsed_introns_samples/Dsan_sd20.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI212" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI212.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI212 2> logs/intronome_Dmel_ZI212.stderr > unparsed_introns_samples/Dmel_ZI212.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI134N" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI134N.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI134N 2> logs/intronome_Dmel_ZI134N.stderr > unparsed_introns_samples/Dmel_ZI134N.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI170" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI170.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI170 2> logs/intronome_Dmel_ZI170.stderr > unparsed_introns_samples/Dmel_ZI170.fasta
+mkdir -p logs; \
+species=$(echo "Dtei_sd8" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dtei_sd8.fasta -g ../annotations/${species}.gff3 -p Dtei_sd8 2> logs/intronome_Dtei_sd8.stderr > unparsed_introns_samples/Dtei_sd8.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI261" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI261.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI261 2> logs/intronome_Dmel_ZI261.stderr > unparsed_introns_samples/Dmel_ZI261.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI320" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI320.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI320 2> logs/intronome_Dmel_ZI320.stderr > unparsed_introns_samples/Dmel_ZI320.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-3" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-3.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-3 2> logs/intronome_Dsan_G1-3.stderr > unparsed_introns_samples/Dsan_G1-3.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-47" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-47.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-47 2> logs/intronome_Dsan_G1-47.stderr > unparsed_introns_samples/Dsan_G1-47.fasta
+mkdir -p logs; \
+species=$(echo "Dsim_NS05" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsim_NS05.fasta -g ../annotations/${species}.gff3 -p Dsim_NS05 2> logs/intronome_Dsim_NS05.stderr > unparsed_introns_samples/Dsim_NS05.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_SD16" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_SD16.fasta -g ../annotations/${species}.gff3 -p Dyak_SD16 2> logs/intronome_Dyak_SD16.stderr > unparsed_introns_samples/Dyak_SD16.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI517" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI517.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI517 2> logs/intronome_Dmel_ZI517.stderr > unparsed_introns_samples/Dmel_ZI517.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_CY20A" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_CY20A.fasta -g ../annotations/${species}.gff3 -p Dyak_CY20A 2> logs/intronome_Dyak_CY20A.stderr > unparsed_introns_samples/Dyak_CY20A.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI31N" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI31N.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI31N 2> logs/intronome_Dmel_ZI31N.stderr > unparsed_introns_samples/Dmel_ZI31N.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_sd24" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_sd24.fasta -g ../annotations/${species}.gff3 -p Dsan_sd24 2> logs/intronome_Dsan_sd24.stderr > unparsed_introns_samples/Dsan_sd24.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI191" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI191.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI191 2> logs/intronome_Dmel_ZI191.stderr > unparsed_introns_samples/Dmel_ZI191.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_ST" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_ST.fasta -g ../annotations/${species}.gff3 -p Dyak_ST 2> logs/intronome_Dyak_ST.stderr > unparsed_introns_samples/Dyak_ST.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI252" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI252.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI252 2> logs/intronome_Dmel_ZI252.stderr > unparsed_introns_samples/Dmel_ZI252.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-42" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-42.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-42 2> logs/intronome_Dsan_G1-42.stderr > unparsed_introns_samples/Dsan_G1-42.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_sd29" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_sd29.fasta -g ../annotations/${species}.gff3 -p Dyak_sd29 2> logs/intronome_Dyak_sd29.stderr > unparsed_introns_samples/Dyak_sd29.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI324" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI324.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI324 2> logs/intronome_Dmel_ZI324.stderr > unparsed_introns_samples/Dmel_ZI324.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_SD10" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_SD10.fasta -g ../annotations/${species}.gff3 -p Dyak_SD10 2> logs/intronome_Dyak_SD10.stderr > unparsed_introns_samples/Dyak_SD10.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI157" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI157.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI157 2> logs/intronome_Dmel_ZI157.stderr > unparsed_introns_samples/Dmel_ZI157.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_SD7" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_SD7.fasta -g ../annotations/${species}.gff3 -p Dyak_SD7 2> logs/intronome_Dyak_SD7.stderr > unparsed_introns_samples/Dyak_SD7.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-11" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-11.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-11 2> logs/intronome_Dsan_G1-11.stderr > unparsed_introns_samples/Dsan_G1-11.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI335" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI335.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI335 2> logs/intronome_Dmel_ZI335.stderr > unparsed_introns_samples/Dmel_ZI335.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI392" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI392.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI392 2> logs/intronome_Dmel_ZI392.stderr > unparsed_introns_samples/Dmel_ZI392.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-58" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-58.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-58 2> logs/intronome_Dsan_G1-58.stderr > unparsed_introns_samples/Dsan_G1-58.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_2.8.1" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_2.8.1.fasta -g ../annotations/${species}.gff3 -p Dyak_2.8.1 2> logs/intronome_Dyak_2.8.1.stderr > unparsed_introns_samples/Dyak_2.8.1.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI468" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI468.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI468 2> logs/intronome_Dmel_ZI468.stderr > unparsed_introns_samples/Dmel_ZI468.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-29" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-29.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-29 2> logs/intronome_Dsan_G1-29.stderr > unparsed_introns_samples/Dsan_G1-29.fasta
+mkdir -p logs; \
+species=$(echo "Dtei_sd3" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dtei_sd3.fasta -g ../annotations/${species}.gff3 -p Dtei_sd3 2> logs/intronome_Dtei_sd3.stderr > unparsed_introns_samples/Dtei_sd3.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI184" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI184.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI184 2> logs/intronome_Dmel_ZI184.stderr > unparsed_introns_samples/Dmel_ZI184.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI279" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI279.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI279 2> logs/intronome_Dmel_ZI279.stderr > unparsed_introns_samples/Dmel_ZI279.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI68" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI68.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI68 2> logs/intronome_Dmel_ZI68.stderr > unparsed_introns_samples/Dmel_ZI68.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_SD15" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_SD15.fasta -g ../annotations/${species}.gff3 -p Dyak_SD15 2> logs/intronome_Dyak_SD15.stderr > unparsed_introns_samples/Dyak_SD15.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-61" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-61.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-61 2> logs/intronome_Dsan_G1-61.stderr > unparsed_introns_samples/Dsan_G1-61.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_SD5" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_SD5.fasta -g ../annotations/${species}.gff3 -p Dyak_SD5 2> logs/intronome_Dyak_SD5.stderr > unparsed_introns_samples/Dyak_SD5.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI220" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI220.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI220 2> logs/intronome_Dmel_ZI220.stderr > unparsed_introns_samples/Dmel_ZI220.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI431" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI431.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI431 2> logs/intronome_Dmel_ZI431.stderr > unparsed_introns_samples/Dmel_ZI431.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI138" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI138.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI138 2> logs/intronome_Dmel_ZI138.stderr > unparsed_introns_samples/Dmel_ZI138.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI491" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI491.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI491 2> logs/intronome_Dmel_ZI491.stderr > unparsed_introns_samples/Dmel_ZI491.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI504" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI504.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI504 2> logs/intronome_Dmel_ZI504.stderr > unparsed_introns_samples/Dmel_ZI504.fasta
+mkdir -p logs; \
+species=$(echo "Dtei_sd1" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dtei_sd1.fasta -g ../annotations/${species}.gff3 -p Dtei_sd1 2> logs/intronome_Dtei_sd1.stderr > unparsed_introns_samples/Dtei_sd1.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI329" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI329.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI329 2> logs/intronome_Dmel_ZI329.stderr > unparsed_introns_samples/Dmel_ZI329.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-48" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-48.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-48 2> logs/intronome_Dsan_G1-48.stderr > unparsed_introns_samples/Dsan_G1-48.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_SD14" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_SD14.fasta -g ../annotations/${species}.gff3 -p Dyak_SD14 2> logs/intronome_Dyak_SD14.stderr > unparsed_introns_samples/Dyak_SD14.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_SD2" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_SD2.fasta -g ../annotations/${species}.gff3 -p Dyak_SD2 2> logs/intronome_Dyak_SD2.stderr > unparsed_introns_samples/Dyak_SD2.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI311N" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI311N.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI311N 2> logs/intronome_Dmel_ZI311N.stderr > unparsed_introns_samples/Dmel_ZI311N.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI418N" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI418N.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI418N 2> logs/intronome_Dmel_ZI418N.stderr > unparsed_introns_samples/Dmel_ZI418N.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-16" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-16.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-16 2> logs/intronome_Dsan_G1-16.stderr > unparsed_introns_samples/Dsan_G1-16.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-19" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-19.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-19 2> logs/intronome_Dsan_G1-19.stderr > unparsed_introns_samples/Dsan_G1-19.fasta
+mkdir -p logs; \
+species=$(echo "Dsim_MD251" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsim_MD251.fasta -g ../annotations/${species}.gff3 -p Dsim_MD251 2> logs/intronome_Dsim_MD251.stderr > unparsed_introns_samples/Dsim_MD251.fasta
+mkdir -p logs; \
+species=$(echo "Dsim_MD106" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsim_MD106.fasta -g ../annotations/${species}.gff3 -p Dsim_MD106 2> logs/intronome_Dsim_MD106.stderr > unparsed_introns_samples/Dsim_MD106.fasta
+mkdir -p logs; \
+species=$(echo "Dsim_MD73" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsim_MD73.fasta -g ../annotations/${species}.gff3 -p Dsim_MD73 2> logs/intronome_Dsim_MD73.stderr > unparsed_introns_samples/Dsim_MD73.fasta
+mkdir -p logs; \
+species=$(echo "Dtei_sd7" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dtei_sd7.fasta -g ../annotations/${species}.gff3 -p Dtei_sd7 2> logs/intronome_Dtei_sd7.stderr > unparsed_introns_samples/Dtei_sd7.fasta
+mkdir -p logs; \
+species=$(echo "Dtei_sd4" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dtei_sd4.fasta -g ../annotations/${species}.gff3 -p Dtei_sd4 2> logs/intronome_Dtei_sd4.stderr > unparsed_introns_samples/Dtei_sd4.fasta
+mkdir -p logs; \
+species=$(echo "Dtei_sd5" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dtei_sd5.fasta -g ../annotations/${species}.gff3 -p Dtei_sd5 2> logs/intronome_Dtei_sd5.stderr > unparsed_introns_samples/Dtei_sd5.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI264" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI264.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI264 2> logs/intronome_Dmel_ZI264.stderr > unparsed_introns_samples/Dmel_ZI264.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI185" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI185.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI185 2> logs/intronome_Dmel_ZI185.stderr > unparsed_introns_samples/Dmel_ZI185.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_SD19" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_SD19.fasta -g ../annotations/${species}.gff3 -p Dyak_SD19 2> logs/intronome_Dyak_SD19.stderr > unparsed_introns_samples/Dyak_SD19.fasta
+mkdir -p logs; \
+species=$(echo "Dsim_MD63" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsim_MD63.fasta -g ../annotations/${species}.gff3 -p Dsim_MD63 2> logs/intronome_Dsim_MD63.stderr > unparsed_introns_samples/Dsim_MD63.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-10" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-10.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-10 2> logs/intronome_Dsan_G1-10.stderr > unparsed_introns_samples/Dsan_G1-10.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-49" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-49.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-49 2> logs/intronome_Dsan_G1-49.stderr > unparsed_introns_samples/Dsan_G1-49.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-2" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-2.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-2 2> logs/intronome_Dsan_G1-2.stderr > unparsed_introns_samples/Dsan_G1-2.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_sd19" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_sd19.fasta -g ../annotations/${species}.gff3 -p Dsan_sd19 2> logs/intronome_Dsan_sd19.stderr > unparsed_introns_samples/Dsan_sd19.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI370" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI370.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI370 2> logs/intronome_Dmel_ZI370.stderr > unparsed_introns_samples/Dmel_ZI370.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI286" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI286.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI286 2> logs/intronome_Dmel_ZI286.stderr > unparsed_introns_samples/Dmel_ZI286.fasta
+mkdir -p logs; \
+species=$(echo "Dsim_MD15" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsim_MD15.fasta -g ../annotations/${species}.gff3 -p Dsim_MD15 2> logs/intronome_Dsim_MD15.stderr > unparsed_introns_samples/Dsim_MD15.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI85" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI85.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI85 2> logs/intronome_Dmel_ZI85.stderr > unparsed_introns_samples/Dmel_ZI85.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_SD3" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_SD3.fasta -g ../annotations/${species}.gff3 -p Dyak_SD3 2> logs/intronome_Dyak_SD3.stderr > unparsed_introns_samples/Dyak_SD3.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_sd31" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_sd31.fasta -g ../annotations/${species}.gff3 -p Dyak_sd31 2> logs/intronome_Dyak_sd31.stderr > unparsed_introns_samples/Dyak_sd31.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI196" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI196.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI196 2> logs/intronome_Dmel_ZI196.stderr > unparsed_introns_samples/Dmel_ZI196.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_SD6" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_SD6.fasta -g ../annotations/${species}.gff3 -p Dyak_SD6 2> logs/intronome_Dyak_SD6.stderr > unparsed_introns_samples/Dyak_SD6.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_SD21" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_SD21.fasta -g ../annotations/${species}.gff3 -p Dyak_SD21 2> logs/intronome_Dyak_SD21.stderr > unparsed_introns_samples/Dyak_SD21.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-15" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-15.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-15 2> logs/intronome_Dsan_G1-15.stderr > unparsed_introns_samples/Dsan_G1-15.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI33" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI33.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI33 2> logs/intronome_Dmel_ZI33.stderr > unparsed_introns_samples/Dmel_ZI33.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI228" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI228.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI228 2> logs/intronome_Dmel_ZI228.stderr > unparsed_introns_samples/Dmel_ZI228.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI172" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI172.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI172 2> logs/intronome_Dmel_ZI172.stderr > unparsed_introns_samples/Dmel_ZI172.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-12" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-12.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-12 2> logs/intronome_Dsan_G1-12.stderr > unparsed_introns_samples/Dsan_G1-12.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI176" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI176.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI176 2> logs/intronome_Dmel_ZI176.stderr > unparsed_introns_samples/Dmel_ZI176.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI457" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI457.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI457 2> logs/intronome_Dmel_ZI457.stderr > unparsed_introns_samples/Dmel_ZI457.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_sd32" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_sd32.fasta -g ../annotations/${species}.gff3 -p Dyak_sd32 2> logs/intronome_Dyak_sd32.stderr > unparsed_introns_samples/Dyak_sd32.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_sd9" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_sd9.fasta -g ../annotations/${species}.gff3 -p Dsan_sd9 2> logs/intronome_Dsan_sd9.stderr > unparsed_introns_samples/Dsan_sd9.fasta
+mkdir -p logs; \
+species=$(echo "Dmel_ZI455N" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dmel_ZI455N.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI455N 2> logs/intronome_Dmel_ZI455N.stderr > unparsed_introns_samples/Dmel_ZI455N.fasta
+mkdir -p logs; \
+species=$(echo "Dsim_MD221" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsim_MD221.fasta -g ../annotations/${species}.gff3 -p Dsim_MD221 2> logs/intronome_Dsim_MD221.stderr > unparsed_introns_samples/Dsim_MD221.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_sd18" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_sd18.fasta -g ../annotations/${species}.gff3 -p Dsan_sd18 2> logs/intronome_Dsan_sd18.stderr > unparsed_introns_samples/Dsan_sd18.fasta
+mkdir -p logs; \
+species=$(echo "Dyak_sd26" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dyak_sd26.fasta -g ../annotations/${species}.gff3 -p Dyak_sd26 2> logs/intronome_Dyak_sd26.stderr > unparsed_introns_samples/Dyak_sd26.fasta
+mkdir -p logs; \
+species=$(echo "Dsan_G1-14" | cut -d"_" -f1); \
+../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../pseudorefs/Dsan_G1-14.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-14 2> logs/intronome_Dsan_G1-14.stderr > unparsed_introns_samples/Dsan_G1-14.fasta
+Parsing pseudoref introns by orthologous intron group
+cd raw_introns_samples; \
+mkdir -p logs; \
+ls ../unparsed_introns_samples/Dmel_ZI211.fasta ../unparsed_introns_samples/Dtei_sd2.fasta ../unparsed_introns_samples/Dsan_sd22.fasta ../unparsed_introns_samples/Dsan_sd23.fasta ../unparsed_introns_samples/Dmel_ZI181.fasta ../unparsed_introns_samples/Dmel_ZI362.fasta ../unparsed_introns_samples/Dsan_sd13.fasta ../unparsed_introns_samples/Dmel_ZI344.fasta ../unparsed_introns_samples/Dsan_G1-39.fasta ../unparsed_introns_samples/Dmel_ZI50N.fasta ../unparsed_introns_samples/Dmel_ZI373.fasta ../unparsed_introns_samples/Dmel_ZI207.fasta ../unparsed_introns_samples/Dsim_MD199.fasta ../unparsed_introns_samples/Dsan_sd17.fasta ../unparsed_introns_samples/Dsan_G1-44.fasta ../unparsed_introns_samples/Dmel_ZI167.fasta ../unparsed_introns_samples/Dmel_ZI164.fasta ../unparsed_introns_samples/Dtei_SDA.fasta ../unparsed_introns_samples/Dsan_G1-18.fasta ../unparsed_introns_samples/Dyak_sd30.fasta ../unparsed_introns_samples/Dsim_NS78.fasta ../unparsed_introns_samples/Dmel_ZI490.fasta ../unparsed_introns_samples/Dmel_ZI433.fasta ../unparsed_introns_samples/Dmel_ZI477.fasta ../unparsed_introns_samples/Dyak_SD12.fasta ../unparsed_introns_samples/Dmel_ZI233.fasta ../unparsed_introns_samples/Dmel_ZI421.fasta ../unparsed_introns_samples/Dmel_ZI104.fasta ../unparsed_introns_samples/Dyak_SD1.fasta ../unparsed_introns_samples/Dyak_CY22B.fasta ../unparsed_introns_samples/Dyak_SD17.fasta ../unparsed_introns_samples/Dsim_MD233.fasta ../unparsed_introns_samples/Dtei_sd6.fasta ../unparsed_introns_samples/Dyak_SD20.fasta ../unparsed_introns_samples/Dsan_G1-9.fasta ../unparsed_introns_samples/Dyak_SD4.fasta ../unparsed_introns_samples/Dmel_ZI265.fasta ../unparsed_introns_samples/Dmel_ZI453.fasta ../unparsed_introns_samples/Dmel_ZI225.fasta ../unparsed_introns_samples/Dsan_G1-6.fasta ../unparsed_introns_samples/Dsan_G1-76.fasta ../unparsed_introns_samples/Dmel_ZI254N.fasta ../unparsed_introns_samples/Dsim_NS33.fasta ../unparsed_introns_samples/Dmel_ZI386.fasta ../unparsed_introns_samples/Dsim_NS67.fasta ../unparsed_introns_samples/Dmel_ZI319.fasta ../unparsed_introns_samples/Dmel_ZI332.fasta ../unparsed_introns_samples/Dmel_ZI251N.fasta ../unparsed_introns_samples/Dsan_G1-46.fasta ../unparsed_introns_samples/Dmel_ZI200.fasta ../unparsed_introns_samples/Dsan_G1-26.fasta ../unparsed_introns_samples/Dmel_ZI377.fasta ../unparsed_introns_samples/Dyak_SD11.fasta ../unparsed_introns_samples/Dmel_ZI268.fasta ../unparsed_introns_samples/Dmel_ZI378.fasta ../unparsed_introns_samples/Dyak_SD8.fasta ../unparsed_introns_samples/Dmel_ZI336.fasta ../unparsed_introns_samples/Dsim_NS137.fasta ../unparsed_introns_samples/Dmel_ZI398.fasta ../unparsed_introns_samples/Dmel_ZI514N.fasta ../unparsed_introns_samples/Dmel_ZI250.fasta ../unparsed_introns_samples/Dyak_sd27.fasta ../unparsed_introns_samples/Dsan_sd16.fasta ../unparsed_introns_samples/Dsan_G1-57.fasta ../unparsed_introns_samples/Dtei_SDD.fasta ../unparsed_introns_samples/Dsan_sd10.fasta ../unparsed_introns_samples/Dmel_ZI152.fasta ../unparsed_introns_samples/Dsim_NS79.fasta ../unparsed_introns_samples/Dmel_ZI402.fasta ../unparsed_introns_samples/Dtei_SDE.fasta ../unparsed_introns_samples/Dsan_sd21.fasta ../unparsed_introns_samples/Dsan_G1-20.fasta ../unparsed_introns_samples/Dmel_ZI413.fasta ../unparsed_introns_samples/Dmel_ZI420.fasta ../unparsed_introns_samples/Dsim_MD105.fasta ../unparsed_introns_samples/Dyak_sd28.fasta ../unparsed_introns_samples/Dyak_SD22.fasta ../unparsed_introns_samples/Dyak_SD9.fasta ../unparsed_introns_samples/Dsan_sd14.fasta ../unparsed_introns_samples/Dmel_ZI348.fasta ../unparsed_introns_samples/Dsan_sd15.fasta ../unparsed_introns_samples/Dsan_G1-33.fasta ../unparsed_introns_samples/Dsan_G1-8.fasta ../unparsed_introns_samples/Dyak_CY04B.fasta ../unparsed_introns_samples/Dmel_ZI91.fasta ../unparsed_introns_samples/Dsan_G1-32.fasta ../unparsed_introns_samples/Dmel_ZI86.fasta ../unparsed_introns_samples/Dmel_ZI472.fasta ../unparsed_introns_samples/Dsan_G1-68.fasta ../unparsed_introns_samples/Dsim_NS50.fasta ../unparsed_introns_samples/Dsim_NS39.fasta ../unparsed_introns_samples/Dtei_SDC.fasta ../unparsed_introns_samples/Dmel_ZI359.fasta ../unparsed_introns_samples/Dsan_G1-4.fasta ../unparsed_introns_samples/Dyak_CY01A.fasta ../unparsed_introns_samples/Dyak_SD18.fasta ../unparsed_introns_samples/Dsim_MD06.fasta ../unparsed_introns_samples/Dsan_sd12.fasta ../unparsed_introns_samples/Dsan_G1-50.fasta ../unparsed_introns_samples/Dyak_sd25.fasta ../unparsed_introns_samples/Dsan_sd11.fasta ../unparsed_introns_samples/Dmel_ZI126.fasta ../unparsed_introns_samples/Dmel_ZI193.fasta ../unparsed_introns_samples/Dsim_NS113.fasta ../unparsed_introns_samples/Dtei_SDB.fasta ../unparsed_introns_samples/Dsan_G1-13.fasta ../unparsed_introns_samples/Dmel_ZI508.fasta ../unparsed_introns_samples/Dsim_NS40.fasta ../unparsed_introns_samples/Dyak_Jess.fasta ../unparsed_introns_samples/Dyak_SD13.fasta ../unparsed_introns_samples/Dmel_ZI221.fasta ../unparsed_introns_samples/Dmel_ZI271.fasta ../unparsed_introns_samples/Dsan_G1-17.fasta ../unparsed_introns_samples/Dsan_sd20.fasta ../unparsed_introns_samples/Dmel_ZI212.fasta ../unparsed_introns_samples/Dmel_ZI134N.fasta ../unparsed_introns_samples/Dmel_ZI170.fasta ../unparsed_introns_samples/Dtei_sd8.fasta ../unparsed_introns_samples/Dmel_ZI261.fasta ../unparsed_introns_samples/Dmel_ZI320.fasta ../unparsed_introns_samples/Dsan_G1-3.fasta ../unparsed_introns_samples/Dsan_G1-47.fasta ../unparsed_introns_samples/Dsim_NS05.fasta ../unparsed_introns_samples/Dyak_SD16.fasta ../unparsed_introns_samples/Dmel_ZI517.fasta ../unparsed_introns_samples/Dyak_CY20A.fasta ../unparsed_introns_samples/Dmel_ZI31N.fasta ../unparsed_introns_samples/Dsan_sd24.fasta ../unparsed_introns_samples/Dmel_ZI191.fasta ../unparsed_introns_samples/Dyak_ST.fasta ../unparsed_introns_samples/Dmel_ZI252.fasta ../unparsed_introns_samples/Dsan_G1-42.fasta ../unparsed_introns_samples/Dyak_sd29.fasta ../unparsed_introns_samples/Dmel_ZI324.fasta ../unparsed_introns_samples/Dyak_SD10.fasta ../unparsed_introns_samples/Dmel_ZI157.fasta ../unparsed_introns_samples/Dyak_SD7.fasta ../unparsed_introns_samples/Dsan_G1-11.fasta ../unparsed_introns_samples/Dmel_ZI335.fasta ../unparsed_introns_samples/Dmel_ZI392.fasta ../unparsed_introns_samples/Dsan_G1-58.fasta ../unparsed_introns_samples/Dyak_2.8.1.fasta ../unparsed_introns_samples/Dmel_ZI468.fasta ../unparsed_introns_samples/Dsan_G1-29.fasta ../unparsed_introns_samples/Dtei_sd3.fasta ../unparsed_introns_samples/Dmel_ZI184.fasta ../unparsed_introns_samples/Dmel_ZI279.fasta ../unparsed_introns_samples/Dmel_ZI68.fasta ../unparsed_introns_samples/Dyak_SD15.fasta ../unparsed_introns_samples/Dsan_G1-61.fasta ../unparsed_introns_samples/Dyak_SD5.fasta ../unparsed_introns_samples/Dmel_ZI220.fasta ../unparsed_introns_samples/Dmel_ZI431.fasta ../unparsed_introns_samples/Dmel_ZI138.fasta ../unparsed_introns_samples/Dmel_ZI491.fasta ../unparsed_introns_samples/Dmel_ZI504.fasta ../unparsed_introns_samples/Dtei_sd1.fasta ../unparsed_introns_samples/Dmel_ZI329.fasta ../unparsed_introns_samples/Dsan_G1-48.fasta ../unparsed_introns_samples/Dyak_SD14.fasta ../unparsed_introns_samples/Dyak_SD2.fasta ../unparsed_introns_samples/Dmel_ZI311N.fasta ../unparsed_introns_samples/Dmel_ZI418N.fasta ../unparsed_introns_samples/Dsan_G1-16.fasta ../unparsed_introns_samples/Dsan_G1-19.fasta ../unparsed_introns_samples/Dsim_MD251.fasta ../unparsed_introns_samples/Dsim_MD106.fasta ../unparsed_introns_samples/Dsim_MD73.fasta ../unparsed_introns_samples/Dtei_sd7.fasta ../unparsed_introns_samples/Dtei_sd4.fasta ../unparsed_introns_samples/Dtei_sd5.fasta ../unparsed_introns_samples/Dmel_ZI264.fasta ../unparsed_introns_samples/Dmel_ZI185.fasta ../unparsed_introns_samples/Dyak_SD19.fasta ../unparsed_introns_samples/Dsim_MD63.fasta ../unparsed_introns_samples/Dsan_G1-10.fasta ../unparsed_introns_samples/Dsan_G1-49.fasta ../unparsed_introns_samples/Dsan_G1-2.fasta ../unparsed_introns_samples/Dsan_sd19.fasta ../unparsed_introns_samples/Dmel_ZI370.fasta ../unparsed_introns_samples/Dmel_ZI286.fasta ../unparsed_introns_samples/Dsim_MD15.fasta ../unparsed_introns_samples/Dmel_ZI85.fasta ../unparsed_introns_samples/Dyak_SD3.fasta ../unparsed_introns_samples/Dyak_sd31.fasta ../unparsed_introns_samples/Dmel_ZI196.fasta ../unparsed_introns_samples/Dyak_SD6.fasta ../unparsed_introns_samples/Dyak_SD21.fasta ../unparsed_introns_samples/Dsan_G1-15.fasta ../unparsed_introns_samples/Dmel_ZI33.fasta ../unparsed_introns_samples/Dmel_ZI228.fasta ../unparsed_introns_samples/Dmel_ZI172.fasta ../unparsed_introns_samples/Dsan_G1-12.fasta ../unparsed_introns_samples/Dmel_ZI176.fasta ../unparsed_introns_samples/Dmel_ZI457.fasta ../unparsed_introns_samples/Dyak_sd32.fasta ../unparsed_introns_samples/Dsan_sd9.fasta ../unparsed_introns_samples/Dmel_ZI455N.fasta ../unparsed_introns_samples/Dsim_MD221.fasta ../unparsed_introns_samples/Dsan_sd18.fasta ../unparsed_introns_samples/Dyak_sd26.fasta ../unparsed_introns_samples/Dsan_G1-14.fasta > unparsed_introns_samples.fofn; \
+/usr/bin/time -v ../../tools/parseFASTARecords.pl -f unparsed_introns_samples.fofn -m ../Orthologous_introns_forPseudorefs.tsv -dddd 2> logs/parseFASTA.stderr > logs/parseFASTA.stdout; \
+cd ..; \
+fgrep -c ">" raw_introns_samples/*_unwrapped.fasta | cut -d":" -f2 | sort | uniq -c > parse_sample_introns

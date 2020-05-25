@@ -35,7 +35,7 @@ contiguity_plot <- all_lens %>% mutate(Assembly=factor(Assembly, levels=Assembly
     theme_bw() +
     theme(axis.line = element_line(colour = "black"),
       panel.border=element_rect(colour="black", size=1.5),
-      aspect.ratio=0.4,
+      aspect.ratio=0.8,
       text=element_text(size=12),
       legend.text=element_text(size=8),
       legend.title=element_text(face="bold", size=12),

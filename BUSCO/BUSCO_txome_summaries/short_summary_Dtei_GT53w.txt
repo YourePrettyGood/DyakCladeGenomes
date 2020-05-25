@@ -5,11 +5,11 @@
 # Summarized benchmarking in BUSCO notation for file Dtei_GT53w_CDSes.fasta
 # BUSCO was run in mode: transcriptome
 
-	C:90.3%[S:87.6%,D:2.7%],F:6.5%,M:3.2%,n:2799
+	C:89.7%[S:87.1%,D:2.6%],F:6.5%,M:3.8%,n:2799
 
-	2527	Complete BUSCOs (C)
-	2452	Complete and single-copy BUSCOs (S)
-	75	Complete and duplicated BUSCOs (D)
-	182	Fragmented BUSCOs (F)
-	90	Missing BUSCOs (M)
+	2512	Complete BUSCOs (C)
+	2438	Complete and single-copy BUSCOs (S)
+	74	Complete and duplicated BUSCOs (D)
+	183	Fragmented BUSCOs (F)
+	104	Missing BUSCOs (M)
 	2799	Total BUSCO groups searched

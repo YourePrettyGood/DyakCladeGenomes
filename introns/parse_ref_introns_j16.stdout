@@ -1,0 +1,24 @@
+mkdir -p unparsed_introns_refs
+mkdir -p raw_introns_refs
+mkdir -p logs; \
+/usr/bin/time -v ../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../refs/Dyak_NY73PB.fasta -g ../annotations/Dyak_NY73PB.gff3 -p Dyak_NY73PB > unparsed_introns_refs/Dyak_NY73PB.fasta 2> logs/intronome_Dyak_NY73PB.stderr
+mkdir -p logs; \
+/usr/bin/time -v ../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../refs/Dsim_w501.fasta -g ../annotations/Dsim_w501.gff3 -p Dsim_w501 > unparsed_introns_refs/Dsim_w501.fasta 2> logs/intronome_Dsim_w501.stderr
+mkdir -p logs; \
+/usr/bin/time -v ../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../refs/Dmel_ISO1.fasta -g ../annotations/Dmel_ISO1.gff3 -p Dmel_ISO1 > unparsed_introns_refs/Dmel_ISO1.fasta 2> logs/intronome_Dmel_ISO1.stderr
+mkdir -p logs; \
+/usr/bin/time -v ../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../refs/Dtei_GT53w.fasta -g ../annotations/Dtei_GT53w.gff3 -p Dtei_GT53w > unparsed_introns_refs/Dtei_GT53w.fasta 2> logs/intronome_Dtei_GT53w.stderr
+mkdir -p logs; \
+/usr/bin/time -v ../tools/extractIntronsFromGFF3.pl -d -b CDS -i ../refs/Dsan_STOCAGO1482.fasta -g ../annotations/Dsan_STOCAGO1482.gff3 -p Dsan_STOCAGO1482 > unparsed_introns_refs/Dsan_STOCAGO1482.fasta 2> logs/intronome_Dsan_STOCAGO1482.stderr
+Identifying orthologous introns from single copy orthogroups
+Using flanking exon length threshold of 0.20
+ls unparsed_introns_refs/Dyak_NY73PB.fasta unparsed_introns_refs/Dsim_w501.fasta unparsed_introns_refs/Dmel_ISO1.fasta unparsed_introns_refs/Dtei_GT53w.fasta unparsed_introns_refs/Dsan_STOCAGO1482.fasta > raw_introns_refs.fofn; \
+/usr/bin/time -v ../tools/findSingleCopyOrthologIntrons.pl -f raw_introns_refs.fofn -m <(awk 'BEGIN{FS="\t";OFS=FS;}NR==1{gsub("_proteome", "", $0); print $0;}NR>1{print $0;}' ../OrthoFinder_clustalo/Orthogroups_SingleCopy_renamed.tsv) -t 0.20 -dd 2> logs/fSCOI.stderr > Orthologous_introns.tsv
+Parsing ref introns by orthologous intron group
+cd raw_introns_refs; \
+mkdir -p logs; \
+ls ../unparsed_introns_refs/Dyak_NY73PB.fasta ../unparsed_introns_refs/Dsim_w501.fasta ../unparsed_introns_refs/Dmel_ISO1.fasta ../unparsed_introns_refs/Dtei_GT53w.fasta ../unparsed_introns_refs/Dsan_STOCAGO1482.fasta > unparsed_introns_refs.fofn; \
+/usr/bin/time -v ../../tools/parseFASTARecords.pl -f unparsed_introns_refs.fofn -m ../Orthologous_introns.tsv -dddd 2> logs/parseFASTA.stderr > logs/parseFASTA.stdout; \
+num_spp=$(awk 'END{print NR;}' unparsed_introns_refs.fofn); \
+for i in *_unwrapped.fasta; do num_parsed=$(awk '/^>/{count++;}END{print count;}' ${i}); echo "${num_parsed}"; if [[ "${num_parsed}" -ne "${num_spp}" ]]; then rm ${i}; fi; done | sort | uniq -c > ../parse_ref_introns; \
+cd ..

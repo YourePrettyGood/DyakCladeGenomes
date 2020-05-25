@@ -8,19 +8,20 @@ SHELL=/bin/bash
 #grep
 #constructCDSesFromGFF3.pl
 #extractSingleCopyOrthogroups.awk
+#prepForOrthoFinder.awk
 #remapOrthogroups.pl
 #These latter three are available in the tools subdirectory of the
 # Github repository.
 
 .PHONY : SCOmap proteome clean intermediateclean
 
-#Adjust this based on the path to OrthoFinder output:
-ORTHOFINDEROUT := OrthoFinder_proteomes/Results_May16
+#Adjust this based on the path to OrthoFinder orthogroups output:
+ORTHOFINDEROUT := OrthoFinder_proteomes/OrthoFinder/Results_Dec08/Orthogroups
 
 REFS := $(wildcard ../refs/*.fasta)
 SPECIES := $(basename $(notdir $(REFS)))
-#SPECIES := DmelISO1 DsanSTOCAGO1482 DteiGT53w DyakNY73PB DyakTai18E2
 #TXOMES := $(addsuffix _txome.fna, $(SPECIES))
+SUBDIRS := OrthoFinder_proteomes logs
 INTERPROTEOMES := $(addsuffix _proteome.faa, $(SPECIES))
 PROTEOMES := $(addprefix OrthoFinder_proteomes/, $(addsuffix _proteome.faa, $(SPECIES)))
 MAPS := $(addsuffix .map, $(SPECIES))
@@ -35,7 +36,9 @@ usage :
 	@echo "clean -> Completely removes all created subdirectories and files"
 	@echo "intermediateclean -> Removes intermediate proteome FASTAs (i.e. transeq output, not renamed)"
 
-SCOcheck : $(ORTHOFINDEROUT)/SingleCopyOrthogroups.txt Orthogroups_SingleCopy_renamed.tsv
+#OrthoFinder renamed the SingleCopyOrthologues.txt file between 2.2.7 and
+# 2.3.8, so we use the 2.3.8 name here (Orthogroups_SingleCopyOrthologues.txt):
+SCOcheck : $(ORTHOFINDEROUT)/Orthogroups_SingleCopyOrthologues.txt Orthogroups_SingleCopy_renamed.tsv
 	printf "OrthoFinder\t" > $@; \
 	awk 'END{print NR;}' $(word 1,$^) >> $@; \
 	printf "awk\t" >> $@; \
@@ -47,12 +50,14 @@ SCOmap : Orthogroups_SingleCopy_renamed.tsv
 
 Orthogroups_SingleCopy_renamed.tsv : Orthogroups_renamed.tcsv
 	@echo "Filtering to retain only single-copy orthogroups"; \
-	extractSingleCopyOrthogroups.awk $< > $@
+	../tools/extractSingleCopyOrthogroups.awk $< > $@
 
-Orthogroups_renamed.tcsv : combined_prots.map $(ORTHOFINDEROUT)/Orthogroups.csv
+#OrthoFinder renamed Orthogroups.csv to Orthogroups.tsv between 2.2.7 and
+# 2.3.8, so we use the 2.3.8 version here:
+Orthogroups_renamed.tcsv : combined_prots.map $(ORTHOFINDEROUT)/Orthogroups.tsv
 	@echo "Renaming transcripts in Orthogroup file based on concatenated transcript renaming map"; \
 	mkdir -p logs; \
-	remapOrthogroups.pl -i $(word 1,$^) -g $(word 2,$^) 2> logs/remapOrthogroups.stderr > $@
+	../tools/remapOrthogroups.pl -i $(word 1,$^) -g $(word 2,$^) 2> logs/remapOrthogroups.stderr > $@
 
 combined_prots.map : $(MAPS)
 	@echo "Concatenating transcript renaming maps"; \
@@ -62,16 +67,17 @@ proteome : $(PROTEOMES)
 
 .SECONDARY : $(INTERPROTEOMES)
 
-OrthoFinder_proteomes/%_proteome.faa : %_proteome.faa
-	awk -v "species=$*" 'BEGIN{i=0; mapfn=species".map"; speciespattern=">"species"_";}!/^>/{print;}/^>/{print ">"species"_"i; txid=$$0; sub(speciespattern, "", txid); sub(/_1$$/, "", txid); print txid"\t"species"_"i > mapfn; i+=1;}' $< > $@
+OrthoFinder_proteomes/%_proteome.faa : %_proteome.faa OrthoFinder_proteomes
+	../tools/prepForOrthoFinder.awk -v "species=$*" $(word 1,$^) > $@
 
-%_proteome.faa : %_txome.fna
-	mkdir -p OrthoFinder_proteomes
-	transeq -trim -sequence $< -outseq $@ 2> logs/transeq_$*.stderr
+%_proteome.faa : %_txome.fna logs
+	transeq -trim -sequence $(word 1,$^) -outseq $@ 2> logs/transeq_$*.stderr
 
-%_txome.fna : ../refs/%.fasta ../annotations/%.gff3
-	mkdir -p logs
-	constructCDSesFromGFF3.pl -l -i $(word 1,$^) -g $(word 2,$^) -p $* > $@ 2> logs/txome_$*.stderr
+%_txome.fna : ../refs/%.fasta ../annotations/%.gff3 logs
+	../tools/constructCDSesFromGFF3.pl -l -i $(word 1,$^) -g $(word 2,$^) -p $* > $@ 2> logs/txome_$*.stderr
+
+$(SUBDIRS) :
+	mkdir -p $@
 
 clean :
 	rm -f $(PROTEOMES) $(INTERPROTEOMES) logs/*.stderr *.map

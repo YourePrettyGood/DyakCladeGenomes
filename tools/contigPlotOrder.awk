@@ -1,6 +1,8 @@
 #!/bin/awk -f
 #chromlist should be specified as a comma-separated list of chromosomes
 # in the order they should appear
+#If supplied, nonchrom indicates that only unscaffolded contigs should
+# be included in the output
 #Parse the chromlist and put it into a hash:
 BEGIN{
    FS="\t";
@@ -8,6 +10,11 @@ BEGIN{
    split(chromlist, chroms, ",");
    for (i in chroms) {
       chromhash[chroms[i]]=1;
+   }
+   if (length(nonchrom) == 0) {
+      nonchrom=0;
+   } else {
+      nonchrom=1;
    }
 }
 #First file passed in is the scaffolding config string, so parse it
@@ -26,6 +33,7 @@ FNR==NR{
          } else {
             orientation="+";
          }
+         scaffoldedctgs[ctgs[j]]=1;
          ctgorder[scafname, j]=ctgs[j];
          ctgorient[scafname, j]=orientation;
       }
@@ -34,15 +42,25 @@ FNR==NR{
 #Extract the lengths of the contigs from the input FAI (the second file):
 FNR<NR{
    ctglen[$1]=$2;
+   if (!($1 in scaffoldedctgs)) {
+      nonchromctgs[$1]=1;
+   }
 }
 #Output the plotting order in the order of the input list:
 END{
-   for (i in chroms) {
-      chrom=chroms[i];
-      if (ctgnum[chrom]>0) {
-         for (j=1; j<=ctgnum[chrom]; j++) {
-            ctg=ctgorder[chrom, j];
-            print ctg, ctglen[ctg], ctgorient[chrom, j];
+   if (nonchrom) {
+      PROCINFO["sorted_in"]="@ind_str_asc";
+      for (i in nonchromctgs) {
+         print i, ctglen[i], "+";
+      }
+   } else {
+      for (i in chroms) {
+         chrom=chroms[i];
+         if (ctgnum[chrom]>0) {
+            for (j=1; j<=ctgnum[chrom]; j++) {
+               ctg=ctgorder[chrom, j];
+               print ctg, ctglen[ctg], ctgorient[chrom, j];
+            }
          }
       }
    }

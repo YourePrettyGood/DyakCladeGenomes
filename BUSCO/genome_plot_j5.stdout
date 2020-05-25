@@ -1,0 +1,54 @@
+mkdir -p logs
+mkdir -p BUSCO_summaries
+Running BUSCO v3 on Dyak_NY73PB
+/usr/bin/time -v run_BUSCO.py -i ../refs/Dyak_NY73PB.fasta -l /home/pfreilly/Downloads/Bioinformatics/Assembly/busco/diptera_odb9/ -m genome -c 8 --long -z -o Dyak_NY73PB_BUSCOv3_genome_diptera 2> logs/Dyak_NY73PB_BUSCOv3_genome_diptera.stderr > logs/Dyak_NY73PB_BUSCOv3_genome_diptera.stdout; \
+tail -n10 logs/Dyak_NY73PB_BUSCOv3_genome_diptera.stdout | head -n7 | awk 'BEGIN{printf "%s", "Dyak_NY73PB";}NR>1{printf "\t%s", $2;}END{print "";}' > Dyak_NY73PB_buscos.tsv; \
+cp run_Dyak_NY73PB_BUSCOv3_genome_diptera/short_summary_Dyak_NY73PB_BUSCOv3_genome_diptera.txt BUSCO_summaries/short_summary_Dyak_NY73PB.txt
+Running BUSCO v3 on Dmel_ISO1
+Running BUSCO v3 on Dsim_w501
+/usr/bin/time -v run_BUSCO.py -i ../refs/Dmel_ISO1.fasta -l /home/pfreilly/Downloads/Bioinformatics/Assembly/busco/diptera_odb9/ -m genome -c 8 --long -z -o Dmel_ISO1_BUSCOv3_genome_diptera 2> logs/Dmel_ISO1_BUSCOv3_genome_diptera.stderr > logs/Dmel_ISO1_BUSCOv3_genome_diptera.stdout; \
+tail -n10 logs/Dmel_ISO1_BUSCOv3_genome_diptera.stdout | head -n7 | awk 'BEGIN{printf "%s", "Dmel_ISO1";}NR>1{printf "\t%s", $2;}END{print "";}' > Dmel_ISO1_buscos.tsv; \
+cp run_Dmel_ISO1_BUSCOv3_genome_diptera/short_summary_Dmel_ISO1_BUSCOv3_genome_diptera.txt BUSCO_summaries/short_summary_Dmel_ISO1.txt
+/usr/bin/time -v run_BUSCO.py -i ../refs/Dsim_w501.fasta -l /home/pfreilly/Downloads/Bioinformatics/Assembly/busco/diptera_odb9/ -m genome -c 8 --long -z -o Dsim_w501_BUSCOv3_genome_diptera 2> logs/Dsim_w501_BUSCOv3_genome_diptera.stderr > logs/Dsim_w501_BUSCOv3_genome_diptera.stdout; \
+tail -n10 logs/Dsim_w501_BUSCOv3_genome_diptera.stdout | head -n7 | awk 'BEGIN{printf "%s", "Dsim_w501";}NR>1{printf "\t%s", $2;}END{print "";}' > Dsim_w501_buscos.tsv; \
+cp run_Dsim_w501_BUSCOv3_genome_diptera/short_summary_Dsim_w501_BUSCOv3_genome_diptera.txt BUSCO_summaries/short_summary_Dsim_w501.txt
+Running BUSCO v3 on Dtei_GT53w
+Running BUSCO v3 on Dyak_Tai18E2
+/usr/bin/time -v run_BUSCO.py -i ../refs/Dtei_GT53w.fasta -l /home/pfreilly/Downloads/Bioinformatics/Assembly/busco/diptera_odb9/ -m genome -c 8 --long -z -o Dtei_GT53w_BUSCOv3_genome_diptera 2> logs/Dtei_GT53w_BUSCOv3_genome_diptera.stderr > logs/Dtei_GT53w_BUSCOv3_genome_diptera.stdout; \
+tail -n10 logs/Dtei_GT53w_BUSCOv3_genome_diptera.stdout | head -n7 | awk 'BEGIN{printf "%s", "Dtei_GT53w";}NR>1{printf "\t%s", $2;}END{print "";}' > Dtei_GT53w_buscos.tsv; \
+cp run_Dtei_GT53w_BUSCOv3_genome_diptera/short_summary_Dtei_GT53w_BUSCOv3_genome_diptera.txt BUSCO_summaries/short_summary_Dtei_GT53w.txt
+/usr/bin/time -v run_BUSCO.py -i ../refs/Dyak_Tai18E2.fasta -l /home/pfreilly/Downloads/Bioinformatics/Assembly/busco/diptera_odb9/ -m genome -c 8 --long -z -o Dyak_Tai18E2_BUSCOv3_genome_diptera 2> logs/Dyak_Tai18E2_BUSCOv3_genome_diptera.stderr > logs/Dyak_Tai18E2_BUSCOv3_genome_diptera.stdout; \
+tail -n10 logs/Dyak_Tai18E2_BUSCOv3_genome_diptera.stdout | head -n7 | awk 'BEGIN{printf "%s", "Dyak_Tai18E2";}NR>1{printf "\t%s", $2;}END{print "";}' > Dyak_Tai18E2_buscos.tsv; \
+cp run_Dyak_Tai18E2_BUSCOv3_genome_diptera/short_summary_Dyak_Tai18E2_BUSCOv3_genome_diptera.txt BUSCO_summaries/short_summary_Dyak_Tai18E2.txt
+Running BUSCO v3 on Dsan_STOCAGO1482
+/usr/bin/time -v run_BUSCO.py -i ../refs/Dsan_STOCAGO1482.fasta -l /home/pfreilly/Downloads/Bioinformatics/Assembly/busco/diptera_odb9/ -m genome -c 8 --long -z -o Dsan_STOCAGO1482_BUSCOv3_genome_diptera 2> logs/Dsan_STOCAGO1482_BUSCOv3_genome_diptera.stderr > logs/Dsan_STOCAGO1482_BUSCOv3_genome_diptera.stdout; \
+tail -n10 logs/Dsan_STOCAGO1482_BUSCOv3_genome_diptera.stdout | head -n7 | awk 'BEGIN{printf "%s", "Dsan_STOCAGO1482";}NR>1{printf "\t%s", $2;}END{print "";}' > Dsan_STOCAGO1482_buscos.tsv; \
+cp run_Dsan_STOCAGO1482_BUSCOv3_genome_diptera/short_summary_Dsan_STOCAGO1482_BUSCOv3_genome_diptera.txt BUSCO_summaries/short_summary_Dsan_STOCAGO1482.txt
+Running BUSCO v3 on Dyak_Miller
+/usr/bin/time -v run_BUSCO.py -i ../refs/old/Dyak_Miller.fasta -l /home/pfreilly/Downloads/Bioinformatics/Assembly/busco/diptera_odb9/ -m genome -c 8 --long -z -o Dyak_Miller_BUSCOv3_genome_diptera 2> logs/Dyak_Miller_BUSCOv3_genome_diptera.stderr > logs/Dyak_Miller_BUSCOv3_genome_diptera.stdout; \
+tail -n10 logs/Dyak_Miller_BUSCOv3_genome_diptera.stdout | head -n7 | awk 'BEGIN{printf "%s", "Dyak_Miller";}NR>1{printf "\t%s", $2;}END{print "";}' > Dyak_Miller_buscos.tsv; \
+cp run_Dyak_Miller_BUSCOv3_genome_diptera/short_summary_Dyak_Miller_BUSCOv3_genome_diptera.txt BUSCO_summaries/short_summary_Dyak_Miller.txt
+Running BUSCO v3 on Dyak_caf1
+/usr/bin/time -v run_BUSCO.py -i ../refs/old/Dyak_caf1.fasta -l /home/pfreilly/Downloads/Bioinformatics/Assembly/busco/diptera_odb9/ -m genome -c 8 --long -z -o Dyak_caf1_BUSCOv3_genome_diptera 2> logs/Dyak_caf1_BUSCOv3_genome_diptera.stderr > logs/Dyak_caf1_BUSCOv3_genome_diptera.stdout; \
+tail -n10 logs/Dyak_caf1_BUSCOv3_genome_diptera.stdout | head -n7 | awk 'BEGIN{printf "%s", "Dyak_caf1";}NR>1{printf "\t%s", $2;}END{print "";}' > Dyak_caf1_buscos.tsv; \
+cp run_Dyak_caf1_BUSCOv3_genome_diptera/short_summary_Dyak_caf1_BUSCOv3_genome_diptera.txt BUSCO_summaries/short_summary_Dyak_caf1.txt
+cat Dyak_NY73PB_buscos.tsv Dsim_w501_buscos.tsv Dmel_ISO1_buscos.tsv Dyak_Tai18E2_buscos.tsv Dtei_GT53w_buscos.tsv Dsan_STOCAGO1482_buscos.tsv Dyak_Miller_buscos.tsv Dyak_caf1_buscos.tsv > genome
+generate_plot.py -wd BUSCO_summaries
+INFO	****************** Start plot generation at 12/16/2019 13:54:10 ******************
+INFO	Load data ...
+INFO	Loaded short_summary_Dyak_Tai18E2.txt successfully
+INFO	Loaded short_summary_Dsim_w501.txt successfully
+INFO	Loaded short_summary_Dsan_STOCAGO1482.txt successfully
+INFO	Loaded short_summary_Dyak_NY73PB.txt successfully
+INFO	Loaded short_summary_Dtei_GT53w.txt successfully
+INFO	Loaded short_summary_Dyak_caf1.txt successfully
+INFO	Loaded short_summary_Dmel_ISO1.txt successfully
+INFO	Loaded short_summary_Dyak_Miller.txt successfully
+INFO	Generate the R code ...
+INFO	Run the R code ...
+INFO	[Rscript]	[1] "Plotting the figure ..."
+INFO	[Rscript]	[1] "Done"
+INFO	[Rscript]	1 of 1 task(s) completed at 12/16/2019 13:54:12
+INFO	Plot generation done. Total running time: 2.4474670887 seconds
+INFO	Results written in BUSCO_summaries/
+

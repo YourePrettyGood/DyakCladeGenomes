@@ -5,11 +5,11 @@
 # Summarized benchmarking in BUSCO notation for file Dyak_NY73PB_CDSes.fasta
 # BUSCO was run in mode: transcriptome
 
-	C:94.6%[S:94.1%,D:0.5%],F:2.9%,M:2.5%,n:2799
+	C:93.3%[S:92.8%,D:0.5%],F:3.5%,M:3.2%,n:2799
 
-	2649	Complete BUSCOs (C)
-	2635	Complete and single-copy BUSCOs (S)
-	14	Complete and duplicated BUSCOs (D)
-	82	Fragmented BUSCOs (F)
-	68	Missing BUSCOs (M)
+	2613	Complete BUSCOs (C)
+	2598	Complete and single-copy BUSCOs (S)
+	15	Complete and duplicated BUSCOs (D)
+	98	Fragmented BUSCOs (F)
+	88	Missing BUSCOs (M)
 	2799	Total BUSCO groups searched

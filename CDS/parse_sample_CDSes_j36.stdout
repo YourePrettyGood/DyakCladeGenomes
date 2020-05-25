@@ -1,0 +1,615 @@
+mkdir -p unparsed_CDSes_samples
+mkdir -p raw_CDSes_samples
+mkdir -p logs; \
+species=$(echo "Dmel_ZI211" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI211.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI211 > unparsed_CDSes_samples/Dmel_ZI211.fasta 2> logs/txome_Dmel_ZI211.stderr
+mkdir -p logs; \
+species=$(echo "Dtei_sd2" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dtei_sd2.fasta -g ../annotations/${species}.gff3 -p Dtei_sd2 > unparsed_CDSes_samples/Dtei_sd2.fasta 2> logs/txome_Dtei_sd2.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_sd22" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_sd22.fasta -g ../annotations/${species}.gff3 -p Dsan_sd22 > unparsed_CDSes_samples/Dsan_sd22.fasta 2> logs/txome_Dsan_sd22.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_sd23" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_sd23.fasta -g ../annotations/${species}.gff3 -p Dsan_sd23 > unparsed_CDSes_samples/Dsan_sd23.fasta 2> logs/txome_Dsan_sd23.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI181" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI181.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI181 > unparsed_CDSes_samples/Dmel_ZI181.fasta 2> logs/txome_Dmel_ZI181.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI362" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI362.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI362 > unparsed_CDSes_samples/Dmel_ZI362.fasta 2> logs/txome_Dmel_ZI362.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_sd13" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_sd13.fasta -g ../annotations/${species}.gff3 -p Dsan_sd13 > unparsed_CDSes_samples/Dsan_sd13.fasta 2> logs/txome_Dsan_sd13.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI344" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI344.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI344 > unparsed_CDSes_samples/Dmel_ZI344.fasta 2> logs/txome_Dmel_ZI344.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-39" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-39.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-39 > unparsed_CDSes_samples/Dsan_G1-39.fasta 2> logs/txome_Dsan_G1-39.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI50N" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI50N.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI50N > unparsed_CDSes_samples/Dmel_ZI50N.fasta 2> logs/txome_Dmel_ZI50N.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI373" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI373.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI373 > unparsed_CDSes_samples/Dmel_ZI373.fasta 2> logs/txome_Dmel_ZI373.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI207" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI207.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI207 > unparsed_CDSes_samples/Dmel_ZI207.fasta 2> logs/txome_Dmel_ZI207.stderr
+mkdir -p logs; \
+species=$(echo "Dsim_MD199" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsim_MD199.fasta -g ../annotations/${species}.gff3 -p Dsim_MD199 > unparsed_CDSes_samples/Dsim_MD199.fasta 2> logs/txome_Dsim_MD199.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_sd17" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_sd17.fasta -g ../annotations/${species}.gff3 -p Dsan_sd17 > unparsed_CDSes_samples/Dsan_sd17.fasta 2> logs/txome_Dsan_sd17.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-44" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-44.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-44 > unparsed_CDSes_samples/Dsan_G1-44.fasta 2> logs/txome_Dsan_G1-44.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI167" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI167.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI167 > unparsed_CDSes_samples/Dmel_ZI167.fasta 2> logs/txome_Dmel_ZI167.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI164" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI164.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI164 > unparsed_CDSes_samples/Dmel_ZI164.fasta 2> logs/txome_Dmel_ZI164.stderr
+mkdir -p logs; \
+species=$(echo "Dtei_SDA" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dtei_SDA.fasta -g ../annotations/${species}.gff3 -p Dtei_SDA > unparsed_CDSes_samples/Dtei_SDA.fasta 2> logs/txome_Dtei_SDA.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-18" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-18.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-18 > unparsed_CDSes_samples/Dsan_G1-18.fasta 2> logs/txome_Dsan_G1-18.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_sd30" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_sd30.fasta -g ../annotations/${species}.gff3 -p Dyak_sd30 > unparsed_CDSes_samples/Dyak_sd30.fasta 2> logs/txome_Dyak_sd30.stderr
+mkdir -p logs; \
+species=$(echo "Dsim_NS78" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsim_NS78.fasta -g ../annotations/${species}.gff3 -p Dsim_NS78 > unparsed_CDSes_samples/Dsim_NS78.fasta 2> logs/txome_Dsim_NS78.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI490" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI490.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI490 > unparsed_CDSes_samples/Dmel_ZI490.fasta 2> logs/txome_Dmel_ZI490.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI433" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI433.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI433 > unparsed_CDSes_samples/Dmel_ZI433.fasta 2> logs/txome_Dmel_ZI433.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI477" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI477.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI477 > unparsed_CDSes_samples/Dmel_ZI477.fasta 2> logs/txome_Dmel_ZI477.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_SD12" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_SD12.fasta -g ../annotations/${species}.gff3 -p Dyak_SD12 > unparsed_CDSes_samples/Dyak_SD12.fasta 2> logs/txome_Dyak_SD12.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI233" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI233.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI233 > unparsed_CDSes_samples/Dmel_ZI233.fasta 2> logs/txome_Dmel_ZI233.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI421" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI421.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI421 > unparsed_CDSes_samples/Dmel_ZI421.fasta 2> logs/txome_Dmel_ZI421.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI104" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI104.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI104 > unparsed_CDSes_samples/Dmel_ZI104.fasta 2> logs/txome_Dmel_ZI104.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_SD1" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_SD1.fasta -g ../annotations/${species}.gff3 -p Dyak_SD1 > unparsed_CDSes_samples/Dyak_SD1.fasta 2> logs/txome_Dyak_SD1.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_CY22B" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_CY22B.fasta -g ../annotations/${species}.gff3 -p Dyak_CY22B > unparsed_CDSes_samples/Dyak_CY22B.fasta 2> logs/txome_Dyak_CY22B.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_SD17" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_SD17.fasta -g ../annotations/${species}.gff3 -p Dyak_SD17 > unparsed_CDSes_samples/Dyak_SD17.fasta 2> logs/txome_Dyak_SD17.stderr
+mkdir -p logs; \
+species=$(echo "Dsim_MD233" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsim_MD233.fasta -g ../annotations/${species}.gff3 -p Dsim_MD233 > unparsed_CDSes_samples/Dsim_MD233.fasta 2> logs/txome_Dsim_MD233.stderr
+mkdir -p logs; \
+species=$(echo "Dtei_sd6" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dtei_sd6.fasta -g ../annotations/${species}.gff3 -p Dtei_sd6 > unparsed_CDSes_samples/Dtei_sd6.fasta 2> logs/txome_Dtei_sd6.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_SD20" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_SD20.fasta -g ../annotations/${species}.gff3 -p Dyak_SD20 > unparsed_CDSes_samples/Dyak_SD20.fasta 2> logs/txome_Dyak_SD20.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-9" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-9.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-9 > unparsed_CDSes_samples/Dsan_G1-9.fasta 2> logs/txome_Dsan_G1-9.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_SD4" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_SD4.fasta -g ../annotations/${species}.gff3 -p Dyak_SD4 > unparsed_CDSes_samples/Dyak_SD4.fasta 2> logs/txome_Dyak_SD4.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI265" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI265.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI265 > unparsed_CDSes_samples/Dmel_ZI265.fasta 2> logs/txome_Dmel_ZI265.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI453" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI453.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI453 > unparsed_CDSes_samples/Dmel_ZI453.fasta 2> logs/txome_Dmel_ZI453.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI225" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI225.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI225 > unparsed_CDSes_samples/Dmel_ZI225.fasta 2> logs/txome_Dmel_ZI225.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-6" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-6.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-6 > unparsed_CDSes_samples/Dsan_G1-6.fasta 2> logs/txome_Dsan_G1-6.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-76" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-76.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-76 > unparsed_CDSes_samples/Dsan_G1-76.fasta 2> logs/txome_Dsan_G1-76.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI254N" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI254N.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI254N > unparsed_CDSes_samples/Dmel_ZI254N.fasta 2> logs/txome_Dmel_ZI254N.stderr
+mkdir -p logs; \
+species=$(echo "Dsim_NS33" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsim_NS33.fasta -g ../annotations/${species}.gff3 -p Dsim_NS33 > unparsed_CDSes_samples/Dsim_NS33.fasta 2> logs/txome_Dsim_NS33.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI386" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI386.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI386 > unparsed_CDSes_samples/Dmel_ZI386.fasta 2> logs/txome_Dmel_ZI386.stderr
+mkdir -p logs; \
+species=$(echo "Dsim_NS67" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsim_NS67.fasta -g ../annotations/${species}.gff3 -p Dsim_NS67 > unparsed_CDSes_samples/Dsim_NS67.fasta 2> logs/txome_Dsim_NS67.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI319" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI319.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI319 > unparsed_CDSes_samples/Dmel_ZI319.fasta 2> logs/txome_Dmel_ZI319.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI332" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI332.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI332 > unparsed_CDSes_samples/Dmel_ZI332.fasta 2> logs/txome_Dmel_ZI332.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI251N" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI251N.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI251N > unparsed_CDSes_samples/Dmel_ZI251N.fasta 2> logs/txome_Dmel_ZI251N.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-46" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-46.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-46 > unparsed_CDSes_samples/Dsan_G1-46.fasta 2> logs/txome_Dsan_G1-46.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI200" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI200.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI200 > unparsed_CDSes_samples/Dmel_ZI200.fasta 2> logs/txome_Dmel_ZI200.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-26" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-26.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-26 > unparsed_CDSes_samples/Dsan_G1-26.fasta 2> logs/txome_Dsan_G1-26.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI377" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI377.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI377 > unparsed_CDSes_samples/Dmel_ZI377.fasta 2> logs/txome_Dmel_ZI377.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_SD11" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_SD11.fasta -g ../annotations/${species}.gff3 -p Dyak_SD11 > unparsed_CDSes_samples/Dyak_SD11.fasta 2> logs/txome_Dyak_SD11.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI268" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI268.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI268 > unparsed_CDSes_samples/Dmel_ZI268.fasta 2> logs/txome_Dmel_ZI268.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI378" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI378.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI378 > unparsed_CDSes_samples/Dmel_ZI378.fasta 2> logs/txome_Dmel_ZI378.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_SD8" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_SD8.fasta -g ../annotations/${species}.gff3 -p Dyak_SD8 > unparsed_CDSes_samples/Dyak_SD8.fasta 2> logs/txome_Dyak_SD8.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI336" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI336.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI336 > unparsed_CDSes_samples/Dmel_ZI336.fasta 2> logs/txome_Dmel_ZI336.stderr
+mkdir -p logs; \
+species=$(echo "Dsim_NS137" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsim_NS137.fasta -g ../annotations/${species}.gff3 -p Dsim_NS137 > unparsed_CDSes_samples/Dsim_NS137.fasta 2> logs/txome_Dsim_NS137.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI398" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI398.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI398 > unparsed_CDSes_samples/Dmel_ZI398.fasta 2> logs/txome_Dmel_ZI398.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI514N" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI514N.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI514N > unparsed_CDSes_samples/Dmel_ZI514N.fasta 2> logs/txome_Dmel_ZI514N.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI250" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI250.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI250 > unparsed_CDSes_samples/Dmel_ZI250.fasta 2> logs/txome_Dmel_ZI250.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_sd27" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_sd27.fasta -g ../annotations/${species}.gff3 -p Dyak_sd27 > unparsed_CDSes_samples/Dyak_sd27.fasta 2> logs/txome_Dyak_sd27.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_sd16" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_sd16.fasta -g ../annotations/${species}.gff3 -p Dsan_sd16 > unparsed_CDSes_samples/Dsan_sd16.fasta 2> logs/txome_Dsan_sd16.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-57" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-57.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-57 > unparsed_CDSes_samples/Dsan_G1-57.fasta 2> logs/txome_Dsan_G1-57.stderr
+mkdir -p logs; \
+species=$(echo "Dtei_SDD" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dtei_SDD.fasta -g ../annotations/${species}.gff3 -p Dtei_SDD > unparsed_CDSes_samples/Dtei_SDD.fasta 2> logs/txome_Dtei_SDD.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_sd10" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_sd10.fasta -g ../annotations/${species}.gff3 -p Dsan_sd10 > unparsed_CDSes_samples/Dsan_sd10.fasta 2> logs/txome_Dsan_sd10.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI152" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI152.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI152 > unparsed_CDSes_samples/Dmel_ZI152.fasta 2> logs/txome_Dmel_ZI152.stderr
+mkdir -p logs; \
+species=$(echo "Dsim_NS79" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsim_NS79.fasta -g ../annotations/${species}.gff3 -p Dsim_NS79 > unparsed_CDSes_samples/Dsim_NS79.fasta 2> logs/txome_Dsim_NS79.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI402" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI402.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI402 > unparsed_CDSes_samples/Dmel_ZI402.fasta 2> logs/txome_Dmel_ZI402.stderr
+mkdir -p logs; \
+species=$(echo "Dtei_SDE" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dtei_SDE.fasta -g ../annotations/${species}.gff3 -p Dtei_SDE > unparsed_CDSes_samples/Dtei_SDE.fasta 2> logs/txome_Dtei_SDE.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_sd21" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_sd21.fasta -g ../annotations/${species}.gff3 -p Dsan_sd21 > unparsed_CDSes_samples/Dsan_sd21.fasta 2> logs/txome_Dsan_sd21.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-20" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-20.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-20 > unparsed_CDSes_samples/Dsan_G1-20.fasta 2> logs/txome_Dsan_G1-20.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI413" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI413.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI413 > unparsed_CDSes_samples/Dmel_ZI413.fasta 2> logs/txome_Dmel_ZI413.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI420" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI420.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI420 > unparsed_CDSes_samples/Dmel_ZI420.fasta 2> logs/txome_Dmel_ZI420.stderr
+mkdir -p logs; \
+species=$(echo "Dsim_MD105" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsim_MD105.fasta -g ../annotations/${species}.gff3 -p Dsim_MD105 > unparsed_CDSes_samples/Dsim_MD105.fasta 2> logs/txome_Dsim_MD105.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_sd28" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_sd28.fasta -g ../annotations/${species}.gff3 -p Dyak_sd28 > unparsed_CDSes_samples/Dyak_sd28.fasta 2> logs/txome_Dyak_sd28.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_SD22" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_SD22.fasta -g ../annotations/${species}.gff3 -p Dyak_SD22 > unparsed_CDSes_samples/Dyak_SD22.fasta 2> logs/txome_Dyak_SD22.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_SD9" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_SD9.fasta -g ../annotations/${species}.gff3 -p Dyak_SD9 > unparsed_CDSes_samples/Dyak_SD9.fasta 2> logs/txome_Dyak_SD9.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_sd14" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_sd14.fasta -g ../annotations/${species}.gff3 -p Dsan_sd14 > unparsed_CDSes_samples/Dsan_sd14.fasta 2> logs/txome_Dsan_sd14.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI348" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI348.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI348 > unparsed_CDSes_samples/Dmel_ZI348.fasta 2> logs/txome_Dmel_ZI348.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_sd15" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_sd15.fasta -g ../annotations/${species}.gff3 -p Dsan_sd15 > unparsed_CDSes_samples/Dsan_sd15.fasta 2> logs/txome_Dsan_sd15.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-33" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-33.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-33 > unparsed_CDSes_samples/Dsan_G1-33.fasta 2> logs/txome_Dsan_G1-33.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-8" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-8.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-8 > unparsed_CDSes_samples/Dsan_G1-8.fasta 2> logs/txome_Dsan_G1-8.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_CY04B" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_CY04B.fasta -g ../annotations/${species}.gff3 -p Dyak_CY04B > unparsed_CDSes_samples/Dyak_CY04B.fasta 2> logs/txome_Dyak_CY04B.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI91" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI91.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI91 > unparsed_CDSes_samples/Dmel_ZI91.fasta 2> logs/txome_Dmel_ZI91.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-32" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-32.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-32 > unparsed_CDSes_samples/Dsan_G1-32.fasta 2> logs/txome_Dsan_G1-32.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI86" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI86.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI86 > unparsed_CDSes_samples/Dmel_ZI86.fasta 2> logs/txome_Dmel_ZI86.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI472" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI472.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI472 > unparsed_CDSes_samples/Dmel_ZI472.fasta 2> logs/txome_Dmel_ZI472.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-68" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-68.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-68 > unparsed_CDSes_samples/Dsan_G1-68.fasta 2> logs/txome_Dsan_G1-68.stderr
+mkdir -p logs; \
+species=$(echo "Dsim_NS50" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsim_NS50.fasta -g ../annotations/${species}.gff3 -p Dsim_NS50 > unparsed_CDSes_samples/Dsim_NS50.fasta 2> logs/txome_Dsim_NS50.stderr
+mkdir -p logs; \
+species=$(echo "Dsim_NS39" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsim_NS39.fasta -g ../annotations/${species}.gff3 -p Dsim_NS39 > unparsed_CDSes_samples/Dsim_NS39.fasta 2> logs/txome_Dsim_NS39.stderr
+mkdir -p logs; \
+species=$(echo "Dtei_SDC" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dtei_SDC.fasta -g ../annotations/${species}.gff3 -p Dtei_SDC > unparsed_CDSes_samples/Dtei_SDC.fasta 2> logs/txome_Dtei_SDC.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI359" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI359.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI359 > unparsed_CDSes_samples/Dmel_ZI359.fasta 2> logs/txome_Dmel_ZI359.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-4" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-4.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-4 > unparsed_CDSes_samples/Dsan_G1-4.fasta 2> logs/txome_Dsan_G1-4.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_CY01A" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_CY01A.fasta -g ../annotations/${species}.gff3 -p Dyak_CY01A > unparsed_CDSes_samples/Dyak_CY01A.fasta 2> logs/txome_Dyak_CY01A.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_SD18" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_SD18.fasta -g ../annotations/${species}.gff3 -p Dyak_SD18 > unparsed_CDSes_samples/Dyak_SD18.fasta 2> logs/txome_Dyak_SD18.stderr
+mkdir -p logs; \
+species=$(echo "Dsim_MD06" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsim_MD06.fasta -g ../annotations/${species}.gff3 -p Dsim_MD06 > unparsed_CDSes_samples/Dsim_MD06.fasta 2> logs/txome_Dsim_MD06.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_sd12" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_sd12.fasta -g ../annotations/${species}.gff3 -p Dsan_sd12 > unparsed_CDSes_samples/Dsan_sd12.fasta 2> logs/txome_Dsan_sd12.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-50" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-50.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-50 > unparsed_CDSes_samples/Dsan_G1-50.fasta 2> logs/txome_Dsan_G1-50.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_sd25" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_sd25.fasta -g ../annotations/${species}.gff3 -p Dyak_sd25 > unparsed_CDSes_samples/Dyak_sd25.fasta 2> logs/txome_Dyak_sd25.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_sd11" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_sd11.fasta -g ../annotations/${species}.gff3 -p Dsan_sd11 > unparsed_CDSes_samples/Dsan_sd11.fasta 2> logs/txome_Dsan_sd11.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI126" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI126.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI126 > unparsed_CDSes_samples/Dmel_ZI126.fasta 2> logs/txome_Dmel_ZI126.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI193" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI193.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI193 > unparsed_CDSes_samples/Dmel_ZI193.fasta 2> logs/txome_Dmel_ZI193.stderr
+mkdir -p logs; \
+species=$(echo "Dsim_NS113" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsim_NS113.fasta -g ../annotations/${species}.gff3 -p Dsim_NS113 > unparsed_CDSes_samples/Dsim_NS113.fasta 2> logs/txome_Dsim_NS113.stderr
+mkdir -p logs; \
+species=$(echo "Dtei_SDB" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dtei_SDB.fasta -g ../annotations/${species}.gff3 -p Dtei_SDB > unparsed_CDSes_samples/Dtei_SDB.fasta 2> logs/txome_Dtei_SDB.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-13" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-13.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-13 > unparsed_CDSes_samples/Dsan_G1-13.fasta 2> logs/txome_Dsan_G1-13.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI508" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI508.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI508 > unparsed_CDSes_samples/Dmel_ZI508.fasta 2> logs/txome_Dmel_ZI508.stderr
+mkdir -p logs; \
+species=$(echo "Dsim_NS40" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsim_NS40.fasta -g ../annotations/${species}.gff3 -p Dsim_NS40 > unparsed_CDSes_samples/Dsim_NS40.fasta 2> logs/txome_Dsim_NS40.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_Jess" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_Jess.fasta -g ../annotations/${species}.gff3 -p Dyak_Jess > unparsed_CDSes_samples/Dyak_Jess.fasta 2> logs/txome_Dyak_Jess.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_SD13" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_SD13.fasta -g ../annotations/${species}.gff3 -p Dyak_SD13 > unparsed_CDSes_samples/Dyak_SD13.fasta 2> logs/txome_Dyak_SD13.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI221" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI221.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI221 > unparsed_CDSes_samples/Dmel_ZI221.fasta 2> logs/txome_Dmel_ZI221.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI271" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI271.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI271 > unparsed_CDSes_samples/Dmel_ZI271.fasta 2> logs/txome_Dmel_ZI271.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-17" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-17.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-17 > unparsed_CDSes_samples/Dsan_G1-17.fasta 2> logs/txome_Dsan_G1-17.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_sd20" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_sd20.fasta -g ../annotations/${species}.gff3 -p Dsan_sd20 > unparsed_CDSes_samples/Dsan_sd20.fasta 2> logs/txome_Dsan_sd20.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI212" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI212.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI212 > unparsed_CDSes_samples/Dmel_ZI212.fasta 2> logs/txome_Dmel_ZI212.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI134N" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI134N.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI134N > unparsed_CDSes_samples/Dmel_ZI134N.fasta 2> logs/txome_Dmel_ZI134N.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI170" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI170.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI170 > unparsed_CDSes_samples/Dmel_ZI170.fasta 2> logs/txome_Dmel_ZI170.stderr
+mkdir -p logs; \
+species=$(echo "Dtei_sd8" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dtei_sd8.fasta -g ../annotations/${species}.gff3 -p Dtei_sd8 > unparsed_CDSes_samples/Dtei_sd8.fasta 2> logs/txome_Dtei_sd8.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI261" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI261.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI261 > unparsed_CDSes_samples/Dmel_ZI261.fasta 2> logs/txome_Dmel_ZI261.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI320" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI320.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI320 > unparsed_CDSes_samples/Dmel_ZI320.fasta 2> logs/txome_Dmel_ZI320.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-3" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-3.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-3 > unparsed_CDSes_samples/Dsan_G1-3.fasta 2> logs/txome_Dsan_G1-3.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-47" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-47.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-47 > unparsed_CDSes_samples/Dsan_G1-47.fasta 2> logs/txome_Dsan_G1-47.stderr
+mkdir -p logs; \
+species=$(echo "Dsim_NS05" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsim_NS05.fasta -g ../annotations/${species}.gff3 -p Dsim_NS05 > unparsed_CDSes_samples/Dsim_NS05.fasta 2> logs/txome_Dsim_NS05.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_SD16" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_SD16.fasta -g ../annotations/${species}.gff3 -p Dyak_SD16 > unparsed_CDSes_samples/Dyak_SD16.fasta 2> logs/txome_Dyak_SD16.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI517" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI517.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI517 > unparsed_CDSes_samples/Dmel_ZI517.fasta 2> logs/txome_Dmel_ZI517.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_CY20A" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_CY20A.fasta -g ../annotations/${species}.gff3 -p Dyak_CY20A > unparsed_CDSes_samples/Dyak_CY20A.fasta 2> logs/txome_Dyak_CY20A.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI31N" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI31N.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI31N > unparsed_CDSes_samples/Dmel_ZI31N.fasta 2> logs/txome_Dmel_ZI31N.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_sd24" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_sd24.fasta -g ../annotations/${species}.gff3 -p Dsan_sd24 > unparsed_CDSes_samples/Dsan_sd24.fasta 2> logs/txome_Dsan_sd24.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI191" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI191.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI191 > unparsed_CDSes_samples/Dmel_ZI191.fasta 2> logs/txome_Dmel_ZI191.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_ST" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_ST.fasta -g ../annotations/${species}.gff3 -p Dyak_ST > unparsed_CDSes_samples/Dyak_ST.fasta 2> logs/txome_Dyak_ST.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI252" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI252.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI252 > unparsed_CDSes_samples/Dmel_ZI252.fasta 2> logs/txome_Dmel_ZI252.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-42" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-42.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-42 > unparsed_CDSes_samples/Dsan_G1-42.fasta 2> logs/txome_Dsan_G1-42.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_sd29" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_sd29.fasta -g ../annotations/${species}.gff3 -p Dyak_sd29 > unparsed_CDSes_samples/Dyak_sd29.fasta 2> logs/txome_Dyak_sd29.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI324" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI324.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI324 > unparsed_CDSes_samples/Dmel_ZI324.fasta 2> logs/txome_Dmel_ZI324.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_SD10" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_SD10.fasta -g ../annotations/${species}.gff3 -p Dyak_SD10 > unparsed_CDSes_samples/Dyak_SD10.fasta 2> logs/txome_Dyak_SD10.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI157" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI157.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI157 > unparsed_CDSes_samples/Dmel_ZI157.fasta 2> logs/txome_Dmel_ZI157.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_SD7" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_SD7.fasta -g ../annotations/${species}.gff3 -p Dyak_SD7 > unparsed_CDSes_samples/Dyak_SD7.fasta 2> logs/txome_Dyak_SD7.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-11" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-11.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-11 > unparsed_CDSes_samples/Dsan_G1-11.fasta 2> logs/txome_Dsan_G1-11.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI335" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI335.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI335 > unparsed_CDSes_samples/Dmel_ZI335.fasta 2> logs/txome_Dmel_ZI335.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI392" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI392.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI392 > unparsed_CDSes_samples/Dmel_ZI392.fasta 2> logs/txome_Dmel_ZI392.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-58" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-58.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-58 > unparsed_CDSes_samples/Dsan_G1-58.fasta 2> logs/txome_Dsan_G1-58.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_2.8.1" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_2.8.1.fasta -g ../annotations/${species}.gff3 -p Dyak_2.8.1 > unparsed_CDSes_samples/Dyak_2.8.1.fasta 2> logs/txome_Dyak_2.8.1.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI468" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI468.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI468 > unparsed_CDSes_samples/Dmel_ZI468.fasta 2> logs/txome_Dmel_ZI468.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-29" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-29.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-29 > unparsed_CDSes_samples/Dsan_G1-29.fasta 2> logs/txome_Dsan_G1-29.stderr
+mkdir -p logs; \
+species=$(echo "Dtei_sd3" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dtei_sd3.fasta -g ../annotations/${species}.gff3 -p Dtei_sd3 > unparsed_CDSes_samples/Dtei_sd3.fasta 2> logs/txome_Dtei_sd3.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI184" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI184.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI184 > unparsed_CDSes_samples/Dmel_ZI184.fasta 2> logs/txome_Dmel_ZI184.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI279" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI279.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI279 > unparsed_CDSes_samples/Dmel_ZI279.fasta 2> logs/txome_Dmel_ZI279.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI68" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI68.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI68 > unparsed_CDSes_samples/Dmel_ZI68.fasta 2> logs/txome_Dmel_ZI68.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_SD15" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_SD15.fasta -g ../annotations/${species}.gff3 -p Dyak_SD15 > unparsed_CDSes_samples/Dyak_SD15.fasta 2> logs/txome_Dyak_SD15.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-61" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-61.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-61 > unparsed_CDSes_samples/Dsan_G1-61.fasta 2> logs/txome_Dsan_G1-61.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_SD5" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_SD5.fasta -g ../annotations/${species}.gff3 -p Dyak_SD5 > unparsed_CDSes_samples/Dyak_SD5.fasta 2> logs/txome_Dyak_SD5.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI220" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI220.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI220 > unparsed_CDSes_samples/Dmel_ZI220.fasta 2> logs/txome_Dmel_ZI220.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI431" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI431.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI431 > unparsed_CDSes_samples/Dmel_ZI431.fasta 2> logs/txome_Dmel_ZI431.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI138" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI138.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI138 > unparsed_CDSes_samples/Dmel_ZI138.fasta 2> logs/txome_Dmel_ZI138.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI491" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI491.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI491 > unparsed_CDSes_samples/Dmel_ZI491.fasta 2> logs/txome_Dmel_ZI491.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI504" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI504.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI504 > unparsed_CDSes_samples/Dmel_ZI504.fasta 2> logs/txome_Dmel_ZI504.stderr
+mkdir -p logs; \
+species=$(echo "Dtei_sd1" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dtei_sd1.fasta -g ../annotations/${species}.gff3 -p Dtei_sd1 > unparsed_CDSes_samples/Dtei_sd1.fasta 2> logs/txome_Dtei_sd1.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI329" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI329.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI329 > unparsed_CDSes_samples/Dmel_ZI329.fasta 2> logs/txome_Dmel_ZI329.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-48" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-48.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-48 > unparsed_CDSes_samples/Dsan_G1-48.fasta 2> logs/txome_Dsan_G1-48.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_SD14" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_SD14.fasta -g ../annotations/${species}.gff3 -p Dyak_SD14 > unparsed_CDSes_samples/Dyak_SD14.fasta 2> logs/txome_Dyak_SD14.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_SD2" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_SD2.fasta -g ../annotations/${species}.gff3 -p Dyak_SD2 > unparsed_CDSes_samples/Dyak_SD2.fasta 2> logs/txome_Dyak_SD2.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI311N" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI311N.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI311N > unparsed_CDSes_samples/Dmel_ZI311N.fasta 2> logs/txome_Dmel_ZI311N.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI418N" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI418N.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI418N > unparsed_CDSes_samples/Dmel_ZI418N.fasta 2> logs/txome_Dmel_ZI418N.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-16" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-16.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-16 > unparsed_CDSes_samples/Dsan_G1-16.fasta 2> logs/txome_Dsan_G1-16.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-19" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-19.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-19 > unparsed_CDSes_samples/Dsan_G1-19.fasta 2> logs/txome_Dsan_G1-19.stderr
+mkdir -p logs; \
+species=$(echo "Dsim_MD251" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsim_MD251.fasta -g ../annotations/${species}.gff3 -p Dsim_MD251 > unparsed_CDSes_samples/Dsim_MD251.fasta 2> logs/txome_Dsim_MD251.stderr
+mkdir -p logs; \
+species=$(echo "Dsim_MD106" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsim_MD106.fasta -g ../annotations/${species}.gff3 -p Dsim_MD106 > unparsed_CDSes_samples/Dsim_MD106.fasta 2> logs/txome_Dsim_MD106.stderr
+mkdir -p logs; \
+species=$(echo "Dsim_MD73" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsim_MD73.fasta -g ../annotations/${species}.gff3 -p Dsim_MD73 > unparsed_CDSes_samples/Dsim_MD73.fasta 2> logs/txome_Dsim_MD73.stderr
+mkdir -p logs; \
+species=$(echo "Dtei_sd7" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dtei_sd7.fasta -g ../annotations/${species}.gff3 -p Dtei_sd7 > unparsed_CDSes_samples/Dtei_sd7.fasta 2> logs/txome_Dtei_sd7.stderr
+mkdir -p logs; \
+species=$(echo "Dtei_sd4" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dtei_sd4.fasta -g ../annotations/${species}.gff3 -p Dtei_sd4 > unparsed_CDSes_samples/Dtei_sd4.fasta 2> logs/txome_Dtei_sd4.stderr
+mkdir -p logs; \
+species=$(echo "Dtei_sd5" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dtei_sd5.fasta -g ../annotations/${species}.gff3 -p Dtei_sd5 > unparsed_CDSes_samples/Dtei_sd5.fasta 2> logs/txome_Dtei_sd5.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI264" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI264.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI264 > unparsed_CDSes_samples/Dmel_ZI264.fasta 2> logs/txome_Dmel_ZI264.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI185" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI185.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI185 > unparsed_CDSes_samples/Dmel_ZI185.fasta 2> logs/txome_Dmel_ZI185.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_SD19" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_SD19.fasta -g ../annotations/${species}.gff3 -p Dyak_SD19 > unparsed_CDSes_samples/Dyak_SD19.fasta 2> logs/txome_Dyak_SD19.stderr
+mkdir -p logs; \
+species=$(echo "Dsim_MD63" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsim_MD63.fasta -g ../annotations/${species}.gff3 -p Dsim_MD63 > unparsed_CDSes_samples/Dsim_MD63.fasta 2> logs/txome_Dsim_MD63.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-10" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-10.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-10 > unparsed_CDSes_samples/Dsan_G1-10.fasta 2> logs/txome_Dsan_G1-10.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-49" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-49.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-49 > unparsed_CDSes_samples/Dsan_G1-49.fasta 2> logs/txome_Dsan_G1-49.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-2" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-2.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-2 > unparsed_CDSes_samples/Dsan_G1-2.fasta 2> logs/txome_Dsan_G1-2.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_sd19" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_sd19.fasta -g ../annotations/${species}.gff3 -p Dsan_sd19 > unparsed_CDSes_samples/Dsan_sd19.fasta 2> logs/txome_Dsan_sd19.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI370" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI370.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI370 > unparsed_CDSes_samples/Dmel_ZI370.fasta 2> logs/txome_Dmel_ZI370.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI286" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI286.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI286 > unparsed_CDSes_samples/Dmel_ZI286.fasta 2> logs/txome_Dmel_ZI286.stderr
+mkdir -p logs; \
+species=$(echo "Dsim_MD15" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsim_MD15.fasta -g ../annotations/${species}.gff3 -p Dsim_MD15 > unparsed_CDSes_samples/Dsim_MD15.fasta 2> logs/txome_Dsim_MD15.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI85" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI85.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI85 > unparsed_CDSes_samples/Dmel_ZI85.fasta 2> logs/txome_Dmel_ZI85.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_SD3" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_SD3.fasta -g ../annotations/${species}.gff3 -p Dyak_SD3 > unparsed_CDSes_samples/Dyak_SD3.fasta 2> logs/txome_Dyak_SD3.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_sd31" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_sd31.fasta -g ../annotations/${species}.gff3 -p Dyak_sd31 > unparsed_CDSes_samples/Dyak_sd31.fasta 2> logs/txome_Dyak_sd31.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI196" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI196.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI196 > unparsed_CDSes_samples/Dmel_ZI196.fasta 2> logs/txome_Dmel_ZI196.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_SD6" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_SD6.fasta -g ../annotations/${species}.gff3 -p Dyak_SD6 > unparsed_CDSes_samples/Dyak_SD6.fasta 2> logs/txome_Dyak_SD6.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_SD21" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_SD21.fasta -g ../annotations/${species}.gff3 -p Dyak_SD21 > unparsed_CDSes_samples/Dyak_SD21.fasta 2> logs/txome_Dyak_SD21.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-15" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-15.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-15 > unparsed_CDSes_samples/Dsan_G1-15.fasta 2> logs/txome_Dsan_G1-15.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI33" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI33.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI33 > unparsed_CDSes_samples/Dmel_ZI33.fasta 2> logs/txome_Dmel_ZI33.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI228" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI228.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI228 > unparsed_CDSes_samples/Dmel_ZI228.fasta 2> logs/txome_Dmel_ZI228.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI172" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI172.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI172 > unparsed_CDSes_samples/Dmel_ZI172.fasta 2> logs/txome_Dmel_ZI172.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-12" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-12.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-12 > unparsed_CDSes_samples/Dsan_G1-12.fasta 2> logs/txome_Dsan_G1-12.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI176" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI176.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI176 > unparsed_CDSes_samples/Dmel_ZI176.fasta 2> logs/txome_Dmel_ZI176.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI457" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI457.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI457 > unparsed_CDSes_samples/Dmel_ZI457.fasta 2> logs/txome_Dmel_ZI457.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_sd32" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_sd32.fasta -g ../annotations/${species}.gff3 -p Dyak_sd32 > unparsed_CDSes_samples/Dyak_sd32.fasta 2> logs/txome_Dyak_sd32.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_sd9" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_sd9.fasta -g ../annotations/${species}.gff3 -p Dsan_sd9 > unparsed_CDSes_samples/Dsan_sd9.fasta 2> logs/txome_Dsan_sd9.stderr
+mkdir -p logs; \
+species=$(echo "Dmel_ZI455N" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dmel_ZI455N.fasta -g ../annotations/${species}.gff3 -p Dmel_ZI455N > unparsed_CDSes_samples/Dmel_ZI455N.fasta 2> logs/txome_Dmel_ZI455N.stderr
+mkdir -p logs; \
+species=$(echo "Dsim_MD221" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsim_MD221.fasta -g ../annotations/${species}.gff3 -p Dsim_MD221 > unparsed_CDSes_samples/Dsim_MD221.fasta 2> logs/txome_Dsim_MD221.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_sd18" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_sd18.fasta -g ../annotations/${species}.gff3 -p Dsan_sd18 > unparsed_CDSes_samples/Dsan_sd18.fasta 2> logs/txome_Dsan_sd18.stderr
+mkdir -p logs; \
+species=$(echo "Dyak_sd26" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dyak_sd26.fasta -g ../annotations/${species}.gff3 -p Dyak_sd26 > unparsed_CDSes_samples/Dyak_sd26.fasta 2> logs/txome_Dyak_sd26.stderr
+mkdir -p logs; \
+species=$(echo "Dsan_G1-14" | cut -d"_" -f1); \
+../tools/constructCDSesFromGFF3.pl -l -i ../pseudorefs/Dsan_G1-14.fasta -g ../annotations/${species}.gff3 -p Dsan_G1-14 > unparsed_CDSes_samples/Dsan_G1-14.fasta 2> logs/txome_Dsan_G1-14.stderr
+Parsing pseudoref CDSes by orthogroup
+cd raw_CDSes_samples; \
+mkdir -p logs; \
+ls ../unparsed_CDSes_samples/Dmel_ZI211.fasta ../unparsed_CDSes_samples/Dtei_sd2.fasta ../unparsed_CDSes_samples/Dsan_sd22.fasta ../unparsed_CDSes_samples/Dsan_sd23.fasta ../unparsed_CDSes_samples/Dmel_ZI181.fasta ../unparsed_CDSes_samples/Dmel_ZI362.fasta ../unparsed_CDSes_samples/Dsan_sd13.fasta ../unparsed_CDSes_samples/Dmel_ZI344.fasta ../unparsed_CDSes_samples/Dsan_G1-39.fasta ../unparsed_CDSes_samples/Dmel_ZI50N.fasta ../unparsed_CDSes_samples/Dmel_ZI373.fasta ../unparsed_CDSes_samples/Dmel_ZI207.fasta ../unparsed_CDSes_samples/Dsim_MD199.fasta ../unparsed_CDSes_samples/Dsan_sd17.fasta ../unparsed_CDSes_samples/Dsan_G1-44.fasta ../unparsed_CDSes_samples/Dmel_ZI167.fasta ../unparsed_CDSes_samples/Dmel_ZI164.fasta ../unparsed_CDSes_samples/Dtei_SDA.fasta ../unparsed_CDSes_samples/Dsan_G1-18.fasta ../unparsed_CDSes_samples/Dyak_sd30.fasta ../unparsed_CDSes_samples/Dsim_NS78.fasta ../unparsed_CDSes_samples/Dmel_ZI490.fasta ../unparsed_CDSes_samples/Dmel_ZI433.fasta ../unparsed_CDSes_samples/Dmel_ZI477.fasta ../unparsed_CDSes_samples/Dyak_SD12.fasta ../unparsed_CDSes_samples/Dmel_ZI233.fasta ../unparsed_CDSes_samples/Dmel_ZI421.fasta ../unparsed_CDSes_samples/Dmel_ZI104.fasta ../unparsed_CDSes_samples/Dyak_SD1.fasta ../unparsed_CDSes_samples/Dyak_CY22B.fasta ../unparsed_CDSes_samples/Dyak_SD17.fasta ../unparsed_CDSes_samples/Dsim_MD233.fasta ../unparsed_CDSes_samples/Dtei_sd6.fasta ../unparsed_CDSes_samples/Dyak_SD20.fasta ../unparsed_CDSes_samples/Dsan_G1-9.fasta ../unparsed_CDSes_samples/Dyak_SD4.fasta ../unparsed_CDSes_samples/Dmel_ZI265.fasta ../unparsed_CDSes_samples/Dmel_ZI453.fasta ../unparsed_CDSes_samples/Dmel_ZI225.fasta ../unparsed_CDSes_samples/Dsan_G1-6.fasta ../unparsed_CDSes_samples/Dsan_G1-76.fasta ../unparsed_CDSes_samples/Dmel_ZI254N.fasta ../unparsed_CDSes_samples/Dsim_NS33.fasta ../unparsed_CDSes_samples/Dmel_ZI386.fasta ../unparsed_CDSes_samples/Dsim_NS67.fasta ../unparsed_CDSes_samples/Dmel_ZI319.fasta ../unparsed_CDSes_samples/Dmel_ZI332.fasta ../unparsed_CDSes_samples/Dmel_ZI251N.fasta ../unparsed_CDSes_samples/Dsan_G1-46.fasta ../unparsed_CDSes_samples/Dmel_ZI200.fasta ../unparsed_CDSes_samples/Dsan_G1-26.fasta ../unparsed_CDSes_samples/Dmel_ZI377.fasta ../unparsed_CDSes_samples/Dyak_SD11.fasta ../unparsed_CDSes_samples/Dmel_ZI268.fasta ../unparsed_CDSes_samples/Dmel_ZI378.fasta ../unparsed_CDSes_samples/Dyak_SD8.fasta ../unparsed_CDSes_samples/Dmel_ZI336.fasta ../unparsed_CDSes_samples/Dsim_NS137.fasta ../unparsed_CDSes_samples/Dmel_ZI398.fasta ../unparsed_CDSes_samples/Dmel_ZI514N.fasta ../unparsed_CDSes_samples/Dmel_ZI250.fasta ../unparsed_CDSes_samples/Dyak_sd27.fasta ../unparsed_CDSes_samples/Dsan_sd16.fasta ../unparsed_CDSes_samples/Dsan_G1-57.fasta ../unparsed_CDSes_samples/Dtei_SDD.fasta ../unparsed_CDSes_samples/Dsan_sd10.fasta ../unparsed_CDSes_samples/Dmel_ZI152.fasta ../unparsed_CDSes_samples/Dsim_NS79.fasta ../unparsed_CDSes_samples/Dmel_ZI402.fasta ../unparsed_CDSes_samples/Dtei_SDE.fasta ../unparsed_CDSes_samples/Dsan_sd21.fasta ../unparsed_CDSes_samples/Dsan_G1-20.fasta ../unparsed_CDSes_samples/Dmel_ZI413.fasta ../unparsed_CDSes_samples/Dmel_ZI420.fasta ../unparsed_CDSes_samples/Dsim_MD105.fasta ../unparsed_CDSes_samples/Dyak_sd28.fasta ../unparsed_CDSes_samples/Dyak_SD22.fasta ../unparsed_CDSes_samples/Dyak_SD9.fasta ../unparsed_CDSes_samples/Dsan_sd14.fasta ../unparsed_CDSes_samples/Dmel_ZI348.fasta ../unparsed_CDSes_samples/Dsan_sd15.fasta ../unparsed_CDSes_samples/Dsan_G1-33.fasta ../unparsed_CDSes_samples/Dsan_G1-8.fasta ../unparsed_CDSes_samples/Dyak_CY04B.fasta ../unparsed_CDSes_samples/Dmel_ZI91.fasta ../unparsed_CDSes_samples/Dsan_G1-32.fasta ../unparsed_CDSes_samples/Dmel_ZI86.fasta ../unparsed_CDSes_samples/Dmel_ZI472.fasta ../unparsed_CDSes_samples/Dsan_G1-68.fasta ../unparsed_CDSes_samples/Dsim_NS50.fasta ../unparsed_CDSes_samples/Dsim_NS39.fasta ../unparsed_CDSes_samples/Dtei_SDC.fasta ../unparsed_CDSes_samples/Dmel_ZI359.fasta ../unparsed_CDSes_samples/Dsan_G1-4.fasta ../unparsed_CDSes_samples/Dyak_CY01A.fasta ../unparsed_CDSes_samples/Dyak_SD18.fasta ../unparsed_CDSes_samples/Dsim_MD06.fasta ../unparsed_CDSes_samples/Dsan_sd12.fasta ../unparsed_CDSes_samples/Dsan_G1-50.fasta ../unparsed_CDSes_samples/Dyak_sd25.fasta ../unparsed_CDSes_samples/Dsan_sd11.fasta ../unparsed_CDSes_samples/Dmel_ZI126.fasta ../unparsed_CDSes_samples/Dmel_ZI193.fasta ../unparsed_CDSes_samples/Dsim_NS113.fasta ../unparsed_CDSes_samples/Dtei_SDB.fasta ../unparsed_CDSes_samples/Dsan_G1-13.fasta ../unparsed_CDSes_samples/Dmel_ZI508.fasta ../unparsed_CDSes_samples/Dsim_NS40.fasta ../unparsed_CDSes_samples/Dyak_Jess.fasta ../unparsed_CDSes_samples/Dyak_SD13.fasta ../unparsed_CDSes_samples/Dmel_ZI221.fasta ../unparsed_CDSes_samples/Dmel_ZI271.fasta ../unparsed_CDSes_samples/Dsan_G1-17.fasta ../unparsed_CDSes_samples/Dsan_sd20.fasta ../unparsed_CDSes_samples/Dmel_ZI212.fasta ../unparsed_CDSes_samples/Dmel_ZI134N.fasta ../unparsed_CDSes_samples/Dmel_ZI170.fasta ../unparsed_CDSes_samples/Dtei_sd8.fasta ../unparsed_CDSes_samples/Dmel_ZI261.fasta ../unparsed_CDSes_samples/Dmel_ZI320.fasta ../unparsed_CDSes_samples/Dsan_G1-3.fasta ../unparsed_CDSes_samples/Dsan_G1-47.fasta ../unparsed_CDSes_samples/Dsim_NS05.fasta ../unparsed_CDSes_samples/Dyak_SD16.fasta ../unparsed_CDSes_samples/Dmel_ZI517.fasta ../unparsed_CDSes_samples/Dyak_CY20A.fasta ../unparsed_CDSes_samples/Dmel_ZI31N.fasta ../unparsed_CDSes_samples/Dsan_sd24.fasta ../unparsed_CDSes_samples/Dmel_ZI191.fasta ../unparsed_CDSes_samples/Dyak_ST.fasta ../unparsed_CDSes_samples/Dmel_ZI252.fasta ../unparsed_CDSes_samples/Dsan_G1-42.fasta ../unparsed_CDSes_samples/Dyak_sd29.fasta ../unparsed_CDSes_samples/Dmel_ZI324.fasta ../unparsed_CDSes_samples/Dyak_SD10.fasta ../unparsed_CDSes_samples/Dmel_ZI157.fasta ../unparsed_CDSes_samples/Dyak_SD7.fasta ../unparsed_CDSes_samples/Dsan_G1-11.fasta ../unparsed_CDSes_samples/Dmel_ZI335.fasta ../unparsed_CDSes_samples/Dmel_ZI392.fasta ../unparsed_CDSes_samples/Dsan_G1-58.fasta ../unparsed_CDSes_samples/Dyak_2.8.1.fasta ../unparsed_CDSes_samples/Dmel_ZI468.fasta ../unparsed_CDSes_samples/Dsan_G1-29.fasta ../unparsed_CDSes_samples/Dtei_sd3.fasta ../unparsed_CDSes_samples/Dmel_ZI184.fasta ../unparsed_CDSes_samples/Dmel_ZI279.fasta ../unparsed_CDSes_samples/Dmel_ZI68.fasta ../unparsed_CDSes_samples/Dyak_SD15.fasta ../unparsed_CDSes_samples/Dsan_G1-61.fasta ../unparsed_CDSes_samples/Dyak_SD5.fasta ../unparsed_CDSes_samples/Dmel_ZI220.fasta ../unparsed_CDSes_samples/Dmel_ZI431.fasta ../unparsed_CDSes_samples/Dmel_ZI138.fasta ../unparsed_CDSes_samples/Dmel_ZI491.fasta ../unparsed_CDSes_samples/Dmel_ZI504.fasta ../unparsed_CDSes_samples/Dtei_sd1.fasta ../unparsed_CDSes_samples/Dmel_ZI329.fasta ../unparsed_CDSes_samples/Dsan_G1-48.fasta ../unparsed_CDSes_samples/Dyak_SD14.fasta ../unparsed_CDSes_samples/Dyak_SD2.fasta ../unparsed_CDSes_samples/Dmel_ZI311N.fasta ../unparsed_CDSes_samples/Dmel_ZI418N.fasta ../unparsed_CDSes_samples/Dsan_G1-16.fasta ../unparsed_CDSes_samples/Dsan_G1-19.fasta ../unparsed_CDSes_samples/Dsim_MD251.fasta ../unparsed_CDSes_samples/Dsim_MD106.fasta ../unparsed_CDSes_samples/Dsim_MD73.fasta ../unparsed_CDSes_samples/Dtei_sd7.fasta ../unparsed_CDSes_samples/Dtei_sd4.fasta ../unparsed_CDSes_samples/Dtei_sd5.fasta ../unparsed_CDSes_samples/Dmel_ZI264.fasta ../unparsed_CDSes_samples/Dmel_ZI185.fasta ../unparsed_CDSes_samples/Dyak_SD19.fasta ../unparsed_CDSes_samples/Dsim_MD63.fasta ../unparsed_CDSes_samples/Dsan_G1-10.fasta ../unparsed_CDSes_samples/Dsan_G1-49.fasta ../unparsed_CDSes_samples/Dsan_G1-2.fasta ../unparsed_CDSes_samples/Dsan_sd19.fasta ../unparsed_CDSes_samples/Dmel_ZI370.fasta ../unparsed_CDSes_samples/Dmel_ZI286.fasta ../unparsed_CDSes_samples/Dsim_MD15.fasta ../unparsed_CDSes_samples/Dmel_ZI85.fasta ../unparsed_CDSes_samples/Dyak_SD3.fasta ../unparsed_CDSes_samples/Dyak_sd31.fasta ../unparsed_CDSes_samples/Dmel_ZI196.fasta ../unparsed_CDSes_samples/Dyak_SD6.fasta ../unparsed_CDSes_samples/Dyak_SD21.fasta ../unparsed_CDSes_samples/Dsan_G1-15.fasta ../unparsed_CDSes_samples/Dmel_ZI33.fasta ../unparsed_CDSes_samples/Dmel_ZI228.fasta ../unparsed_CDSes_samples/Dmel_ZI172.fasta ../unparsed_CDSes_samples/Dsan_G1-12.fasta ../unparsed_CDSes_samples/Dmel_ZI176.fasta ../unparsed_CDSes_samples/Dmel_ZI457.fasta ../unparsed_CDSes_samples/Dyak_sd32.fasta ../unparsed_CDSes_samples/Dsan_sd9.fasta ../unparsed_CDSes_samples/Dmel_ZI455N.fasta ../unparsed_CDSes_samples/Dsim_MD221.fasta ../unparsed_CDSes_samples/Dsan_sd18.fasta ../unparsed_CDSes_samples/Dyak_sd26.fasta ../unparsed_CDSes_samples/Dsan_G1-14.fasta > unparsed_CDSes_samples.fofn; \
+/usr/bin/time -v ../../tools/parseFASTARecords.pl -f unparsed_CDSes_samples.fofn -m ../Orthogroups_SingleCopy_renamed_forPseudorefs.tsv -dddd 2> logs/parseFASTA.stderr > logs/parseFASTA.stdout; \
+cd ..; \
+fgrep -c ">" raw_CDSes_samples/OG* | cut -d":" -f2 | sort | uniq -c > parse_sample_CDSes

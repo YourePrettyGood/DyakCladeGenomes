@@ -12,6 +12,7 @@ Getopt::Long::Configure qw(gnu_getopt);
 # Version 1.2 (2019/04/11) Non-greedy Parent regex and prefix  #
 # Version 1.3 (2019/04/27) Option for longest isoform only     #
 # Version 1.4 (2019/05/16) Stable choice of longest isoform    #
+# Version 1.5 (2019/06/13) Use exons instead of CDS on request #
 ################################################################
 
 #First pass script to construct a FASTA of CDSes from a GFF3 and
@@ -27,8 +28,11 @@ Getopt::Long::Configure qw(gnu_getopt);
 # isoform choice so that the same transcript is chosen if there
 # is a tie for longest.
 
+#2019/06/13 revision allows for defining transcripts with
+# child tags other than CDS (e.g. exon)
+
 my $SCRIPTNAME = "constructCDSesFromGFF3.pl";
-my $VERSION = "1.4";
+my $VERSION = "1.5";
 
 =pod
 
@@ -48,6 +52,7 @@ constructCDSesFromGFF3.pl [options]
   --output_ers,-e        Output the "Exon Range String" for the CDS?
                          0 or 1, default is 0
   --longest,-l           Only output the longest isoform for each gene
+  --feature,-f           Name of GFF3 feature to splice (default: CDS)
   --version,-v           Output version string
 
 =head1 DESCRIPTION
@@ -55,6 +60,10 @@ constructCDSesFromGFF3.pl [options]
 This script constructs CDSes based on an input genome FASTA file and a
 corresponding genome annotation GFF3 file.  The output is in a FASTA-like
 format (no wrapping).
+
+Optionally, it can be used to construct full transcripts (including UTRs)
+as long as a single feature name represents all the components of a full
+transcript.
 
 =cut
 
@@ -72,14 +81,18 @@ my $gff3_path = "";
 my $header_prefix = "";
 my $output_exon_range_strings = 0;
 my $longest_only = 0;
+my $feature_type = "CDS";
 my $dispversion = 0;
-GetOptions('input_genome|i=s' => \$genome_path, 'gff3_file|g=s' => \$gff3_path, 'prefix|p=s' => \$header_prefix, 'output_ers|e' => \$output_exon_range_strings, 'longest|l' => \$longest_only, 'version|v' => \$dispversion, 'help|h|?+' => \$help, man => \$man) or pod2usage(2);
+GetOptions('input_genome|i=s' => \$genome_path, 'gff3_file|g=s' => \$gff3_path, 'prefix|p=s' => \$header_prefix, 'output_ers|e' => \$output_exon_range_strings, 'longest|l' => \$longest_only, 'feature|f=s' => \$feature_type, 'version|v' => \$dispversion, 'help|h|?+' => \$help, man => \$man) or pod2usage(2);
 pod2usage(-exitval => 1, -verbose => $help, -output => \*STDERR) if $help;
 pod2usage(-exitval => 0, -verbose => 2, -output => \*STDERR) if $man;
 $header_prefix .= "_" unless $header_prefix eq "";
 
 print STDERR "${SCRIPTNAME} version ${VERSION}\n" if $dispversion;
 exit 0 if $dispversion;
+
+print STDERR "Unsupported feature type ${feature_type}, please use CDS or exon\n" unless $feature_type eq "CDS" or $feature_type eq "exon";
+exit 4 unless $feature_type eq "CDS" or $feature_type eq "exon";
 
 #Open the genome FASTA file, or set it up to be read from STDIN:
 my $genome_fh;
@@ -139,7 +152,7 @@ while (my $line = <$gff_fh>) {
          next;
       }
    }
-   next unless $type eq "CDS";
+   next unless $type eq $feature_type;
    my @transcript_names = ();
    if ($tag_string =~ /Parent=(.+?)(?:;|$)/i) {
       @transcript_names = split /,/, $1;

@@ -5,11 +5,11 @@
 # Summarized benchmarking in BUSCO notation for file ../refs/Dsan_STOCAGO1482.fasta
 # BUSCO was run in mode: genome
 
-	C:98.4%[S:97.5%,D:0.9%],F:1.0%,M:0.6%,n:2799
+	C:98.0%[S:97.4%,D:0.6%],F:1.1%,M:0.9%,n:2799
 
-	2753	Complete BUSCOs (C)
-	2728	Complete and single-copy BUSCOs (S)
-	25	Complete and duplicated BUSCOs (D)
-	28	Fragmented BUSCOs (F)
-	18	Missing BUSCOs (M)
+	2743	Complete BUSCOs (C)
+	2726	Complete and single-copy BUSCOs (S)
+	17	Complete and duplicated BUSCOs (D)
+	30	Fragmented BUSCOs (F)
+	26	Missing BUSCOs (M)
 	2799	Total BUSCO groups searched

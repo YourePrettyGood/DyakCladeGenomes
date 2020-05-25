@@ -5,6 +5,8 @@ SHELL=/bin/bash
 
 #Expects the following in your PATH:
 #fasta_formatter
+#The rest of these should be accessible via relative paths in the tools
+# subdirectory:
 #FASTAtoContigs.awk
 #NX.pl
 #These awk and perl scripts are available in the tools subdirectory
@@ -50,19 +52,19 @@ $(SUMMARIES) : %_asm_stats.tsv : %_ctg_stats.tsv %_scaf_stats.tsv
 
 #Calculate scaffold summaries for refs:
 $(REFSCAFSUMMARIES) : %_scaf_stats.tsv : ../refs/%.fasta
-	fasta_formatter -i $< | NX.pl -t - 50,90 | cut -f2,3,4,5,8 | tail -n1 > $@
+	fasta_formatter -i $< | ../tools/NX.pl -t - 50,90 | cut -f2,3,4,5,8 | tail -n1 > $@
 
 #Calculate scaffold summaries for old refs:
 $(OLDREFSCAFSUMMARIES) : %_scaf_stats.tsv : ../refs/old/%.fasta
-	fasta_formatter -i $< | NX.pl -t - 50,90 | cut -f2,3,4,5,8 | tail -n1 > $@
+	fasta_formatter -i $< | ../tools/NX.pl -t - 50,90 | cut -f2,3,4,5,8 | tail -n1 > $@
 
 #Calculate contig summaries for refs:
 $(REFCTGSUMMARIES) : %_ctg_stats.tsv : ../refs/%.fasta
-	fasta_formatter -i $< | FASTAtoContigs.awk | NX.pl -t - 50,90 | cut -f1,2,3,4,5,8 | tail -n1 > $@
+	fasta_formatter -i $< | ../tools/FASTAtoContigs.awk | ../tools/NX.pl -t - 50,90 | cut -f1,2,3,4,5,8 | tail -n1 > $@
 
 #Calculate contig summaries for old refs:
 $(OLDREFCTGSUMMARIES) : %_ctg_stats.tsv : ../refs/old/%.fasta
-	fasta_formatter -i $< | FASTAtoContigs.awk | NX.pl -t - 50,90 | cut -f1,2,3,4,5,8 | tail -n1 > $@
+	fasta_formatter -i $< | ../tools/FASTAtoContigs.awk | ../tools/NX.pl -t - 50,90 | cut -f1,2,3,4,5,8 | tail -n1 > $@
 
 distclean :
 	rm -f $(SUMMARIES) $(REFSCAFSUMMARIES) $(OLDREFSCAFSUMMARIES) $(REFCTGSUMMARIES) $(OLDREFCTGSUMMARIES)

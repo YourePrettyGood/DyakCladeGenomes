@@ -18,6 +18,8 @@ SHELL=/bin/bash
 #Options to adjust:
 LINEAGE := diptera
 LINEAGEPATH := /home/pfreilly/Downloads/Bioinformatics/Assembly/busco/diptera_odb9/
+#Old refs that don't have annotations (space-separated list of prefixes):
+NOANNOT := Dyak_Miller
 
 #DO NOT CHANGE THE BELOW:
 #Number of cores to use per BUSCO job (use 8, as kfold for
@@ -42,11 +44,11 @@ EXTRACDSES := $(addsuffix _CDSes.fasta,$(OLDREFS))
 #Transcriptome BUSCO result files:
 TRANBUSCOS := $(addsuffix _txome_buscos.tsv,$(REFS))
 #Transcriptome BUSCO result file(s) for old references (not our PacBio ones):
-EXTRATRANBUSCOS := $(addsuffix _txome_buscos.tsv,$(OLDREFS))
+EXTRATRANBUSCOS := $(addsuffix _txome_buscos.tsv,$(filter-out $(NOANNOT),$(OLDREFS)))
 #Proteome BUSCO result files:
 PROTBUSCOS := $(addsuffix _proteome_buscos.tsv,$(REFS))
 #Proteome BUSCO result file(s) for old references (not our PacBio ones):
-EXTRAPROTBUSCOS := $(addsuffix _proteome_buscos.tsv,$(OLDREFS))
+EXTRAPROTBUSCOS := $(addsuffix _proteome_buscos.tsv,$(filter-out $(NOANNOT),$(OLDREFS)))
 
 .PHONY : genome_plot transcriptome_plot proteome_plot clean usage
 
@@ -127,11 +129,11 @@ $(PROTBUSCOS) : %_proteome_buscos.tsv : %_proteome.fasta logs BUSCO_proteome_sum
 
 $(EXTRACDSES) : %_CDSes.fasta : ../refs/old/%.fasta ../annotations/old/%.gff3 logs
 	@echo "Extracting CDSes from $*"
-	constructCDSesFromGFF3.pl -i $(word 1,$^) -g $(word 2,$^) -l 2> $(word 3,$^)/cCFG_$*.stderr > $@
+	../tools/constructCDSesFromGFF3.pl -i $(word 1,$^) -g $(word 2,$^) -l 2> $(word 3,$^)/cCFG_$*.stderr > $@
 
 $(CDSES) : %_CDSes.fasta : ../refs/%.fasta ../annotations/%.gff3 logs
 	@echo "Extracting CDSes from $*"
-	constructCDSesFromGFF3.pl -i $(word 1,$^) -g $(word 2,$^) -l 2> $(word 3,$^)/cCFG_$*.stderr > $@
+	../tools/constructCDSesFromGFF3.pl -i $(word 1,$^) -g $(word 2,$^) -l 2> $(word 3,$^)/cCFG_$*.stderr > $@
 
 $(SUBDIRS) :
 	mkdir -p $@
@@ -140,6 +142,6 @@ clean :
 	rm -f $(BUSCOS) $(EXTRABUSCOS)
 	rm -f $(TRANBUSCOS) $(EXTRATRANBUSCOS)
 	rm -f $(PROTBUSCOS) $(EXTRAPROTBUSCOS)
-	rm -f $(CDSES) $(EXTRACDSES)
+	rm -f $(CDSES) $(EXTRACDSES) *_proteome.fasta
 	rm -f genome transcriptome proteome
 	rm -rf BUSCO*summaries/ run_*/ tmp/ tmp_opt_*/ logs/

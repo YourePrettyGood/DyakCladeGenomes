@@ -12,6 +12,8 @@ use Data::Dumper;
 #                                                              #
 # Version 1.0 (2019/04/22) Assign homology based on flanking   #
 #                          exon length                         #
+# Version 1.1 (2019/12/06) Input choice of source introns      #
+#                          i.e. which annotation is best       #
 ################################################################
 
 #First pass script to split FASTAs of introns based on single copy
@@ -21,7 +23,7 @@ use Data::Dumper;
 # OrthoFinder).
 
 my $SCRIPTNAME = "findSingleCopyOrthologIntrons.pl";
-my $VERSION = "1.0";
+my $VERSION = "1.1";
 
 =pod
 
@@ -41,6 +43,9 @@ findSingleCopyOrthologIntrons.pl [options]
                          (default: 0.10, i.e. 10%)
   --intron_len,-i        Use intron length filter in addition to flanking
                          exon length filters
+  --best_annotation,-b   Prefix of annotation to use for intron anchors
+                         (i.e. which species' annotation is the best)
+                         (default: )
   --version,-v           Output version string
   --debug,-d             Output debugging info to STDERR
 
@@ -69,9 +74,10 @@ my $fasta_list_path = "STDIN";
 my $sco_map_path = "";
 my $max_rel_diff = 0.10;
 my $intron_length_filter = 0;
+my $best_introns = "";
 my $dispversion = 0;
 my $debug = 0;
-GetOptions('fasta_list|f=s' => \$fasta_list_path, 'sco_map|m=s' => \$sco_map_path, 'threshold|t=f' => \$max_rel_diff, 'intron_len|i' => \$intron_length_filter, 'version|v' => \$dispversion, 'debug|d+' => \$debug, 'help|h|?+' => \$help, man => \$man) or pod2usage(2);
+GetOptions('fasta_list|f=s' => \$fasta_list_path, 'sco_map|m=s' => \$sco_map_path, 'threshold|t=f' => \$max_rel_diff, 'intron_len|i' => \$intron_length_filter, 'best_annotation|b=s' => \$best_introns, 'version|v' => \$dispversion, 'debug|d+' => \$debug, 'help|h|?+' => \$help, man => \$man) or pod2usage(2);
 pod2usage(-exitval => 1, -verbose => $help, -output => \*STDERR) if $help;
 pod2usage(-exitval => 0, -verbose => 2, -output => \*STDERR) if $man;
 
@@ -153,7 +159,7 @@ for my $fasta_path (@fasta_list) {
                my $transcript_ID = $1;
                my $intron_num = $2;
                unless (exists($orthogroup_map{$transcript_ID})) {
-                  print STDERR "No orthogroup found for ${transcript_ID}, skipping\n" if $debug > 1;
+                  print STDERR "No orthogroup found for ${transcript_ID} at intron ${intron_num}, skipping\n" if $debug > 1;
                   $fasta_header = $line;
                   next;
                }
@@ -181,7 +187,7 @@ for my $fasta_path (@fasta_list) {
    if ($header_elems[0] =~ /^(\S+)\.intron(\d+)$/) {
       my $transcript_ID = $1;
       my $intron_num = $2;
-      print STDERR "No orthogroup found for ${transcript_ID}, skipping\n" if (!exists($orthogroup_map{$transcript_ID}) and $debug > 1);
+      print STDERR "No orthogroup found for ${transcript_ID}, intron ${intron_num}, skipping\n" if (!exists($orthogroup_map{$transcript_ID}) and $debug > 1);
       if (exists($orthogroup_map{$transcript_ID})) {
          my @txid_elems = split /_/, $header_elems[0];
          my $short_txid = pop @txid_elems;
@@ -216,8 +222,19 @@ print STDERR "What are you, crazy?  Filtering at ${max_rel_diff} relative differ
 
 for my $OG (keys %intron_metadata) {
    my @species = keys %{$intron_metadata{$OG}};
-   my $spp1 = shift @species;
-   my @spp1_introns = keys %{$intron_metadata{$OG}{$spp1}};
+   my $spp1;
+   #Select the species with the best annotation ($best_introns) as spp1
+   # if provided:
+   if (exists($intron_metadata{$OG}{$best_introns})) {
+      $spp1 = $best_introns;
+      @species = grep { $_ ne $best_introns } @species;
+   } else {
+      #Select the first species if not provided:
+      $spp1 = shift @species;
+   }
+   print STDERR "Using ${spp1} as anchor intron source for orthogroup ${OG}\n" if $debug > 1;
+   #Just for my own debugging sanity, make sure to sort by intron number:
+   my @spp1_introns = sort { $a <=> $b } keys %{$intron_metadata{$OG}{$spp1}};
    my $spp1_intron_count = scalar(@spp1_introns);
    #Make the hash slot even if we don't have homology across all species:
    $intron_homology{$OG} = {} unless exists($intron_homology{$OG});
@@ -227,19 +244,22 @@ for my $OG (keys %intron_metadata) {
       $intron_homology{$OG}{$spp1_introns[$h]} = {} unless exists($intron_homology{$OG}{$spp1_introns[$h]});
       print STDERR "Duplicate homologous intron added for ${OG} ${spp1} intron ", $spp1_introns[$h], "\n" if $debug > 1 and exists($intron_homology{$OG}{$spp1_introns[$h]}{$spp1});
       $intron_homology{$OG}{$spp1_introns[$h]}{$spp1} = $spp1_introns[$h];
-      print STDERR "Placed ${OG} ${spp1} intron ", $spp1_introns[$h], " into map, mapping to ", $spp1_introns[$h], "\n" if $debug > 3;
+      print STDERR "Placed ${OG} ${spp1} intron ", $spp1_introns[$h], " into map, mapping to ${spp1} intron ", $spp1_introns[$h], "\n" if $debug > 3;
+      my %spp1_intron_flanks = %{$intron_metadata{$OG}{$spp1}{$spp1_introns[$h]}};
       #Iterate over each remaining species:
       for my $spp (@species) {
          #Iterate over each intron in a focal species:
-         my @spp_introns = keys %{$intron_metadata{$OG}{$spp}};
+         #Again for debugging sanity, sort the query introns numerically:
+         my @spp_introns = sort { $a <=> $b } keys %{$intron_metadata{$OG}{$spp}};
          my $spp_intron_count = scalar(@spp_introns);
          #Initialize some variables for scanning for minimum relative differences:
          my ($min_ird, $min_lerd, $min_rerd) = ($MAX_SENTINEL, $MAX_SENTINEL, $MAX_SENTINEL);
          my ($min_ird_i, $min_lerd_i, $min_rerd_i) = (-1, -1, -1); #Index of the intron
          for (my $i = 0; $i < $spp_intron_count; $i++) {
-            my $intron_reldiff = reldiff($intron_metadata{$OG}{$spp1}{$spp1_introns[$h]}{'il'}, $intron_metadata{$OG}{$spp}{$spp_introns[$i]}{'il'});
-            my $left_exon_reldiff = reldiff($intron_metadata{$OG}{$spp1}{$spp1_introns[$h]}{'lel'}, $intron_metadata{$OG}{$spp}{$spp_introns[$i]}{'lel'});
-            my $right_exon_reldiff = reldiff($intron_metadata{$OG}{$spp1}{$spp1_introns[$h]}{'rel'}, $intron_metadata{$OG}{$spp}{$spp_introns[$i]}{'rel'});
+            my %spp_intron_flanks = %{$intron_metadata{$OG}{$spp}{$spp_introns[$i]}};
+            my $intron_reldiff = reldiff($spp1_intron_flanks{'il'}, $spp_intron_flanks{'il'});
+            my $left_exon_reldiff = reldiff($spp1_intron_flanks{'lel'}, $spp_intron_flanks{'lel'});
+            my $right_exon_reldiff = reldiff($spp1_intron_flanks{'rel'}, $spp_intron_flanks{'rel'});
             print STDERR "${OG} ${spp1} intron ", $spp1_introns[$h], " ${spp} intron ", $spp_introns[$i], " ${left_exon_reldiff} ${right_exon_reldiff} ${intron_reldiff}\n" if $debug > 3;
             if ($intron_reldiff < $min_ird) { #Maybe skip this filter?
                $min_ird = $intron_reldiff;
@@ -255,7 +275,7 @@ for my $OG (keys %intron_metadata) {
             }
          }
          #Apply the filters:
-         print STDERR "${OG} ${spp1} intron ", $spp1_introns[$h], " ${spp} intron ", $spp_introns[$min_lerd_i], " ${min_lerd_i} ${min_rerd_i} ${min_ird_i} ${min_lerd} ${min_rerd} ${min_ird}\n" if $debug > 2;
+         print STDERR "${OG} ${spp1} intron ", $spp1_introns[$h], " ${spp} intron ", $spp_introns[$min_lerd_i], " LERDi=", $spp_introns[$min_lerd_i], " RERDi=", $spp_introns[$min_rerd_i], " IRDi=", $spp_introns[$min_ird_i], " LERDv=${min_lerd} RERDv=${min_rerd} IRDv=${min_ird}\n" if $debug > 2;
          if ($min_lerd_i == $min_rerd_i and $min_lerd_i >= 0) {
             next if ($intron_length_filter and $min_ird_i != $min_lerd_i);
             next if ($intron_length_filter and $min_ird > $max_rel_diff);
@@ -265,7 +285,7 @@ for my $OG (keys %intron_metadata) {
                $intron_homology{$OG}{$spp1_introns[$h]} = {} unless exists($intron_homology{$OG}{$spp1_introns[$h]});
                print STDERR "Duplicate homologous intron added for ${OG} ${spp} intron ", $spp_introns[$min_lerd_i], "\n" if $debug > 1 and exists($intron_homology{$OG}{$spp1_introns[$h]}{$spp});
                $intron_homology{$OG}{$spp1_introns[$h]}{$spp} = $spp_introns[$min_lerd_i];
-               print STDERR "Placed ${OG} ${spp} intron ", $spp_introns[$min_lerd_i], " into map, mapping to ", $spp1_introns[$h], "\n" if $debug > 3;
+               print STDERR "Placed ${OG} ${spp} intron ", $spp_introns[$min_lerd_i], " into map, mapping to ${spp1} intron ", $spp1_introns[$h], "\n" if $debug > 3;
             }
          }
       }
@@ -285,10 +305,16 @@ species: for my $spp (keys %species_found) {
          if (exists($intron_homology{$OG}{$intron}{$spp})) {
             $intron_line .= "\t" . $txid_map{$OG}{$spp} . ".intron" . $intron_homology{$OG}{$intron}{$spp};
          } else {
+            print STDERR "Skipped intron ${OG}.intron${intron} due to incomplete orthology: " if $debug > 3;
+            print STDERR join "\t", sort keys %{$intron_homology{$OG}{$intron}} if $debug > 3;
+            print STDERR "\n" if $debug > 3;
             next intron;
          }
       }
       print STDOUT $intron_line, "\n";
+      print STDERR "Used intron ${OG}.intron${intron} with complete orthology: " if $debug > 3;
+      print STDERR join "\t", sort keys %{$intron_homology{$OG}{$intron}} if $debug > 3;
+      print STDERR "\n" if $debug > 3;
    }
 }
 
