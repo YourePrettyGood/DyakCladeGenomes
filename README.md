@@ -95,6 +95,7 @@ Population samples used here include:
 
 *D. teissieri*:
 1. 8 "Synthetic Diploid" females (Illumina PE215)
+1. 5 further "Synthetic Diploid" females (Illumina PE150)
 
 *D. yakuba*:
 1. 8 "Synthetic Diploid" females from lines collected on Sao Tome (Illumina PE215)
