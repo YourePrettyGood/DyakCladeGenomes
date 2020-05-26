@@ -39,7 +39,7 @@ Work is ongoing to refine transcript models using [StringTie](https://github.com
 
 ## Current data freeze availability:
 
-The current assembly and annotation freeze (2019/12/11) is available (please be courteous about our publication intent) on [Google Drive](https://drive.google.com/drive/folders/1-EhPAg9QVTdqoBaq68xifMmhJ4ntLPJc?usp=sharing).
+The current assembly and annotation freeze (2019/12/11) is available (please be courteous about our publication intent) on request from [Peter Andolfatto](https://andolfattolab.com).
 
 Pseudoreferences of the population samples may be linked from here in the future (please e-mail for more details).
 
