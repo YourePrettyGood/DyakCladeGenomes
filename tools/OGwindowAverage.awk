@@ -10,6 +10,13 @@
 # two particular column names: OG and Species
 #These column names are case-sensitive, and represent the orthogroup
 # and species for the statistics on that line. OG is NOT outgroup.
+#Revisions on 2020/08/30 enable passing a comma-separated list of
+# statistic column names. If a list is passed, then the output header
+# names change somewhat:
+# Numerator becomes Sum[statname], Denominator becomes SumWeight,
+# and there is an Average[statname] column for each statistic.
+#These appear in order, iterating over statistics, and NumOGs and
+# ID remain the last column names.
 BEGIN{
    FS="\t";
    OFS=FS;
@@ -19,6 +26,7 @@ BEGIN{
       print "Missing statistic column name, please set it." > "/dev/stderr";
       exit 1;
    }
+   n_stats=split(statcol, statcols, ",");
    if (length(species) == 0) {
       print "Missing species variable, please set it." > "/dev/stderr";
       exit 2;
@@ -43,8 +51,10 @@ FNR==NR{
 FNR<NR&&FNR==1{
    #Find column indexes by matching column names in header line:
    for (i=1; i<=NF; i++) {
-      if ($i == statcol) {
-         stat=i;
+      for (j=1; j<=n_stats; j++) {
+         if ($i == statcols[j]) {
+            stats[j]=i;
+         };
       };
       if ($i == weightcol) {
          weight=i;
@@ -57,31 +67,43 @@ FNR<NR&&FNR==1{
       };
    };
    if (length(debug) > 0) {
-      print "OG="og",Species="spp","statcol"="stat","weightcol"="weight > "/dev/stderr";
+      printf "OG=%s,Species=%s", og, spp > "/dev/stderr";
+      for (j=1; j<=n_stats; j++) {
+         printf ",%s=%.6g", statcols[j], stats[j] > "/dev/stderr";
+      };
+      printf ",%s=%.6g\n", weightcol, weight > "/dev/stderr";
+#      print "OG="og",Species="spp","statcol"="stat","weightcol"="weight > "/dev/stderr";
    };
 }
 FNR<NR&&FNR>1&&$spp==species{
    split(windowmap[$og], windowids, ",");
    for (i in windowids) {
-      #Omit any orthogroups with NA statistic values:
-      if ($stat != "NA") {
-         #Keep track of the windows (we'll sort them at the end):
-         windows[windowids[i]]++;
-         #Default is to use weight of 1 for naive average:
-         w=1;
-         #If the weight column was set and found, use weighted average:
-         if (weight > 0) {
-            if (length(debug) > 0) {
-               print $og, windowids[i], weight"="$weight > "/dev/stderr";
-            };
-            w=$weight;
-         };
-         #Weighted average is done via sum(x_i*w_i)/sum(w_i)
-         numerator[windowids[i]]+=$stat * w;
-         denominator[windowids[i]]+=w;
+      #Default is to use weight of 1 for naive average:
+      w=1;
+      #If the weight column was set and found, use weighted average:
+      if (weight > 0) {
          if (length(debug) > 0) {
-            print $og, windowids[i], $stat, $stat*w, w, id > "/dev/stderr";
+            print $og, windowids[i], weight"="$weight > "/dev/stderr";
          };
+         w=$weight;
+      };
+      addwindow=0;
+      for (j=1; j<=n_stats; j++) {
+         #Omit any orthogroups with NA statistic values:
+         if ($stats[j] != "NA") {
+            #Keep track of the windows (we'll sort them at the end):
+            addwindow=1;
+            #Weighted average is done via sum(x_i*w_i)/sum(w_i)
+            numerator[windowids[i],j]+=$stats[j] * w;
+            denominator[windowids[i],j]+=w;
+            if (length(debug) > 0) {
+               print $og, windowids[i], $stats[j], $stats[j]*w, w, id > "/dev/stderr";
+            };
+         };
+      };
+      #Keep track of the windows (we'll sort them at the end):
+      if (addwindow) {
+         windows[windowids[i]]++;
       };
    };
 }
@@ -89,18 +111,33 @@ END{
    n=asorti(windows, sortedwindows, "@ind_num_asc");
    if (length(noheader)==0) {
       #Output a header line:
-      print "WindowID", "Numerator", "Denominator", "Average"statcol, "NumOGs", "ID";
+      #Special header if only 1 stat column:
+      if (n_stats == 1) {
+         print "WindowID", "Numerator", "Denominator", "Average"statcols[1], "NumOGs", "ID";
+      } else {
+         printf "WindowID"OFS;
+         for (j=1; j<=n_stats; j++) {
+            printf OFS"Sum%s"OFS"SumWeight%s"OFS"Average%s", statcols[j], statcols[j], statcols[j];
+         };
+         printf OFS"NumOGs"OFS"ID\n";
+      };
    }
    #Output the window averages in sorted order:
    for (i=1; i<=n; i++) {
-      if (sortedwindows[i] in numerator && sortedwindows[i] in denominator) {
-         if (denominator[sortedwindows[i]] == 0) {
-            print sortedwindows[i], numerator[sortedwindows[i]], denominator[sortedwindows[i]], "NA", windows[sortedwindows[i]], id;
+      printf "%s", sortedwindows[i];
+      for (j=1; j<=n_stats; j++) {
+         if ((sortedwindows[i],j) in numerator && (sortedwindows[i],j) in denominator) {
+            if (denominator[sortedwindows[i],j] == 0) {
+               printf OFS"%.6g"OFS"%.6g"OFS"NA", numerator[sortedwindows[i],j], denominator[sortedwindows[i],j];
+#               print sortedwindows[i], numerator[sortedwindows[i]], denominator[sortedwindows[i]], "NA", windows[sortedwindows[i]], id;
+            } else {
+               printf OFS"%.6g"OFS"%.6g"OFS"%.6g", numerator[sortedwindows[i],j], denominator[sortedwindows[i],j], numerator[sortedwindows[i],j]/denominator[sortedwindows[i],j];
+#               print sortedwindows[i], numerator[sortedwindows[i]], denominator[sortedwindows[i]], numerator[sortedwindows[i]]/denominator[sortedwindows[i]], windows[sortedwindows[i]], id;
+            };
          } else {
-            print sortedwindows[i], numerator[sortedwindows[i]], denominator[sortedwindows[i]], numerator[sortedwindows[i]]/denominator[sortedwindows[i]], windows[sortedwindows[i]], id;
+            printf OFS"NA"OFS"NA"OFS"NA";
          };
-      } else {
-         print sortedwindows[i], "NA", "NA", "NA", "NA", id;
       };
+      printf OFS"%u"OFS"%s\n", windows[sortedwindows[i]], id;
    };
 }

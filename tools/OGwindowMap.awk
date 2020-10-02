@@ -16,6 +16,9 @@ FNR==NR{
    scafs[FNR]=$1;
    starts[FNR]=$2;
    ends[FNR]=$3;
+   if (NF > 3) {
+      names[FNR]=$4;
+   };
 }
 #Second file is orthogroup_locations:
 FNR<NR{
@@ -39,10 +42,15 @@ FNR<NR{
                genelen=$3 - $2 + 1;
                if (overlap >= minoverlap * genelen) {
                   #Make a comma-delimited list of window IDs:
-                  if ($5 in windowmap) {
-                     windowmap[$5]=windowmap[$5]","i;
+                  if (length(names[i]) > 0) {
+                     id=names[i];
                   } else {
-                     windowmap[$5]=i;
+                     id=i;
+                  };
+                  if ($5 in windowmap) {
+                     windowmap[$5]=windowmap[$5]","id;
+                  } else {
+                     windowmap[$5]=id;
                   };
                };
             };
