@@ -15,6 +15,7 @@ Getopt::Long::Configure qw(gnu_getopt);
 # Version 1.5 (2019/06/13) Use exons instead of CDS on request #
 # Version 1.6 (2020/07/19) Generalize to rRNA and tRNA too     #
 #                          Fixed a bug when feature_type=exon  #
+# Version 1.7 (2021/05/30) Fixed a bug with mRNA after exon(s) #
 ################################################################
 
 #First pass script to construct a FASTA of CDSes from a GFF3 and
@@ -43,8 +44,14 @@ Getopt::Long::Configure qw(gnu_getopt);
 # version 1.5 would extract any and all exon features with Parent
 # set. So now we do actually filter output by the type of the Parent.
 
+#2021/05/30 revision fixes a bug in longest-isoform mode where the
+# exon/CDS record preceding the mRNA record in the GFF3 would cause
+# the isoform length to be set to 0, and therefore no isoform would
+# be output. All-isoforms mode was fine, this affected 82 genes in
+# the Dmel ISO1 FlyBase release 6.27 GFF3, mostly Ir* and mt genes.
+
 my $SCRIPTNAME = "constructCDSesFromGFF3.pl";
-my $VERSION = "1.6";
+my $VERSION = "1.7";
 
 =pod
 
@@ -166,7 +173,6 @@ while (my $line = <$gff_fh>) {
             my $tx_ID = $1;
             $gene_tx_map{$gene_ID} = {} unless exists($gene_tx_map{$gene_ID});
             $gene_tx_map{$gene_ID}{$tx_ID} = undef;
-            $isoform_length{$tx_ID} = 0; #Initialize the isoform length sum
             $tx_types{$tx_ID} = $type; #Store the transcript type for the filter
             print STDERR "Storing transcript ${tx_ID} under gene ${gene_ID} as type ${type}\n" if $debug > 1;
          } else {
@@ -211,6 +217,7 @@ while (my $line = <$gff_fh>) {
          }
       }
       #Add this CDS' length to the isoform length sum:
+      $isoform_length{$transcript_name} = 0 unless exists($isoform_length{$transcript_name});
       $isoform_length{$transcript_name} += $end - $start + 1;
       print STDERR "Transcript ${transcript_name} is of length ", $isoform_length{$transcript_name}, "\n" if $debug > 1;
    }
@@ -224,6 +231,7 @@ for my $gene (sort keys %gene_tx_map) {
    my $max_len = 0;
    my $max_len_id = "";
    for my $tx (sort keys %{$gene_tx_map{$gene}}) {
+      print STDERR "Isoforom ${tx} of length ", $isoform_length{$tx}, " versus current max length ${max_len}\n" if $debug > 3;
       if ($isoform_length{$tx} > $max_len) {
          $max_len = $isoform_length{$tx};
          $max_len_id = $tx;

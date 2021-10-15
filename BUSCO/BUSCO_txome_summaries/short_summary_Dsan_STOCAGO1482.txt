@@ -5,11 +5,11 @@
 # Summarized benchmarking in BUSCO notation for file Dsan_STOCAGO1482_CDSes.fasta
 # BUSCO was run in mode: transcriptome
 
-	C:93.0%[S:92.5%,D:0.5%],F:4.0%,M:3.0%,n:2799
+	C:94.5%[S:94.1%,D:0.4%],F:3.0%,M:2.5%,n:2799
 
-	2601	Complete BUSCOs (C)
-	2588	Complete and single-copy BUSCOs (S)
-	13	Complete and duplicated BUSCOs (D)
-	112	Fragmented BUSCOs (F)
-	86	Missing BUSCOs (M)
+	2645	Complete BUSCOs (C)
+	2634	Complete and single-copy BUSCOs (S)
+	11	Complete and duplicated BUSCOs (D)
+	83	Fragmented BUSCOs (F)
+	71	Missing BUSCOs (M)
 	2799	Total BUSCO groups searched

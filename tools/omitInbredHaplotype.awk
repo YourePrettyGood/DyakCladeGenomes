@@ -16,6 +16,9 @@
 # (Not a full regex match, but at least covers ZI)
    } else if (idparts[1] == "Dmel" && idparts[2] ~ /^ZI/) {
       skip=1;
+#Added Dtei TUZ11 (2021/05/30 edit)
+   } else if (idparts[1] == "Dtei" && idparts[2] == "TUZ11") {
+      skip=1;
    } else {
       print;
    };

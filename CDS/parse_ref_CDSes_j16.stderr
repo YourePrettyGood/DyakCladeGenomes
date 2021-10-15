@@ -1,21 +1,21 @@
-	Command being timed: "make -f align_CDSes.mk -j16 parse_ref_CDSes"
-	User time (seconds): 64.03
-	System time (seconds): 5.53
-	Percent of CPU this job got: 112%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:01.91
+	Command being timed: "make -j16 -f align_CDSes.mk parse_ref_CDSes"
+	User time (seconds): 64.88
+	System time (seconds): 4.91
+	Percent of CPU this job got: 113%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:01.29
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 163216
+	Maximum resident set size (kbytes): 151944
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 3
-	Minor (reclaiming a frame) page faults: 250880
-	Voluntary context switches: 275
-	Involuntary context switches: 40559
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 244032
+	Voluntary context switches: 190
+	Involuntary context switches: 316
 	Swaps: 0
-	File system inputs: 10442688
-	File system outputs: 423632
+	File system inputs: 0
+	File system outputs: 432136
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

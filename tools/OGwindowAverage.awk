@@ -17,6 +17,9 @@
 # and there is an Average[statname] column for each statistic.
 #These appear in order, iterating over statistics, and NumOGs and
 # ID remain the last column names.
+#Revision on 2021/07/12 allows for indicating the species and OG
+# column names with the sppcol and ogcol variables
+# (backwards compatibility via defaults of Species and OG)
 BEGIN{
    FS="\t";
    OFS=FS;
@@ -35,6 +38,12 @@ BEGIN{
       print "id column of output will be blank." > "/dev/stderr";
    } else {
       print "id column will show "id > "/dev/stderr";
+   };
+   if (length(sppcol) == 0) {
+      sppcol="Species";
+   };
+   if (length(ogcol) == 0) {
+      ogcol="OG";
    };
 }
 #First file is a TCSV, first column is the orthogroup, second column
@@ -59,10 +68,10 @@ FNR<NR&&FNR==1{
       if ($i == weightcol) {
          weight=i;
       };
-      if ($i == "OG") {
+      if ($i == ogcol) {
          og=i;
       };
-      if ($i == "Species") {
+      if ($i == sppcol) {
          spp=i;
       };
    };

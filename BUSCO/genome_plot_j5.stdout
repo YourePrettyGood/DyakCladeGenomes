@@ -4,51 +4,45 @@ Running BUSCO v3 on Dyak_NY73PB
 /usr/bin/time -v run_BUSCO.py -i ../refs/Dyak_NY73PB.fasta -l /home/pfreilly/Downloads/Bioinformatics/Assembly/busco/diptera_odb9/ -m genome -c 8 --long -z -o Dyak_NY73PB_BUSCOv3_genome_diptera 2> logs/Dyak_NY73PB_BUSCOv3_genome_diptera.stderr > logs/Dyak_NY73PB_BUSCOv3_genome_diptera.stdout; \
 tail -n10 logs/Dyak_NY73PB_BUSCOv3_genome_diptera.stdout | head -n7 | awk 'BEGIN{printf "%s", "Dyak_NY73PB";}NR>1{printf "\t%s", $2;}END{print "";}' > Dyak_NY73PB_buscos.tsv; \
 cp run_Dyak_NY73PB_BUSCOv3_genome_diptera/short_summary_Dyak_NY73PB_BUSCOv3_genome_diptera.txt BUSCO_summaries/short_summary_Dyak_NY73PB.txt
-Running BUSCO v3 on Dmel_ISO1
 Running BUSCO v3 on Dsim_w501
-/usr/bin/time -v run_BUSCO.py -i ../refs/Dmel_ISO1.fasta -l /home/pfreilly/Downloads/Bioinformatics/Assembly/busco/diptera_odb9/ -m genome -c 8 --long -z -o Dmel_ISO1_BUSCOv3_genome_diptera 2> logs/Dmel_ISO1_BUSCOv3_genome_diptera.stderr > logs/Dmel_ISO1_BUSCOv3_genome_diptera.stdout; \
-tail -n10 logs/Dmel_ISO1_BUSCOv3_genome_diptera.stdout | head -n7 | awk 'BEGIN{printf "%s", "Dmel_ISO1";}NR>1{printf "\t%s", $2;}END{print "";}' > Dmel_ISO1_buscos.tsv; \
-cp run_Dmel_ISO1_BUSCOv3_genome_diptera/short_summary_Dmel_ISO1_BUSCOv3_genome_diptera.txt BUSCO_summaries/short_summary_Dmel_ISO1.txt
 /usr/bin/time -v run_BUSCO.py -i ../refs/Dsim_w501.fasta -l /home/pfreilly/Downloads/Bioinformatics/Assembly/busco/diptera_odb9/ -m genome -c 8 --long -z -o Dsim_w501_BUSCOv3_genome_diptera 2> logs/Dsim_w501_BUSCOv3_genome_diptera.stderr > logs/Dsim_w501_BUSCOv3_genome_diptera.stdout; \
 tail -n10 logs/Dsim_w501_BUSCOv3_genome_diptera.stdout | head -n7 | awk 'BEGIN{printf "%s", "Dsim_w501";}NR>1{printf "\t%s", $2;}END{print "";}' > Dsim_w501_buscos.tsv; \
 cp run_Dsim_w501_BUSCOv3_genome_diptera/short_summary_Dsim_w501_BUSCOv3_genome_diptera.txt BUSCO_summaries/short_summary_Dsim_w501.txt
-Running BUSCO v3 on Dtei_GT53w
+Running BUSCO v3 on Dmel_ISO1
+/usr/bin/time -v run_BUSCO.py -i ../refs/Dmel_ISO1.fasta -l /home/pfreilly/Downloads/Bioinformatics/Assembly/busco/diptera_odb9/ -m genome -c 8 --long -z -o Dmel_ISO1_BUSCOv3_genome_diptera 2> logs/Dmel_ISO1_BUSCOv3_genome_diptera.stderr > logs/Dmel_ISO1_BUSCOv3_genome_diptera.stdout; \
+tail -n10 logs/Dmel_ISO1_BUSCOv3_genome_diptera.stdout | head -n7 | awk 'BEGIN{printf "%s", "Dmel_ISO1";}NR>1{printf "\t%s", $2;}END{print "";}' > Dmel_ISO1_buscos.tsv; \
+cp run_Dmel_ISO1_BUSCOv3_genome_diptera/short_summary_Dmel_ISO1_BUSCOv3_genome_diptera.txt BUSCO_summaries/short_summary_Dmel_ISO1.txt
 Running BUSCO v3 on Dyak_Tai18E2
-/usr/bin/time -v run_BUSCO.py -i ../refs/Dtei_GT53w.fasta -l /home/pfreilly/Downloads/Bioinformatics/Assembly/busco/diptera_odb9/ -m genome -c 8 --long -z -o Dtei_GT53w_BUSCOv3_genome_diptera 2> logs/Dtei_GT53w_BUSCOv3_genome_diptera.stderr > logs/Dtei_GT53w_BUSCOv3_genome_diptera.stdout; \
-tail -n10 logs/Dtei_GT53w_BUSCOv3_genome_diptera.stdout | head -n7 | awk 'BEGIN{printf "%s", "Dtei_GT53w";}NR>1{printf "\t%s", $2;}END{print "";}' > Dtei_GT53w_buscos.tsv; \
-cp run_Dtei_GT53w_BUSCOv3_genome_diptera/short_summary_Dtei_GT53w_BUSCOv3_genome_diptera.txt BUSCO_summaries/short_summary_Dtei_GT53w.txt
 /usr/bin/time -v run_BUSCO.py -i ../refs/Dyak_Tai18E2.fasta -l /home/pfreilly/Downloads/Bioinformatics/Assembly/busco/diptera_odb9/ -m genome -c 8 --long -z -o Dyak_Tai18E2_BUSCOv3_genome_diptera 2> logs/Dyak_Tai18E2_BUSCOv3_genome_diptera.stderr > logs/Dyak_Tai18E2_BUSCOv3_genome_diptera.stdout; \
 tail -n10 logs/Dyak_Tai18E2_BUSCOv3_genome_diptera.stdout | head -n7 | awk 'BEGIN{printf "%s", "Dyak_Tai18E2";}NR>1{printf "\t%s", $2;}END{print "";}' > Dyak_Tai18E2_buscos.tsv; \
 cp run_Dyak_Tai18E2_BUSCOv3_genome_diptera/short_summary_Dyak_Tai18E2_BUSCOv3_genome_diptera.txt BUSCO_summaries/short_summary_Dyak_Tai18E2.txt
+Running BUSCO v3 on Dtei_GT53w
+/usr/bin/time -v run_BUSCO.py -i ../refs/Dtei_GT53w.fasta -l /home/pfreilly/Downloads/Bioinformatics/Assembly/busco/diptera_odb9/ -m genome -c 8 --long -z -o Dtei_GT53w_BUSCOv3_genome_diptera 2> logs/Dtei_GT53w_BUSCOv3_genome_diptera.stderr > logs/Dtei_GT53w_BUSCOv3_genome_diptera.stdout; \
+tail -n10 logs/Dtei_GT53w_BUSCOv3_genome_diptera.stdout | head -n7 | awk 'BEGIN{printf "%s", "Dtei_GT53w";}NR>1{printf "\t%s", $2;}END{print "";}' > Dtei_GT53w_buscos.tsv; \
+cp run_Dtei_GT53w_BUSCOv3_genome_diptera/short_summary_Dtei_GT53w_BUSCOv3_genome_diptera.txt BUSCO_summaries/short_summary_Dtei_GT53w.txt
 Running BUSCO v3 on Dsan_STOCAGO1482
 /usr/bin/time -v run_BUSCO.py -i ../refs/Dsan_STOCAGO1482.fasta -l /home/pfreilly/Downloads/Bioinformatics/Assembly/busco/diptera_odb9/ -m genome -c 8 --long -z -o Dsan_STOCAGO1482_BUSCOv3_genome_diptera 2> logs/Dsan_STOCAGO1482_BUSCOv3_genome_diptera.stderr > logs/Dsan_STOCAGO1482_BUSCOv3_genome_diptera.stdout; \
 tail -n10 logs/Dsan_STOCAGO1482_BUSCOv3_genome_diptera.stdout | head -n7 | awk 'BEGIN{printf "%s", "Dsan_STOCAGO1482";}NR>1{printf "\t%s", $2;}END{print "";}' > Dsan_STOCAGO1482_buscos.tsv; \
 cp run_Dsan_STOCAGO1482_BUSCOv3_genome_diptera/short_summary_Dsan_STOCAGO1482_BUSCOv3_genome_diptera.txt BUSCO_summaries/short_summary_Dsan_STOCAGO1482.txt
-Running BUSCO v3 on Dyak_Miller
-/usr/bin/time -v run_BUSCO.py -i ../refs/old/Dyak_Miller.fasta -l /home/pfreilly/Downloads/Bioinformatics/Assembly/busco/diptera_odb9/ -m genome -c 8 --long -z -o Dyak_Miller_BUSCOv3_genome_diptera 2> logs/Dyak_Miller_BUSCOv3_genome_diptera.stderr > logs/Dyak_Miller_BUSCOv3_genome_diptera.stdout; \
-tail -n10 logs/Dyak_Miller_BUSCOv3_genome_diptera.stdout | head -n7 | awk 'BEGIN{printf "%s", "Dyak_Miller";}NR>1{printf "\t%s", $2;}END{print "";}' > Dyak_Miller_buscos.tsv; \
-cp run_Dyak_Miller_BUSCOv3_genome_diptera/short_summary_Dyak_Miller_BUSCOv3_genome_diptera.txt BUSCO_summaries/short_summary_Dyak_Miller.txt
 Running BUSCO v3 on Dyak_caf1
 /usr/bin/time -v run_BUSCO.py -i ../refs/old/Dyak_caf1.fasta -l /home/pfreilly/Downloads/Bioinformatics/Assembly/busco/diptera_odb9/ -m genome -c 8 --long -z -o Dyak_caf1_BUSCOv3_genome_diptera 2> logs/Dyak_caf1_BUSCOv3_genome_diptera.stderr > logs/Dyak_caf1_BUSCOv3_genome_diptera.stdout; \
 tail -n10 logs/Dyak_caf1_BUSCOv3_genome_diptera.stdout | head -n7 | awk 'BEGIN{printf "%s", "Dyak_caf1";}NR>1{printf "\t%s", $2;}END{print "";}' > Dyak_caf1_buscos.tsv; \
 cp run_Dyak_caf1_BUSCOv3_genome_diptera/short_summary_Dyak_caf1_BUSCOv3_genome_diptera.txt BUSCO_summaries/short_summary_Dyak_caf1.txt
-cat Dyak_NY73PB_buscos.tsv Dsim_w501_buscos.tsv Dmel_ISO1_buscos.tsv Dyak_Tai18E2_buscos.tsv Dtei_GT53w_buscos.tsv Dsan_STOCAGO1482_buscos.tsv Dyak_Miller_buscos.tsv Dyak_caf1_buscos.tsv > genome
-generate_plot.py -wd BUSCO_summaries
-INFO	****************** Start plot generation at 12/16/2019 13:54:10 ******************
-INFO	Load data ...
-INFO	Loaded short_summary_Dyak_Tai18E2.txt successfully
-INFO	Loaded short_summary_Dsim_w501.txt successfully
-INFO	Loaded short_summary_Dsan_STOCAGO1482.txt successfully
-INFO	Loaded short_summary_Dyak_NY73PB.txt successfully
-INFO	Loaded short_summary_Dtei_GT53w.txt successfully
-INFO	Loaded short_summary_Dyak_caf1.txt successfully
-INFO	Loaded short_summary_Dmel_ISO1.txt successfully
-INFO	Loaded short_summary_Dyak_Miller.txt successfully
-INFO	Generate the R code ...
-INFO	Run the R code ...
-INFO	[Rscript]	[1] "Plotting the figure ..."
-INFO	[Rscript]	[1] "Done"
-INFO	[Rscript]	1 of 1 task(s) completed at 12/16/2019 13:54:12
-INFO	Plot generation done. Total running time: 2.4474670887 seconds
-INFO	Results written in BUSCO_summaries/
-
+Summarizing BUSCO result for Dsim_w501
+../tools/BUSCOsummary.awk -v "Rout=1" -v "species=Dsim_w501" run_Dsim_w501_BUSCOv3_genome_diptera/full_table_Dsim_w501_BUSCOv3_genome_diptera.tsv > Dsim_w501_busco_summary.tsv
+Summarizing BUSCO result for Dmel_ISO1
+../tools/BUSCOsummary.awk -v "Rout=1" -v "species=Dmel_ISO1" run_Dmel_ISO1_BUSCOv3_genome_diptera/full_table_Dmel_ISO1_BUSCOv3_genome_diptera.tsv > Dmel_ISO1_busco_summary.tsv
+Summarizing BUSCO result for Dtei_GT53w
+../tools/BUSCOsummary.awk -v "Rout=1" -v "species=Dtei_GT53w" run_Dtei_GT53w_BUSCOv3_genome_diptera/full_table_Dtei_GT53w_BUSCOv3_genome_diptera.tsv > Dtei_GT53w_busco_summary.tsv
+Summarizing BUSCO result for Dyak_Tai18E2
+../tools/BUSCOsummary.awk -v "Rout=1" -v "species=Dyak_Tai18E2" run_Dyak_Tai18E2_BUSCOv3_genome_diptera/full_table_Dyak_Tai18E2_BUSCOv3_genome_diptera.tsv > Dyak_Tai18E2_busco_summary.tsv
+Summarizing BUSCO result for Dyak_NY73PB
+../tools/BUSCOsummary.awk -v "Rout=1" -v "species=Dyak_NY73PB" run_Dyak_NY73PB_BUSCOv3_genome_diptera/full_table_Dyak_NY73PB_BUSCOv3_genome_diptera.tsv > Dyak_NY73PB_busco_summary.tsv
+Summarizing BUSCO result for Dsan_STOCAGO1482
+../tools/BUSCOsummary.awk -v "Rout=1" -v "species=Dsan_STOCAGO1482" run_Dsan_STOCAGO1482_BUSCOv3_genome_diptera/full_table_Dsan_STOCAGO1482_BUSCOv3_genome_diptera.tsv > Dsan_STOCAGO1482_busco_summary.tsv
+Summarizing BUSCO result for Dyak_caf1
+../tools/BUSCOsummary.awk -v "Rout=1" -v "species=Dyak_caf1" run_Dyak_caf1_BUSCOv3_genome_diptera/full_table_Dyak_caf1_BUSCOv3_genome_diptera.tsv > Dyak_caf1_busco_summary.tsv
+Combining BUSCO summaries
+../tools/catHeaderedFiles.awk Dyak_NY73PB_busco_summary.tsv Dsim_w501_busco_summary.tsv Dmel_ISO1_busco_summary.tsv Dyak_Tai18E2_busco_summary.tsv Dtei_GT53w_busco_summary.tsv Dsan_STOCAGO1482_busco_summary.tsv Dyak_caf1_busco_summary.tsv > combined_busco_summary.tsv
+Generating BUSCO plot
+../tools/BUSCOPlot.R DyakClade_BUSCO.pdf combined_busco_summary.tsv Dyak_NY73PB Dsim_w501 Dmel_ISO1 Dyak_Tai18E2 Dtei_GT53w Dsan_STOCAGO1482 Dyak_Miller Dyak_caf1

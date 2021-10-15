@@ -16,7 +16,7 @@ SHELL=/bin/bash
 .PHONY : SCOmap proteome clean intermediateclean
 
 #Adjust this based on the path to OrthoFinder orthogroups output:
-ORTHOFINDEROUT := OrthoFinder_proteomes/OrthoFinder/Results_Dec08/Orthogroups
+ORTHOFINDEROUT := OrthoFinder_proteomes/OrthoFinder/Results_May31/Orthogroups
 
 REFS := $(wildcard ../refs/*.fasta)
 SPECIES := $(basename $(notdir $(REFS)))

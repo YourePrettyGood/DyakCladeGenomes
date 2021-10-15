@@ -5,11 +5,11 @@
 # Summarized benchmarking in BUSCO notation for file Dyak_Tai18E2_CDSes.fasta
 # BUSCO was run in mode: transcriptome
 
-	C:95.0%[S:94.5%,D:0.5%],F:2.5%,M:2.5%,n:2799
+	C:94.8%[S:94.3%,D:0.5%],F:2.5%,M:2.7%,n:2799
 
-	2658	Complete BUSCOs (C)
-	2644	Complete and single-copy BUSCOs (S)
+	2654	Complete BUSCOs (C)
+	2640	Complete and single-copy BUSCOs (S)
 	14	Complete and duplicated BUSCOs (D)
 	71	Fragmented BUSCOs (F)
-	70	Missing BUSCOs (M)
+	74	Missing BUSCOs (M)
 	2799	Total BUSCO groups searched

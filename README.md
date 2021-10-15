@@ -31,6 +31,34 @@ Further misassembly detection and correction was performed based on cytological 
 
 Contigs were joined using `manualScaffold.pl` with 100 bp gaps (per NCBI requirements) based on AGPs found under the `contigs` subdirectory of `refs`.
 
+Assemblies at this point were passed through final contamination and alternative haplotype filters, then submitted to NCBI and can be found under the following accessions:
+
+|      Assembly      |    Accession    |
+|--------------------|-----------------|
+| Dsan STO CAGO 1482 | JAECZZ010000000 |
+| Dsim w501          | NGVV01000000    |
+| Dtei GT53w         | JAEDAA010000000 |
+| Dyak NY73PB        | JAEDAB010000000 |
+| Dyak Tai18E2       | JAEDAC010000000 |
+
+The contamination filter was to run [kraken2](https://github.com/DerrickWood/kraken2) on the assemblies using a custom database derived from the Standard database, but then adding the RefSeq Dmel and Dyak assemblies. Any scaffolds identified in the output report as non-Drosophila were omitted from the NCBI submission.
+
+The final alternative haplotype filter involved identifying scaffolds with substantial overlap in BUSCO mappings, a procedure similar in spirit to Dr. Sarah Kingan's [HomolContigsByAnnotation](https://github.com/skingan/HomolContigsByAnnotation).
+
+Terence Murphy at NCBI notified us that the Dtei assembly (and to a lesser extent the Dsan assembly) had a fairly large number of frameshift errors. Upon manual curation of examples based on Exonerate alignments of *D. melanogaster* proteins (FlyBase release 6.27), I identified a consistent misassembly pattern not recognized by Quiver or Pilon -- A true heterozygous SNP is incorrectly introduced as a heterozygous indel due to one allele being the same base as one flanking base. The standard left-alignment procedures for normalizing indel representations end up misaligning such a situation in a systematic manner, and both GATK's local de novo assembly approach and FreeBayes' vcfallelicprimitives incorrectly parse this situation. However, FreeBayes' multiallelic haplotype calls correctly identify the true sequence (and variation). Thus we applied a single round of FreeBayes-based polishing by applying one haplotype at random at any positions lacking a reference allele in their genotype.
+
+Revised assemblies were submitted to NCBI and will soon be accessible under the following accessions:
+
+|      Assembly      |    Accession    |
+|--------------------|-----------------|
+| Dsan STO CAGO 1482 | JAECZZ020000000 |
+| Dsim w501          | NGVV02000000    |
+| Dtei GT53w         | JAEDAA020000000 |
+| Dyak NY73PB        | JAEDAB020000000 |
+| Dyak Tai18E2       | JAEDAC020000000 |
+
+Assembly metrics before and after this polishing step can be seen in this Google Sheet: [DyakCladeGenomes Misassembly Fix Metrics](https://docs.google.com/spreadsheets/d/1i9kRDxs5MXSs3VjAX7-swfru1cUJstCM2RZOoCeLXWc/edit?usp=sharing)
+
 ## Annotations:
 
 We generated CDS annotations for the final chromosome-arm-scale genomes using [BRAKER2](https://github.com/Gaius-Augustus/BRAKER/) (version 2.1.4, commit 50e76af), using species-specific RNAseq data mapped using STAR 2.5.4b in two-pass mode, as well as the full proteome of *D. melanogaster* (FlyBase release 6.26, excluding proteins containing U or X).
@@ -39,7 +67,7 @@ Work is ongoing to refine transcript models using [StringTie](https://github.com
 
 ## Current data freeze availability:
 
-The current assembly and annotation freeze (2019/12/11) is available (please be courteous about our publication intent) on request from [Peter Andolfatto](https://andolfattolab.com).
+The current assembly and annotation freeze (2021/04/) is available (please be courteous about our publication intent) on request from [Peter Andolfatto](https://andolfattolab.com).
 
 Pseudoreferences of the population samples may be linked from here in the future (please e-mail for more details).
 
@@ -93,6 +121,10 @@ Population samples used here include:
 1. 34 "G1" females (first-generation progeny of wild-caught individuals) (Illumina PE150)
 1. 16 "Synthetic Diploid" females (progeny of an outbreeding cross of two isofemale lines) (Illumina PE215)
 
+*D. simulans*:
+1. 11 "Synthetic Diploid" females (Illumina PE150) prepared and sequenced by Ana Pinharanda
+1. 21 (18 after redundancy filtering) females from isofemale lines (treated as haploid -- one allele is chosen at random for any heterozygous sites) collected by Peter Andolfatto and sequenced by Rebekah Rogers and Kevin Thornton (Illumina PE50, PE75, PE100, from Rogers et al. (2014) MBE)
+
 *D. teissieri*:
 1. 8 "Synthetic Diploid" females (Illumina PE215)
 1. 5 further "Synthetic Diploid" females (Illumina PE150)
@@ -100,10 +132,11 @@ Population samples used here include:
 *D. yakuba*:
 1. 8 "Synthetic Diploid" females from lines collected on Sao Tome (Illumina PE215)
 1. 10 "Synthetic Diploid" females from lines collected in mainland Africa (Illumina PE150)
-1. 21 females from isofemale lines (treated as haploid -- one allele is chosen at random for any heterozygous sites) (Illumina PE50, PE75, PE100, from Rogers et al. (2014) MBE)
+1. 21 (4 after redundancy filtering) females from isofemale lines (treated as haploid -- one allele is chosen at random for any heterozygous sites) (Illumina PE50, PE75, PE100, from Rogers et al. (2014) MBE)
 1. 12 further "Synthetic Diploid" females from lines collected in mainland Africa (Illumina PE150) (some overlapping with the 21 isofemale lines)
+1. 6 (3 after redundancy filtering) females from isofemale lines (treated as haploid -- one allele is chosen at random for any heterozygous sites) (Illumina PE150)
 
-After filtering for inversion state in Dmel and line overlap in Dyak, we ended up with haploid sample sizes of 82 for *D. melanogaster*, 20 for *D. simulans*, 100 for *D. santomea*, 26 for *D. teissieri*, and 66 for *D. yakuba*, totalling 295 (excluding the 6 references).
+After filtering for inversion state in Dmel and line overlap in Dsim and Dyak, we ended up with haploid sample sizes of 82 for *D. melanogaster*, 40 for *D. simulans*, 100 for *D. santomea*, 26 for *D. teissieri*, and 67 for *D. yakuba*, totalling 315 (excluding the 6 references).
 
 Variant calls were generated and filtered using the [Pseudoreference Pipeline](https://github.com/YourePrettyGood/PseudoreferencePipeline/), in particular mapping with [BWA-MEM](https://github.com/lh3/bwa/) 0.7.17-r1188, marking duplicates with Picard MarkDuplicates commit 1ccb775, realigning around indels with GATK IndelRealigner 3.4-46-gbc02625, calling variants with [BCFtools](https://github.com/samtools/bcftools/) 1.7-1-ge07034a (htslib 1.7-23-g9f9631d), and masking sites for which the following compound criterion held true:
 
@@ -132,8 +165,8 @@ All of this is achieved by running the following commands while in the `OrthoFin
 #Using /usr/bin/time -v to get runtime and memory stats, and redirecting
 # STDERR and STDOUT to avoid terminal spam
 #Prep everything for OrthoFinder:
-#Took 
-/usr/bin/time -v make -j4 -f prep_proteomes.mk proteome 2> prep_proteomes_proteome_j4.stderr > prep_proteomes_proteome_j4.stdout
+#Took 55.56 seconds
+/usr/bin/time -v make -j6 -f prep_proteomes.mk proteome 2> prep_proteomes_proteome_j6.stderr > prep_proteomes_proteome_j6.stdout
 
 #Run OrthoFinder:
 #Installed into its own conda environment
@@ -142,8 +175,8 @@ All of this is achieved by running the following commands while in the `OrthoFin
 # tree inference and the final species tree inference with STRIDE)
 #In principle, you only need to wait for Orthogroups.tsv to be made to
 # continue with the rest of this analysis.
-#Took 16h 42m 26s, 583% CPU, 8,116,956 KB Max RSS
-#Spent 12h 45m 29s on ModelFinder testing 546 models on the concatenated
+#Took 32h 18m 7s, 330% CPU, 8,513,812 KB Max RSS
+#Spent ?h ?m ?s on ModelFinder testing 546 models on the concatenated
 # SpeciesTree alignment -- this is the rate-limiting step
 source activate OrthoFinderenv
 /usr/bin/time -v orthofinder -t 36 -a 1 -M msa -S diamond -A clustalo -T iqtree -f OrthoFinder_proteomes 2> logs/orthofinder_diamond_clustalo_IQTree_MSSTYY_t36.stderr > logs/orthofinder_diamond_clustalo_IQTree_MSSTYY_t36.stdout
@@ -171,7 +204,7 @@ All of this is achieved by running the following commands while in the `CDS` sub
 # STDERR and STDOUT to avoid terminal spam
 #-j16 is to parallelize across 16 threads (only 5 references to deal with)
 #This parses out the reference CDSes:
-#Took 0m 52.31s, 115% CPU, 163,244 KB Max RSS
+#Took 1m 7.08s, 113% CPU, 152,080 KB Max RSS
 /usr/bin/time -v make -j16 -f align_CDSes.mk parse_ref_CDSes 2> parse_ref_CDSes_j16.stderr > parse_ref_CDSes_j16.stdout
 
 #-j36 is to parallelize across 36 threads (server had 40, there are 197 pseudorefs)
@@ -236,3 +269,32 @@ Dependencies:
 1. `calculate_read_depth_gc_windows.py` and `adjust_read_depth_windows.py` from [John Davey's scripts from Davey et al. (2016) G3](https://github.com/johnomics/Heliconius_melpomene_version_2), with some modifications to catch divide-by-zero exceptions
 1. [BEDtools](https://github.com/arq5x/bedtools2) (used v2.27.1-1-gb87c4653)
 1. [Pseudoreference Pipeline](https://github.com/YourePrettyGood/PseudoreferencePipeline)
+
+## Assembly pre-processing/QC notes and commands
+
+I'm placing some commands here for the assembly pre-processing steps, as pipelining them with GNU Make would end up taking an unnecessary amount of time for the return on investment.
+
+kraken2 contamination filtering for NCBI submission:
+
+```bash
+pushd refs/Misassembly_fixes/
+
+parallel -j4 --eta '../../tools/krakenPurgeContigs.awk kraken2_standardPlusDmelDyakNCBI_{1}_t20.stdout > {1}_kraken2_purged_scafs.tsv' ::: Dsan_STOCAGO1482 Dtei_GT53w Dyak_NY73PB Dyak_Tai18E2
+```
+
+Alternative haplotype identification for NCBI submission:
+
+```bash
+parallel -j4 --eta 'samtools faidx {1}_fixed_softmasked_w60.fasta; ../../tools/scoreBUSCOhaplotigs.awk {1}_fixed_softmasked_w60.fasta.fai run_{1}_fixed_BUSCOv3_genome_diptera_odb9/full_table_{1}_fixed_BUSCOv3_genome_diptera_odb9.tsv 2> {1}_BUSCO_locations.tcsv > {1}_BUSCO_scaffold_dup_rates.tsv; ../../tools/selectBUSCOhaplotigs.awk -v "debug=1" {1}_BUSCO_scaffold_dup_rates.tsv | tee {1}_BUSCO_purged_scaf_reasons.tsv | cut -f1 | sort | uniq > {1}_BUSCO_purged_scafs.tsv' ::: Dsan_STOCAGO1482 Dtei_GT53w Dyak_NY73PB Dyak_Tai18E2
+```
+
+Combining the above to filters and purging these scaffolds from the assemblies:
+
+```bash
+parallel -j4 --eta 'cat {1}_kraken2_purged_scafs.tsv {1}_BUSCO_purged_scafs.tsv > {1}_joint_purged_scafs.tsv' ::: Dsan_STOCAGO1482 Dtei_GT53w Dyak_NY73PB Dyak_Tai18E2
+parallel -j4 --eta '../../tools/filterOutContigs.awk -v "inputtype=FASTA" {1}_joint_purged_scafs.tsv {1}_fixed_softmasked_w60.fasta > {1}_fixed_softmasked_purged_w60.fasta' ::: Dsan_STOCAGO1482 Dtei_GT53w Dyak_NY73PB Dyak_Tai18E2
+```
+
+## Assembly input data accessions
+
+

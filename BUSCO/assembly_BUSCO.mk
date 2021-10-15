@@ -20,6 +20,9 @@ LINEAGE := diptera
 LINEAGEPATH := /home/pfreilly/Downloads/Bioinformatics/Assembly/busco/diptera_odb9/
 #Old refs that don't have annotations (space-separated list of prefixes):
 NOANNOT := Dyak_Miller
+#File names for the final BUSCO plots:
+GENOMEPLOT := DyakClade_BUSCO.pdf
+TXPLOT := DyakClade_BUSCO_txome.pdf
 
 #DO NOT CHANGE THE BELOW:
 #Number of cores to use per BUSCO job (use 8, as kfold for
@@ -59,10 +62,18 @@ PROTBUSCOS := $(addsuffix _proteome_buscos.tsv,$(REFS))
 EXTRAPROTBUSCOS := $(addsuffix _proteome_buscos.tsv,$(filter-out $(NOANNOT),$(OLDREFS)))
 #Proteome BUSCO result files for unpublished reference:
 UNPUBPROTBUSCOS := $(addsuffix _unpub_proteome_buscos.tsv,$(filter-out $(NOANNOT),$(UNPUBREFS)))
+#Files necessary for plotting:
+BUSCOSUMMARIES := $(addsuffix _busco_summary.tsv,$(REFS))
+EXTRABUSCOSUMMARIES := $(addsuffix _busco_summary.tsv,$(filter-out $(NOANNOT),$(OLDREFS)))
+COMBINEDSUMMARIES := combined_busco_summary.tsv
+BUSCOTXSUMMARIES := $(addsuffix _busco_txome_summary.tsv,$(REFS))
+EXTRABUSCOTXSUMMARIES := $(addsuffix _busco_txome_summary.tsv,$(filter-out $(NOANNOT),$(OLDREFS)))
+COMBINEDTXSUMMARIES := combined_busco_txome_summary.tsv
 
 .PHONY : genome_plot transcriptome_plot proteome_plot run_unpublished clean usage
 
-.SECONDARY : $(BUSCOS) $(EXTRABUSCOS) genome transcriptome proteome run_unpublished
+#.SECONDARY : $(BUSCOS) $(EXTRABUSCOS)$(UNPUBBUSCOS) $(COMBINEDSUMMARIES) genome transcriptome proteome run_unpublished
+.SECONDARY : 
 
 usage :
 	@echo "Usage:"
@@ -79,8 +90,20 @@ usage :
 
 run_unpublished : $(UNPUBBUSCOS) $(UNPUBTRANBUSCOS) $(UNPUBPROTBUSCOS)
 
-genome_plot : genome
-	generate_plot.py -wd BUSCO_summaries
+genome_plot : $(GENOMEPLOT)
+#	generate_plot.py -wd BUSCO_summaries
+
+$(GENOMEPLOT) : $(COMBINEDSUMMARIES)
+	@echo "Generating BUSCO plot"
+	../tools/BUSCOPlot.R $@ $(COMBINEDSUMMARIES) $(REFS) $(OLDREFS)
+
+$(COMBINEDSUMMARIES) : $(BUSCOSUMMARIES) $(EXTRABUSCOSUMMARIES)
+	@echo "Combining BUSCO summaries"
+	../tools/catHeaderedFiles.awk $(BUSCOSUMMARIES) $(EXTRABUSCOSUMMARIES) > $(COMBINEDSUMMARIES)
+
+$(BUSCOSUMMARIES) $(EXTRABUSCOSUMMARIES) : %_busco_summary.tsv : %_buscos.tsv
+	@echo "Summarizing BUSCO result for $*"
+	../tools/BUSCOsummary.awk -v "Rout=1" -v "species=$*" run_$*_BUSCOv3_genome_$(LINEAGE)/full_table_$*_BUSCOv3_genome_$(LINEAGE).tsv > $@
 
 genome : $(BUSCOS) $(EXTRABUSCOS)
 	cat $^ > $@
@@ -104,8 +127,20 @@ $(BUSCOS) : %_buscos.tsv : ../refs/%.fasta logs BUSCO_summaries
 	tail -n10 $(word 2,$^)/$*_BUSCOv3_genome_$(LINEAGE).stdout | head -n7 | awk 'BEGIN{printf "%s", "$*";}NR>1{printf "\t%s", $$2;}END{print "";}' > $@; \
 	cp run_$*_BUSCOv3_genome_$(LINEAGE)/short_summary_$*_BUSCOv3_genome_$(LINEAGE).txt $(word 3,$^)/short_summary_$*.txt
 
-transcriptome_plot : transcriptome
-	generate_plot.py -wd BUSCO_txome_summaries
+transcriptome_plot : $(TXPLOT)
+#	generate_plot.py -wd BUSCO_txome_summaries
+
+$(TXPLOT) : $(COMBINEDTXSUMMARIES)
+	@echo "Generating BUSCO transcriptome plot"
+	../tools/BUSCOPlot.R $@ $(COMBINEDTXSUMMARIES) $(REFS) $(OLDREFS)
+
+$(COMBINEDTXSUMMARIES) : $(BUSCOTXSUMMARIES) $(EXTRABUSCOTXSUMMARIES)
+	@echo "Combining BUSCO transcriptome summaries"
+	../tools/catHeaderedFiles.awk $^ > $@
+
+$(BUSCOTXSUMMARIES) $(EXTRABUSCOTXSUMMARIES) : %_busco_txome_summary.tsv : %_txome_buscos.tsv
+	@echo "Summarizing BUSCO transcriptome result for $*"
+	../tools/BUSCOsummary.awk -v "Rout=1" -v "species=$*" run_$*_BUSCOv3_txome_$(LINEAGE)/full_table_$*_BUSCOv3_txome_$(LINEAGE).tsv > $@
 
 transcriptome : $(TRANBUSCOS) $(EXTRATRANBUSCOS)
 	cat $^ > $@
@@ -180,3 +215,5 @@ clean :
 	rm -f $(CDSES) $(EXTRACDSES) $(UNPUBCDSES) *_proteome.fasta
 	rm -f genome transcriptome proteome
 	rm -rf BUSCO*summaries/ run_*/ tmp/ tmp_opt_*/ logs/
+	rm -f $(BUSCOSUMMARIES) $(EXTRABUSCOSUMMARIES) $(COMBINEDSUMMARIES)
+	rm -f $(GENOMEPLOT)

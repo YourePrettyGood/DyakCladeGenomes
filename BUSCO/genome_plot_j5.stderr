@@ -1,21 +1,30 @@
-	Command being timed: "make -j5 -f assembly_BUSCO.mk genome_plot"
-	User time (seconds): 4078507.61
-	System time (seconds): 27899.99
-	Percent of CPU this job got: 2891%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 39:27:02
+Loading required package: tidyverse
+── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
+✔ ggplot2 3.2.1     ✔ purrr   0.3.3
+✔ tibble  2.1.3     ✔ dplyr   0.8.3
+✔ tidyr   1.0.0     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+	Command being timed: "make -f assembly_BUSCO.mk -j5 genome_plot"
+	User time (seconds): 2993950.82
+	System time (seconds): 22511.75
+	Percent of CPU this job got: 2685%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 31:12:17
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 3513284
+	Maximum resident set size (kbytes): 3513340
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 562
-	Minor (reclaiming a frame) page faults: 6505805324
-	Voluntary context switches: 518778917
-	Involuntary context switches: 138967808
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 5725093256
+	Voluntary context switches: 379286194
+	Involuntary context switches: 108581056
 	Swaps: 0
-	File system inputs: 3607552
-	File system outputs: 103637848
+	File system inputs: 0
+	File system outputs: 70916224
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

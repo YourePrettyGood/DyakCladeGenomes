@@ -5,11 +5,11 @@
 # Summarized benchmarking in BUSCO notation for file ../refs/Dyak_NY73PB.fasta
 # BUSCO was run in mode: genome
 
-	C:98.8%[S:98.1%,D:0.7%],F:0.6%,M:0.6%,n:2799
+	C:98.9%[S:98.3%,D:0.6%],F:0.5%,M:0.6%,n:2799
 
-	2766	Complete BUSCOs (C)
-	2747	Complete and single-copy BUSCOs (S)
-	19	Complete and duplicated BUSCOs (D)
-	18	Fragmented BUSCOs (F)
+	2769	Complete BUSCOs (C)
+	2752	Complete and single-copy BUSCOs (S)
+	17	Complete and duplicated BUSCOs (D)
+	15	Fragmented BUSCOs (F)
 	15	Missing BUSCOs (M)
 	2799	Total BUSCO groups searched

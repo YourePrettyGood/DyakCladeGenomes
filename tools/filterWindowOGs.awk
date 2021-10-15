@@ -8,6 +8,9 @@
 # two particular column names: OG and Species
 #These column names are case-sensitive, and represent the orthogroup
 # and species for the statistics on that line. OG is NOT outgroup.
+#Revisions on 2021/07/12 to specify the names of the orthogroup and
+# species header names via the ogcol and sppcol variables
+# (backwards compatibility maintained by setting defaults of Species and OG)
 BEGIN{
    FS="\t";
    OFS=FS;
@@ -18,6 +21,12 @@ BEGIN{
    if (length(species) == 0) {
       print "Missing species variable, please set it." > "/dev/stderr";
       exit 2;
+   };
+   if (length(sppcol) == 0) {
+      sppcol="Species";
+   };
+   if (length(ogcol) == 0) {
+      ogcol="OG";
    };
 }
 #First file is a TCSV, first column is the orthogroup, second column
@@ -36,10 +45,10 @@ FNR<NR&&FNR==1{
       if ($i == statcol) {
          stat=i;
       };
-      if ($i == "OG") {
+      if ($i == ogcol) {
          og=i;
       };
-      if ($i == "Species") {
+      if ($i == sppcol) {
          spp=i;
       };
    };

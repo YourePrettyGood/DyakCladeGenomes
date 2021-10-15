@@ -19,8 +19,12 @@ SHELL=/bin/bash
 #nonOverlappingWindows
 #subsetVCFstats.pl
 #extractOGlocation.awk
+#selectMajorArms.awk
+#OGIDsFromBED.awk
 #These Awk, C++, and Perl scripts are available in the tools subdirectory
 # of the Github repository.
+#Also expects the following R script in the tools subdirectory:
+#IdentifyLowPiRegions.R
 
 #Options to adjust:
 #Window size (bp):
@@ -35,6 +39,8 @@ INBRED := -i
 SEED := 42
 #Infimum non-N fraction for a site to be included in the windowed average:
 INFNONN := 0.5
+#Chromosome arms to check for low-pi regions:
+ARMS := X 2L 2R 3L 3R
 
 #DO NOT CHANGE THE BELOW:
 #Subdirectories that need to be created:
@@ -44,10 +50,14 @@ PSEUDOREFS := $(wildcard ../pseudorefs/*.fasta)
 #List of samples used:
 SAMPLES := $(patsubst %.fasta,%,$(notdir $(PSEUDOREFS)))
 
+#List of SCOs in normal-pi regions in all three members of the Dyak clade:
+CLADEINTERSECTION := Dsan_Dtei_Dyak_normal_pi_SCOs_intersection.txt
 #References inferred from directory above the current:
 REFS := $(filter-out $(EXCLUDEDREFS),$(basename $(notdir $(wildcard ../refs/*.fasta))))
 #Per-reference orthogroup location files:
 OGSPPLOCS := $(addsuffix _OG_locs.tsv,$(REFS))
+#Per-reference orthogroup location BEDs:
+OGLOCBEDS := $(addprefix BEDs/,$(addsuffix _SCOs.bed,$(REFS)))
 #Line-specific BEDs of 4-fold sites:
 REFBEDS := $(addprefix BEDs/,$(addsuffix _line_4fold_genomic.bed,$(REFS)))
 #Species that the references represent:
@@ -66,10 +76,20 @@ WINDOWEDFFPI := $(addsuffix _4fold_pi_w$(WINDOW).tsv.gz,$(SPECIES))
 FFDP := $(addprefix depth/,$(addsuffix _4fold_depth.tsv.gz,$(SAMPLES)))
 #Windowed 4-fold depth files:
 WINDOWEDFFDP := $(addprefix depth/,$(addsuffix _4fold_depth_w$(WINDOW).tsv.gz,$(SAMPLES)))
+#Low-pi BED files:
+LOWPIBED := $(addprefix BEDs/,$(addsuffix _low_pi_regions.bed,$(SPECIES)))
+#Normal-pi BED files:
+NORMALPIBED := $(addprefix BEDs/,$(addsuffix _normal_pi_regions.bed,$(SPECIES)))
+#Per-reference orthogroup location BEDs with only species as prefix:
+OGLOCBEDSSPP := $(addprefix BEDs/,$(addsuffix _SCOs.bed,$(SPECIES)))
+#Normal-pi SCO BED files:
+NORMALPISCO := $(addprefix BEDs/,$(addsuffix _normal_pi_SCOs.bed,$(SPECIES)))
+#Normal-pi SCO OGID lists:
+NORMALPISCOTXT := $(addprefix BEDs/,$(addsuffix _normal_pi_SCOs.txt,$(SPECIES)))
 
-.PHONY : all orthogroup_locations clean usage
+.PHONY : all orthogroup_locations low_pi clean usage
 
-.SECONDARY : $(GWPI) $(WINDOWEDGWPI) $(FFPI) $(WINDOWEDFFPI) $(REFFAIS) $(REFBEDS)
+.SECONDARY : $(LOWPIBED) $(NORMALPIBED) $(NORMALPISCO) $(NORMALPISCOTXT) $(OGLOCBEDS) $(GWPI) $(WINDOWEDGWPI) $(FFPI) $(WINDOWEDFFPI) $(REFFAIS) $(REFBEDS)
 
 usage :
 	@echo "Usage:"
@@ -77,10 +97,46 @@ usage :
 	@echo "Tasks:"
 	@echo "all -> Calculate per-site and windowed genome-wide and 4-fold-only pi for each species"
 	@echo "orthogroup_locations -> Find SCO locations"
+	@echo "low_pi -> Identify low-pi regions and partition SCOs by this"
 	@echo "clean -> Clean up all output files and directories"
 
 #all : $(GWPI) $(WINDOWEDGWPI) $(FFPI) $(WINDOWEDFFPI) $(WINDOWEDFFDP)
 all : $(GWPI) $(WINDOWEDGWPI) $(FFPI) $(WINDOWEDFFPI)
+
+low_pi : $(CLADEINTERSECTION) $(NORMALPISCOTXT)
+
+#This rule is custom for the Dyak clade, so it will need to be edited
+# to be general:
+$(CLADEINTERSECTION) : BEDs/Dsan_normal_pi_SCOs.txt BEDs/Dtei_normal_pi_SCOs.txt BEDs/Dyak_normal_pi_SCOs.txt
+	@echo "Taking intersection of Dyak clade normal-pi OGID lists"
+	sort $^ | uniq -c | awk '$$1==3{print $$2;}' > $@
+
+$(NORMALPISCOTXT) : BEDs/%_normal_pi_SCOs.txt : BEDs/%_normal_pi_SCOs.bed
+	@echo "Making OGID lists for normal-pi SCOs in $*"
+	../tools/OGIDsFromBED.awk $< > $@
+
+$(NORMALPISCO) : BEDs/%_normal_pi_SCOs.bed : BEDs/%_SCOs.bed BEDs/%_normal_pi_regions.bed
+	@echo "Extracting SCOs with normal pi in $*"
+	../tools/subsetVCFstats.pl -i $(word 1,$^) -b $(word 2,$^) > $@
+
+#As a mediocre solution, let's force all of the per-ref BEDs to exist,
+# but only link one of them:
+$(OGLOCBEDSSPP) : BEDs/%_SCOs.bed : $(OGLOCBEDS)
+	cd BEDs/; \
+	ln -sf $*_*_SCOs.bed `basename $@`; \
+	cd ../
+
+$(NORMALPIBED) : BEDs/%_normal_pi_regions.bed : BEDs/%_low_pi_regions.bed FAIs/%.genome
+	@echo "Selecting normal-pi regions for major chromosome arms of $*"
+	bedtools complement -i <(sort -k1,1 -k2,2n $(word 1,$^)) -g <(sort -k1,1 $(word 2,$^)) | \
+	../tools/selectMajorArms.awk > $@
+
+$(LOWPIBED) : BEDs/%_low_pi_regions.bed : FAIs/%.fasta.fai %_genomewide_pi_w$(WINDOW).tsv.gz logs BEDs
+	@echo "Identifying low-pi regions for major chromosome arms of $*"
+	../tools/IdentifyLowPiRegions.R $(word 1,$^) $(word 2,$^) $* $(ARMS) 2> $(word 3,$^)/ILPR_$*.stderr > $@
+
+FAIs/%.genome : FAIs/%.fasta.fai
+	cut -f1,2 $< > $@
 
 #Windowed depth calculations:
 #$(WINDOWEDFFDP) : depth/%_4fold_depth_w$(WINDOW).tsv.gz : depth/%_4fold_depth.tsv.gz
@@ -155,14 +211,20 @@ CDSes/%_CDSes.fasta : ../refs/%.fasta ../annotations/%.gff3 CDSes
 orthogroup_locations : $(OGSPPLOCS)
 	cat $^ | sort -k5,5V > $@
 
+$(OGLOCBEDS) : BEDs/%_SCOs.bed : %_OG_locs.tsv BEDs
+	@echo "Making BED of SCO locations for $*"
+	../tools/SCOlocationBED.awk -v "spid=$*_" $(word 1,$^) | \
+	sort -k1,1 -k2,2n -k3,3n > $@
+
 $(OGSPPLOCS) : %_OG_locs.tsv : ../OrthoFinder_clustalo/Orthogroups_SingleCopy_renamed.tsv ../annotations/%.gff3
+	@echo "Identifying $* locations for single-copy orthogroups (SCOs)"
 	../tools/extractOGlocation.awk -v "refid=$*_proteome" $(word 1,$^) $(word 2,$^) > $@
 
 $(SUBDIRS) :
 	mkdir -p $@
 
 clean :
-	for i in $(SUBDIRS); do rm -f $${i}/*.fasta $${i}/*.fai $${i}/*.bed $${i}/*.stderr; [[ ! -d $${i} ]] || rmdir $${i}; done
-	rm -f $(GWPI) $(WINDOWEDGWPI) $(FFPI) $(WINDOWEDFFPI)
+	for i in $(SUBDIRS); do rm -f $${i}/*.fasta $${i}/*.fai $${i}/*.bed $${i}/*.txt $${i}/*.stderr; [[ ! -d $${i} ]] || rmdir $${i}; done
+	rm -f $(GWPI) $(WINDOWEDGWPI) $(FFPI) $(WINDOWEDFFPI) $(OGSPPLOCS)
 	rm -rf FAIs/
 	rm -f *.fofn
