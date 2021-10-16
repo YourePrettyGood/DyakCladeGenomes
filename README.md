@@ -67,7 +67,7 @@ Work is ongoing to refine transcript models using [StringTie](https://github.com
 
 ## Current data freeze availability:
 
-The current assembly and annotation freeze (2021/04/) is available (please be courteous about our publication intent) on request from [Peter Andolfatto](https://andolfattolab.com).
+The current assembly and annotation freeze (2021/04/23) is available (please be courteous about our publication intent) on request from [Peter Andolfatto](https://andolfattolab.com).
 
 Pseudoreferences of the population samples may be linked from here in the future (please e-mail for more details).
 
@@ -110,8 +110,40 @@ make -j5 -f assembly_BUSCO.mk transcriptome_plot
 #make -j5 -f assembly_BUSCO.mk proteome_plot
 ```
 
-Note: The plot for genome_plot had to be remade (so generate_plot.py was rerun) due to slight modifications made to the output R script:
-Within the `annotate()` call, I adjusted `y=3` to `y=99` and `hjust=1` to `hjust=0`. This made the BUSCO summary text right-justified within each bar, instead of the default left-justified.
+Note that I didn't use the default `BUSCO_figure.R` code to generate the final BUSCO plot. A separate R script derived from the skeleton of that code is run, except this code doesn't have the BUSCO results hard-coded and has a few other tweaks for better visualization.
+#Note: The plot for genome_plot had to be remade (so generate_plot.py was rerun) due to slight modifications made to the output R script:
+#Within the `annotate()` call, I adjusted `y=3` to `y=99` and `hjust=1` to `hjust=0`. This made the BUSCO summary text right-justified within each bar, instead of the default left-justified.
+
+## Assembly correctness and kmer completeness:
+
+Dependencies:
+
+1. [meryl](https://github.com/marbl/meryl) (v1.1)
+1. [Merqury](https://github.com/marbl/merqury) (v1.1)
+
+I haven't completed the Makefile for this section of the analysis, as GNU Make has an issue of expansion order when it comes to wildcards vs. pattern rules, so there isn't an easy way to set up the dependencies so that multiple Illumina libraries can correspond to a single assembly.
+
+However, the general ideas are present in the Makefile (Merqury.mk). Essentially, meryl databases are generated from each set of Illumina reads, merged together, assemblies have kmers counted with meryl, and then various set operations are done between the databases to collect statistics about "reliable" kmers, assembly-only kmers, read-only kmers, and total kmers. The calculations for kmer completeness and assembly QV estimate are based on the equations in the [Merqury paper](https://doi.org/10.1186/s13059-020-02134-9) (Rhie et al. (2020) Genome Biology). However, rather than use the merqury.sh script from the Merqury repository (due to file naming collisions), I've extracted the necessary operations for QV and kmer completeness calculations into the Makefile and two companion awk scripts in the tools directory: `merquryQV.awk` and `merquryCompleteness.awk`
+
+Command templates for the steps of the process:
+
+```bash
+#For each read file:
+meryl k=19 memory=64 threads=16 count output DBs/perFASTQ/[prefix for FASTQ file].meryl [path to FASTQ file]
+#For each assembly:
+meryl k=19 memory=64 threads=16 union-sum output DBs/reads/[prefix for assembly].meryl DBs/perFASTQ/[prefix for assembly]*.meryl
+meryl k=19 memory=64 threads=16 count output DBs/asm/[prefix for assembly].meryl ../refs/[prefix for assembly].fasta
+#QV calculations:
+meryl difference output DBs/asm/[prefix for assembly].0.meryl DBs/asm/[prefix for assembly].meryl DBs/reads/[prefix for assembly].meryl
+../tools/merquryQV.awk -v "k=19" -v "asm=[prefix for assembly]" <(meryl statistics DBs/asm/[prefix for assembly].0.meryl) <(meryl statistics DBs/asm/[prefix for assembly].meryl) >> QVs.tsv
+#kmer completeness calculations:
+meryl histogram DBs/reads/[prefix for assembly].meryl > DBs/reads/[prefix for assembly].hist
+java -Xmx1g -jar ${MERQURY}/eval/kmerHistToPloidyDepth.jar DBs/reads/[prefix for assembly].hist > DBs/reads/[prefix for assembly].hist.ploidy
+threshold=$(awk 'NR==2{print $NF;}' DBs/reads/[prefix for assembly].hist.ploidy)
+meryl greater-than ${threshold} output DBs/reads/[prefix for assembly].reliable.meryl DBs/reads/[prefix for assembly].meryl
+meryl intersect output DBs/asm/[prefix for assembly].solid.meryl DBs/asm/[prefix for assembly].meryl DBs/reads/[prefix for assembly].reliable.meryl
+../tools/merquryCompleteness.awk -v "asm=[prefix for assembly]" <(meryl statistics DBs/asm/[prefix for assembly].solid.meryl) <(meryl statistics DBs/reads/[prefix for assembly].reliable.meryl) >> completeness.tsv
+```
 
 ## Population Genetic Data:
 
@@ -269,6 +301,17 @@ Dependencies:
 1. `calculate_read_depth_gc_windows.py` and `adjust_read_depth_windows.py` from [John Davey's scripts from Davey et al. (2016) G3](https://github.com/johnomics/Heliconius_melpomene_version_2), with some modifications to catch divide-by-zero exceptions
 1. [BEDtools](https://github.com/arq5x/bedtools2) (used v2.27.1-1-gb87c4653)
 1. [Pseudoreference Pipeline](https://github.com/YourePrettyGood/PseudoreferencePipeline)
+
+## HKA-style co-plotting of polymorphism and divergence per species:
+
+The HKA directory contains the per-orthogroup estimates of polymorphism and divergence (divergence calculated as Dxy relative to Dmel for the Dyak clade or Dtei for Dmel and Dsim. The ratio of these two values is a proxy for the HKA test in that comparing pi/Dxy between loci is the core of the HKA test. Rather than composing this section as a bunch of HKA tests, we can instead look at the genome-wide distribution of pi and Dxy to find regions deviating from the rest of the genome. Kevin filtered the CDS alignments and calculated per-orthogroup pi and Dxy using a modified version of Polymorphorama, and in this directory I take his results and calculate windowed averages, bootstrap these windows, and calculate 95% bootstrap confidence intervals. By using Dmel as the outgroup for the Dyak clade and Dtei as the outgroup for Dmel and Dsim, we get some degree of symmetry/similarity in the magnitude of divergence between the groups, so co-plotting the genome-wide distributions is reasonable.
+
+Bootstrapping is done by sampling orthogroups within a window with replacement -- this relies on reciprocal maps of window-to-orthogroups and orthogroup-to-windows in order to make each bootstrap a simple piped command.
+
+```bash
+#This process took about 55 minutes and 11 GB RAM using 32 threads:
+/usr/bin/time -v make -f calculate_SCO_pi_dxy.mk -j32 all 2> calculate_SCO_pi_dxy_j32.stderr > calculate_SCO_pi_dxy_j32.stdout
+```
 
 ## Assembly pre-processing/QC notes and commands
 

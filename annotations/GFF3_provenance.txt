@@ -1,0 +1,21 @@
+As of 2021/05/15:
+Dmel_ISO1.gff3:
+FlyBase r6.27 Dmel ISO1
+
+Dsan_STOCAGO1482.gff3:
+Dsan_STOCAGO1482_20210422_BRAKER2_RNAseq_DmelProteins_adjusted_sorted.gff3
+
+Dsim_w501.gff3:
+FlyBase r2.02 Dsim w501
+
+Dsim_w501_v3_unpublished/Dsim_w501.gff3:
+Not done yet
+
+Dtei_GT53w.gff3:
+Dtei_GT53w_20210422_BRAKER2_RNAseq_DmelProteins_adjusted_sorted.gff3
+
+Dyak_NY73PB.gff3:
+Dyak_NY73PB_20210422_BRAKER2_RNAseq_DmelProteins_adjusted_sorted.gff3
+
+Dyak_Tai18E2.gff3:
+Dyak_Tai18E2_20210422_BRAKER2_RNAseq_DmelProteins_adjusted_sorted.gff3

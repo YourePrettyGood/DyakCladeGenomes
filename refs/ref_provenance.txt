@@ -1,0 +1,83 @@
+As of 2021/05/15:
+Dmel_ISO1.fasta:
+FlyBase r6.27 Dmel ISO1
+
+Dsan_STOCAGO1482.fasta:
+fasta_formatter -i /run/media/pfreilly/PFR_Scratch/Kraken_contamination_checks/Dsan_STOCAGO1482_fixed_softmasked_purged_w60.fasta -o Dsan_STOCAGO1482.fasta
+
+Dsim_w501.fasta:
+FlyBase r2.02 Dsim w501
+
+Dsim_w501_v3_unpublished/Dsim_w501.fasta:
+Not done yet
+
+Dtei_GT53w.fasta:
+fasta_formatter -i /run/media/pfreilly/PFR_Scratch/Kraken_contamination_checks/Dtei_GT53w_fixed_softmasked_purged_w60.fasta -o Dtei_GT53w.fasta
+
+Dyak_NY73PB.fasta:
+fasta_formatter -i /run/media/pfreilly/PFR_Scratch/Kraken_contamination_checks/Dyak_NY73PB_fixed_softmasked_purged_w60.fasta -o Dyak_NY73PB.fasta
+
+Dyak_Tai18E2.fasta:
+fasta_formatter -i /run/media/pfreilly/PFR_Scratch/Kraken_contamination_checks/Dyak_Tai18E2_fixed_softmasked_purged_w60.fasta -o Dyak_Tai18E2.fasta
+
+Procedures used:
+Original contig assemblies were generated with FALCON and Canu.
+Contig assemblies were merged with quickmerge.
+Merged assemblies had some repeat resolution, scaffolding, and gap-filling done
+ with FinisherSC.
+Post-processed assemblies were polished with a single round of Quiver.
+Quiver-polished assemblies were further polished with a single round of Pilon
+ using the Illumina reads from each isogenized reference strain.
+Scaffolding into chromosome arms was initially done based on dotplots with
+ Dmel ISO1, also using the context of the inversion maps of Lemeunier and
+ Ashburner 1976.
+Dtei GT53w was a more fragmented assembly which complicated synteny
+ detection, so scaffolding information was gleaned from draft scaffoldings
+ using SALSA2 with Hi-C data from Dtei GT53w.
+SALSA2 was overzealous in scaffolding, so the output was manually curated
+ for reliable joins.
+Misassembly checks were performed based on windowed depth analysis of both
+ PacBio data (mapped with NGMLR) and Illumina data (mapped with BWA-MEM).
+After initial checks, draft annotations were generated on the contigs,
+ and I identified single copy orthologs across these references, and used
+ these SCOs with the cytological bands annotated in the FlyBase Dmel GFF3
+ to transfer bands over to the other species.
+By examining the banding intervals and comparing to the banding patterns
+ defined in Lemeunier and Ashburner 1976 and also in Schaeffer et al. 2008
+ allowing for some expected deviations (like the 2L misassembly in Dyak
+ Tai18E2).
+I have the final cytological band intervals for each assembly on paper
+ in my records, including comparisons to Schaeffer et al. 2008.
+Any breaks indicated by this cytological band analysis were further examined
+ for obvious misassembly patterns in IGV based on the Illumina and PacBio
+ BAMs, and some alternate haplotype regions or contigs were identified and
+ purged.
+I had run MSG in the past on an older freeze using the data of Cande et al.
+ 2012, and the LOD matrices of both backcrosses did not show any major
+ misassemblies, though did show expected signals of the 2L and 2R inversions.
+It is important to repeat mask the assemblies before running MSG, as not
+ masking produces a spurious signal of linkage between chromosome arms in
+ periheterochromatic regions.
+After finishing my dissertation and submitting the assemblies to NCBI,
+ Terence Murphy indicated that Dtei (and to a lesser extent Dsan) had
+ an excess of frameshifts detected during the RefSeq annotation process,
+ so I looked into the matter using Exonerate mappings of Dmel proteins
+ and looked at IGV for the Illumina BAMs.
+This combination suggested a couple of different types of small misassemblies
+ that weren't detectable using typical methods (e.g. depth analysis,
+ dotplots, etc.), but all of which appear to be correctable by applying
+ an ALT allele at homozygous ALT and heterozygous ALT1/ALT2 calls to the
+ reference.
+Note: These errors appeared to be a known consequence of Quiver polishing
+ in heterozygous regions, and they don't trigger re-assembly in Pilon.
+This resulted in very minor changes to the coordinate space, but significant
+ improvements in both Exonerate mappings and kmer-based quality score
+ estimates using Merqury.
+BUSCO results also improved after this extra round of polishing.
+After this custom polishing, I renamed the mtDNA contig, identified putative
+ alternate haplotigs based on BUSCOs and purged them, and identified
+ contaminated contigs using kraken2.
+Then I soft-masked using the same custom repeat libraries as before with
+ RepeatMasker.
+This version of the assembly was then used for annotation and pseudoref
+ generation in the freeze starting after 2021/04/22.
