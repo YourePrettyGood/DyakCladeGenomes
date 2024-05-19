@@ -1,8 +1,12 @@
 #!/bin/awk -f
 BEGIN{
-#For the time being, we hard-code the trim_window value
-#TODO: Figure out how to detect if -v passes it in, and don't overwrite
-   trim_window=2;
+#Default to trimming 2 bp from each side:
+   if (length(ltrim) == 0) {
+      ltrim=2;
+   };
+   if (length(rtrim) == 0) {
+      rtrim=2;
+   };
 }
 /^>/{
 #Could modify this so that we append something to the header to
@@ -10,8 +14,8 @@ BEGIN{
    print;
 }
 !/^>/{
-#This line simply trims one trim_window length off each end,
-# and converts all bases to uppercase:
-   trimmed=toupper(substr($0, 1+trim_window, length($0)-2*trim_window));
+#Trim ltrim off left end, rtrim off right end,
+# and convert all bases to uppercase:
+   trimmed=toupper(substr($0, 1+ltrim, length($0)-ltrim-rtrim));
    print trimmed;
 }

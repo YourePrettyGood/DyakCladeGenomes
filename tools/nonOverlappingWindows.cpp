@@ -7,6 +7,7 @@
  *   as well as handling a custom statistic column                          *
  * Version 1.3 written 2018/11/08 Filter or use non-N fraction as weight    *
  * Version 1.4 written 2020/01/10 Output sum and denominator if requested   *
+ * Version 1.5 written 2024/05/19 Bugfix catching bad input column indices  *
  * Description:                                                             *
  *  Calculates the mean of a statistic over non-overlapping windows of      *
  *  user-defined length, and can adjust the denominator of the mean based   *
@@ -50,7 +51,7 @@
 #define optional_argument 2
 
 //Version:
-#define version "1.4"
+#define version "1.5"
 
 //Usage/help:
 #define usage "nonOverlappingWindows\nUsage:\n nonOverlappingWindows [options]\n Options:\n  --input_tsv,-i\tPath to input TSV (default: STDIN)\n  --output_tsv,-o\tPath to output TSV (default: STDOUT)\n  --omit_n,-n\t\tOmit sites indicated in the filter (4th) column\n  --window_size,-w\tSize of the non-overlapping windows\n  --usable_fraction,-u\tOutput the fraction of usable sites in\n\t\t\teach window as column 4\n  --stat_column,-s\tUse this column as the statistic to summarize\n\t\t(default: 3, cannot be 1 or 4)\n  --infimum_nonN,-f\tInfimum fraction of non-Ns to include in average\n\t\t(i.e. include sites with non-N fraction > this value)\n\t\tAssumes column 4 is fraction of non-N bases at site\n  --weighted_average,-a\tCalculate weighted average based on non-N fraction\n\t\tAssumes column 4 is the fraction of non-N bases at the site\n  --debug,-d\t\tOutput debugging information, including sum and denominator as extra columns\n\n Description:\n  Calculates the mean of a statistic over non-overlapping windows\n  across scaffolds in a genome. Sites may be omitted from the average.\n  Input is a 3- or 4-column TSV consisting of scaffold name,\n  position, statistic, and a filter column.\n  If the filter column is 1 and -n is set, the row is omitted from the average.\n  If the fourth column is the fraction of non-N bases,\n  sites may be omitted based on an infimum filter (-f),\n  or a weighted average may be calculated (-a).\n  If the scaffold length is not an integral multiple of the window size,\n  the last window's average is scaled appropriately.\n"
@@ -304,7 +305,7 @@ int main(int argc, char **argv) {
       
       //Test that the TSV is valid and has the necessary columns:
       if (line_vector.size() < 3) { //Too few elements per line
-         cerr << "Malformatted input TSV: Less than 3 columns." << endl;
+         cerr << "Malformatted input TSV: Less than 3 columns or not using tab as delimiter." << endl;
          if (!use_cin) { 
             input.close();
          }
@@ -313,7 +314,7 @@ int main(int argc, char **argv) {
          }
          return 4;
       } else if (line_vector.size() < 4 && omit_Ns) { //Need the filter column to perform omission
-         cerr << "Malformatted input TSV: Missing filter column." << endl;
+         cerr << "Malformatted input TSV: Missing filter column or not using tab as delimiter." << endl;
          if (!use_cin) {
             input.close();
          }
@@ -327,8 +328,9 @@ int main(int argc, char **argv) {
       string scaffold_name = "";
       double local_statistic;
       double omit_position = 0.0;
-      scaffold_name = line_vector[0];
-      if (stat_column > line_vector.size()) {
+      scaffold_name = line_vector.at(0);
+      //Check for mismatch between input stat_column and parsed version of input file:
+      if (stat_column <= 0 || stat_column > line_vector.size()) {
          cerr << "Chosen statistic column " << to_string(stat_column) << " is not a valid column in your file." << endl;
          if (!use_cin) {
             input.close();
@@ -338,7 +340,7 @@ int main(int argc, char **argv) {
          }
          return 6;
       }
-      if (line_vector[stat_column-1] == "NA") {
+      if (line_vector.at(stat_column-1) == "NA") {
          local_statistic = 0.0;
          if (nonN_weight > 0) {
             omit_position = 0.0;
@@ -347,22 +349,22 @@ int main(int argc, char **argv) {
          }
       } else {
          try {
-            local_statistic = stod(line_vector[stat_column-1]);
+            local_statistic = stod(line_vector.at(stat_column-1));
          } catch (const invalid_argument&) {
-            cerr << "Unable to convert stat at " << line_vector[0] << " pos " << line_vector[1] << ": " << line_vector[stat_column-1] << " to double." << endl;
+            cerr << "Unable to convert stat at " << line_vector.at(0) << " pos " << line_vector.at(1) << ": " << line_vector.at(stat_column-1) << " to double." << endl;
             throw;
          } catch (const out_of_range&) {
-            cerr << "Stat at " << line_vector[0] << " pos " << line_vector[1] << ": " << line_vector[stat_column-1] << " is out of range of a double." << endl;
+            cerr << "Stat at " << line_vector.at(0) << " pos " << line_vector.at(1) << ": " << line_vector.at(stat_column-1) << " is out of range of a double." << endl;
             throw;
          }
          if (line_vector.size() >= 4) {
             try {
-               omit_position = stod(line_vector[3]);
+               omit_position = stod(line_vector.at(3));
             } catch (const invalid_argument&) {
-               cerr << "Unable to convert column 4 at " << line_vector[0] << " pos " << line_vector[1] << ": " << line_vector[3] << " to double." << endl;
+               cerr << "Unable to convert column 4 at " << line_vector.at(0) << " pos " << line_vector.at(1) << ": " << line_vector.at(3) << " to double." << endl;
                throw;
             } catch (const out_of_range&) {
-               cerr << "Column 4 at " << line_vector[0] << " pos " << line_vector[1] << ": " << line_vector[3] << " is out of range of a double." << endl;
+               cerr << "Column 4 at " << line_vector.at(0) << " pos " << line_vector.at(1) << ": " << line_vector.at(3) << " is out of range of a double." << endl;
                throw;
             }
          }
